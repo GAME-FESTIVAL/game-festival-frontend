@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { AppProvider } from "AppProvider";
+import { NotFound } from "@common/components";
 import { Main } from "@main/components";
 import { FindAccount, Join, Login } from "@auth/components";
 import { GameDetail, GameList } from "@games/components";
@@ -16,6 +17,7 @@ type RouteType = {
 
 const App = () => {
   const routes: RouteType[] = [
+    { path: "/*", element: <NotFound /> },
     { path: "/", element: <Main /> },
     { path: "/login", element: <Login /> },
     { path: "/join", element: <Join /> },

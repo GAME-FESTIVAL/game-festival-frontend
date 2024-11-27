@@ -1,3 +1,3 @@
 export const Main = () => {
-  return <main></main>;
+  return <main>GAME FESTIVAL</main>;
 };
