@@ -40,7 +40,7 @@ npm run build
 예를 들어 `src/domains/domain/components` 경로에 있는 파일들을 아래와 같이 간단히 임포트할 수 있습니다!
 
 ```typescript
-import { MyComponent } from "@domain/components";
+import { MyComponent } from '@domain/components'
 ```
 
 이를 통해 깊은 경로를 직접 작성할 필요 없이 코드의 가독성과 유지보수성을 높였습니다.
@@ -55,15 +55,15 @@ import { MyComponent } from "@domain/components";
 src/domains/domain/components/index.ts 파일:
 
 ```typescript
-export { default as Component1 } from "./Component1";
-export { default as Component2 } from "./Component2";
-export { default as Component3 } from "./Component3";
+export { default as Component1 } from './Component1'
+export { default as Component2 } from './Component2'
+export { default as Component3 } from './Component3'
 ```
 
 Component1, Component2, Component3를 사용하려는 곳에서:
 
 ```typescript
-import { Component1, Component2, Component3 } from "@domain/components";
+import { Component1, Component2, Component3 } from '@domain/components'
 ```
 
 이 설정으로 다음과 같은 이점을 얻을 수 있습니다:
@@ -122,3 +122,52 @@ import { Component1, Component2, Component3 } from "@domain/components";
 - `debug(auth): 토큰 만료 오류 수정`
 - `refactor(mypage): 중복된 함수 제거 및 최적화`
 - `task(common): 데이트 포맷팅 함수 추가`
+
+---
+
+## 코드 스타일 규칙 설정: Prettier
+
+이 프로젝트에서는 코드 스타일의 일관성을 유지하기 위해 **Prettier**를 사용합니다. Prettier 설정은 프로젝트 루트 디렉토리의 `.prettierrc` 파일에 정의되어 있습니다.
+
+예시)
+
+```json
+{
+  "printWidth": 80, // 한 줄에 허용되는 최대 문자 수. 기본값은 80입니다.
+  "tabWidth": 2, // 탭을 공백으로 변환할 때 사용할 공백의 수. 기본값은 2입니다.
+  "useTabs": false, // 탭 대신 공백을 사용할지 여부. 기본값은 false입니다.
+  "semi": true, // 문장 끝에 세미콜론을 추가할지 여부. 기본값은 true입니다.
+  "singleQuote": false, // 문자열에 따옴표를 사용할지 여부. 기본값은 false입니다.
+  "quoteProps": "as-needed", // 객체의 속성 이름에 따옴표를 추가할 시점.
+  "jsxSingleQuote": false, // JSX에서 따옴표를 사용할지 여부. 기본값은 false입니다.
+  "trailingComma": "es5", // 마지막 항목 뒤에 쉼표를 추가할지 여부.
+  "bracketSpacing": true, // 객체 리터럴의 중괄호 사이에 공백을 추가할지 여부.
+  "jsxBracketSameLine": false, // JSX의 태그 닫기 괄호를 같은 줄에 위치시킬지 여부.
+  "arrowParens": "always", // 화살표 함수에 괄호를 항상 추가할지 여부.
+  "rangeStart": 0, // 포맷팅을 적용할 범위의 시작 지점.
+  "rangeEnd": 9007199254740991, // 포맷팅을 적용할 범위의 끝 지점.
+  "parser": "typescript", // 코드의 파서 종류.
+  "requirePragma": false, // `@format` 주석이 있을 때만 포맷팅 적용 여부.
+  "insertPragma": false, // `@format` 주석을 삽입할지 여부.
+  "proseWrap": "preserve", // Markdown 문서의 줄 바꿈 방식.
+  "htmlWhitespaceSensitivity": "css", // HTML 파일의 공백 민감도.
+  "endOfLine": "lf", // 줄 바꿈 처리 방식.
+  "embeddedLanguageFormatting": "auto" // 내장 언어의 포맷팅 적용 여부.
+}
+```
+
+### VSCode에서 Prettier 설정 방법
+
+**1. Prettier 확장 설치**
+
+- VSCode 확장프로그램인 "Prettier - Code formatter"를 설치합니다.
+
+**2. Ctrl + , 를 눌러 설정 UI 열기**
+
+- VSCode의 설정을 열고, 검색 창에 format on save를 입력합니다.
+  Editor: Format On Save 옵션을 체크합니다.
+
+**3. 기본 포맷터를 Prettier로 설정**
+
+- 검색 창에 default formatter를 입력합니다.
+  Editor: Default Formatter 항목에서 esbenp.prettier-vscode를 선택합니다.
