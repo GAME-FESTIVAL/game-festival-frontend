@@ -1,11 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { AppProvider } from "AppProvider";
-import { Main } from "@main/components/pages";
-import { FindAccount, Join, Login } from "@auth/components/pages";
-import { GameDetail, GameList } from "@games/components/pages";
-import { News } from "@news/components/pages";
-import { NewSpecial } from "@newSpecial/components/pages";
+import { NotFound } from "@common/components";
+import { Main } from "@main/components";
+import { FindAccount, Join, Login } from "@auth/components";
+import { GameDetail, GameList } from "@games/components";
+import { News } from "@news/components";
+import { NewSpecial } from "@newSpecial/components";
 //마이페이지 구조 구상중
 
 type RouteType = {
@@ -16,6 +17,7 @@ type RouteType = {
 
 const App = () => {
   const routes: RouteType[] = [
+    { path: "/*", element: <NotFound /> },
     { path: "/", element: <Main /> },
     { path: "/login", element: <Login /> },
     { path: "/join", element: <Join /> },
