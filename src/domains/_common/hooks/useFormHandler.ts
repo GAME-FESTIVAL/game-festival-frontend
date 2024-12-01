@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
-import { formatPhoneNumber } from '@common/utils/formatPhoneNumber'
-import { validRules } from '@common/constants/validRules'
+import { formatPhoneNumber } from '@common/utils'
+import { validRules } from '@common/constants'
 
 type ValidTypesType = 'name' | 'email' | 'phoneNumber' | 'birth'
 
