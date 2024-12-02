@@ -1,1 +1,1 @@
-export * from './validRules'
+export * from './defaultValidRules'
