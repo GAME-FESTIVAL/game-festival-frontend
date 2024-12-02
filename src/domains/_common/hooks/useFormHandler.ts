@@ -1,93 +1,120 @@
 import { useEffect, useState, useRef } from 'react'
 import { formatPhoneNumber } from '@common/utils'
-import { validRules } from '@common/constants'
+import { defaultValidRules } from '@common/constants'
 
-type ValidTypesType = 'name' | 'email' | 'phoneNumber' | 'birth'
+type ValidTypesType = 'name' | 'email' | 'phoneNumber' | 'birth' | 'password'
 
 type FormHandlerEventType = React.ChangeEvent<
   HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 >
 
+type FormType = {
+  [key: string]: unknown
+}
+
+type RuleType = {
+  [key: string]: {
+    exp: RegExp
+    placeholder: string
+    errorMessage: string
+  }
+}
+
 type DataSetType = {
   type: string
   value?: string
   rule: ValidTypesType
+  match: keyof FormType
 }
 
-export const useFormHandler = <T>(data: Partial<T> = {}) => {
-  const [form, setForm] = useState<Partial<T>>(data)
+type AttributesOptionsType = {
+  rule?: ValidTypesType
+  match?: keyof FormType
+  type?: string
+  value?: unknown
+  required?: boolean
+  classNames?: string
+  onChange?: (e?: FormHandlerEventType) => void
+}
+
+export const useFormHandler = (
+  data: FormType = {},
+  rules: RuleType = defaultValidRules
+) => {
+  const [form, setForm] = useState<FormType>(data)
   const [validItems, setValidItems] = useState<
-    Partial<Record<keyof T, boolean>>
+    Partial<Record<keyof FormType, boolean>>
   >({})
-  const [requiredItems, setRequiredItems] = useState<(keyof T)[]>([])
-  const validItemsRef = useRef({})
-  const requiredItemsRef = useRef<(keyof T)[]>([])
+  const [requiredItems, setRequiredItems] = useState<(keyof FormType)[]>([])
+  const validItemsRef = useRef<Record<keyof FormType, boolean>>({})
+  const requiredItemsRef = useRef<(keyof FormType)[]>([])
 
   const formHandler: (e: FormHandlerEventType) => void = (e) => {
-    const name = (e.target.name || e.target.dataset.name) as keyof T
-    const { type, rule, value } = e.target.dataset as DataSetType
+    const name = e.target.dataset.name as keyof FormType
+    const { type, rule, value, match } = e.target.dataset as DataSetType
     let newValue: string | number | unknown[] = value || e.target.value
     switch (type) {
-      case 'number': {
+      case 'number':
         newValue = Number(newValue.replace(/[^0-9]/g, ''))
         break
-      }
-      case 'phoneNumber': {
+      case 'phoneNumber':
         newValue = formatPhoneNumber(newValue)
         break
-      }
-      case 'array': {
+      case 'array':
         const propCopy = form[name] ? [...(form[name] as unknown[])] : []
         if (propCopy.includes(newValue)) {
           newValue = propCopy.filter((element) => element !== newValue)
         } else newValue = [...propCopy, newValue]
         break
-      }
     }
     setForm({ ...form, [name]: newValue })
-    if (rule) {
-      const result = validRules[rule].exp.test(newValue as string)
-      setValidItems({ ...validItems, [name]: !newValue || result })
+    if ((rule || match) && typeof newValue === 'string') {
+      const isMatchValid = !match || form[match] === newValue
+      const isRuleValid = !rule || rules[rule].exp.test(newValue)
+      setValidItems({
+        ...validItems,
+        [name]: !newValue || (isRuleValid && isMatchValid),
+      })
     }
   }
 
-  type AttributesOptionsType = {
-    rule?: ValidTypesType
-    type?: string
-    value?: unknown
-    required?: boolean
-    classNames?: string
-  }
-
-  const attributes = (name: keyof T, options?: AttributesOptionsType) => {
-    const { rule, type, value, classNames, required } = options ?? {}
-    const curretnValue = form[name] || ''
-    const onChange = formHandler
+  const attributes = <ValueType = string>(
+    fieldName: keyof FormType,
+    options?: AttributesOptionsType
+  ) => {
+    const name = fieldName as string
+    const value = (form[name] || '') as ValueType
+    const { rule, match, type, classNames, required } = options ?? {}
+    const onChange = options?.onChange || formHandler
     const errorClass = rule && !validItems[name] ? ' error' : ''
     const className = (classNames || '') + errorClass
+    const placeholder = rule && rules[rule].placeholder
     if (required) requiredItemsRef.current.push(name)
-    if (rule) {
-      validItemsRef.current = {
-        ...validItemsRef.current,
-        [name]: true,
-      }
-    }
+    if (rule || match) validItemsRef.current[name] = true
     return {
-      ...{ name, value: curretnValue, className, onChange },
-      placeholder: rule && validRules[rule].placeholder,
       'data-name': name,
-      'data-rule': rule || null,
-      'data-type': type || null,
-      'data-value': value || null,
+      'data-rule': rule,
+      'data-match': match,
+      'data-type': type,
+      'data-value': options?.value,
+      ...{ name, value, className, onChange, placeholder },
     }
+  }
+
+  const getField = (fieldName: keyof FormType) => {
+    return form[fieldName]
+  }
+
+  const setField = (setData: Record<keyof FormType, unknown>) => {
+    setForm({ ...form, ...setData })
   }
 
   const isSubmitting = () => {
-    const isEmpty = requiredItems.every((key: keyof T) =>
+    const isisValidPass = Object.values(validItems).every((value) => value)
+    const isFormFilled = requiredItems.every((key: keyof FormType) =>
       Array.isArray(form[key]) ? form[key][0] : form[key]
     )
-    const isValid = Object.values(validItems).every((value) => value)
-    return isEmpty && isValid
+    return isisValidPass && isFormFilled
   }
 
   useEffect(() => {
@@ -95,5 +122,13 @@ export const useFormHandler = <T>(data: Partial<T> = {}) => {
     setRequiredItems(Array.from(new Set(requiredItemsRef.current)))
   }, [])
 
-  return { form, setForm, attributes, validItems, isSubmitting }
+  return {
+    form,
+    setForm,
+    getField,
+    setField,
+    attributes,
+    validItems,
+    isSubmitting,
+  }
 }

@@ -1,4 +1,4 @@
-export const validRules = {
+export const defaultValidRules = {
   name: {
     exp: /^[a-zA-Z]{2,}$/,
     placeholder: '영문 2자 이상',
