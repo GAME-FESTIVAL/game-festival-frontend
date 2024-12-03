@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { formatPhoneNumber } from '@common/utils'
-import { defaultValidRules } from '@common/constants'
+import { formatPhoneNumber, tryParseJson } from '@common/utils'
 
 type ValidTypesType = 'name' | 'email' | 'phoneNumber' | 'birth' | 'password'
 
@@ -15,16 +14,19 @@ type FormType = {
 type RuleType = {
   [key: string]: {
     exp: RegExp
-    placeholder: string
-    errorMessage: string
+    placeholder?: string
+    errorMessage?: string
   }
 }
 
 type DataSetType = {
+  name: string
   type: string
   value?: string
-  rule: ValidTypesType
-  match: keyof FormType
+  rule?: ValidTypesType
+  match?: keyof FormType
+  reset?: keyof FormType
+  resetValue?: string
 }
 
 type AttributesOptionsType = {
@@ -33,14 +35,14 @@ type AttributesOptionsType = {
   type?: string
   value?: unknown
   required?: boolean
+  reset?: keyof FormType
+  resetValue?: string
+  errorStyle?: Record<string, string>
   classNames?: string
   onChange?: (e?: FormHandlerEventType) => void
 }
 
-export const useFormHandler = (
-  data: FormType = {},
-  rules: RuleType = defaultValidRules
-) => {
+export const useFormHandler = (data: FormType = {}, rules?: RuleType) => {
   const [form, setForm] = useState<FormType>(data)
   const [validItems, setValidItems] = useState<
     Partial<Record<keyof FormType, boolean>>
@@ -48,34 +50,77 @@ export const useFormHandler = (
   const [requiredItems, setRequiredItems] = useState<(keyof FormType)[]>([])
   const validItemsRef = useRef<Record<keyof FormType, boolean>>({})
   const requiredItemsRef = useRef<(keyof FormType)[]>([])
+  const inputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
-  const formHandler: (e: FormHandlerEventType) => void = (e) => {
-    const name = e.target.dataset.name as keyof FormType
-    const { type, rule, value, match } = e.target.dataset as DataSetType
-    let newValue: string | number | unknown[] = value || e.target.value
+  const defaultFormHandler: (e: FormHandlerEventType) => void = (e) => {
+    const dataset = e.target.dataset as DataSetType
+    const { name, type, rule, value, match, reset, resetValue } = dataset
+    const newValue = value || e.target.value
+    const updateForm = { ...form }
     switch (type) {
       case 'number':
-        newValue = Number(newValue.replace(/[^0-9]/g, ''))
+        updateForm[name] = Number(newValue.replace(/[^0-9]/g, ''))
         break
       case 'phoneNumber':
-        newValue = formatPhoneNumber(newValue)
+        updateForm[name] = formatPhoneNumber(newValue)
         break
       case 'array':
-        const propCopy = form[name] ? [...(form[name] as unknown[])] : []
-        if (propCopy.includes(newValue)) {
-          newValue = propCopy.filter((element) => element !== newValue)
-        } else newValue = [...propCopy, newValue]
+      case 'checkbox':
+        if (!Array.isArray(form[name])) break
+        const copy = form[name] ? [...form[name]] : []
+        if (copy.includes(newValue)) {
+          updateForm[name] = copy.filter((element) => element !== newValue)
+        } else updateForm[name] = [...copy, newValue]
         break
+      default: {
+        updateForm[name] = tryParseJson(newValue)
+      }
     }
-    setForm({ ...form, [name]: newValue })
-    if ((rule || match) && typeof newValue === 'string') {
-      const isMatchValid = !match || form[match] === newValue
-      const isRuleValid = !rule || rules[rule].exp.test(newValue)
-      setValidItems({
-        ...validItems,
-        [name]: !newValue || (isRuleValid && isMatchValid),
+
+    if (reset) {
+      const fieldType = typeof form[reset]
+      const isArray = Array.isArray(form[reset])
+      const resetValueType = resetValue ? 'provided' : fieldType
+      switch (resetValueType) {
+        case 'provided': {
+          updateForm[name] = tryParseJson(resetValue)
+          break
+        }
+        case 'string': {
+          updateForm[reset] = ''
+          break
+        }
+        case 'number': {
+          updateForm[reset] = 0
+          break
+        }
+        case 'boolean': {
+          updateForm[reset] = false
+          break
+        }
+        case 'object': {
+          if (isArray) updateForm[reset] = []
+          else updateForm[reset] = {}
+          break
+        }
+        default: {
+          updateForm[reset] = undefined
+        }
+      }
+    }
+
+    if (validItems) {
+      const updateValidItems = { ...validItems }
+      Object.keys(validItems).forEach((key) => {
+        const value = updateForm[key] as string
+        const isMatchValid = !match || form[match] === value
+        const isRuleValid = !rules || !rule || rules[rule].exp.test(value)
+        updateValidItems[key] = !value || (isRuleValid && isMatchValid)
       })
+      setValidItems(updateValidItems)
     }
+
+    setForm(updateForm)
   }
 
   const attributes = <ValueType = string>(
@@ -84,16 +129,24 @@ export const useFormHandler = (
   ) => {
     const name = fieldName as string
     const value = (form[name] || '') as ValueType
-    const { rule, match, type, classNames, required } = options ?? {}
-    const onChange = options?.onChange || formHandler
-    const errorClass = rule && !validItems[name] ? ' error' : ''
-    const className = (classNames || '') + errorClass
-    const placeholder = rule && rules[rule].placeholder
-    if (required) requiredItemsRef.current.push(name)
-    if (rule || match) validItemsRef.current[name] = true
+    const { rule, match, type, reset, resetValue } = options ?? {}
+    const onChange = options?.onChange || defaultFormHandler
+    const isValid = rule || match
+    const errorClass = isValid && !validItems[name] ? ' valid-error' : ''
+    const className = (options?.classNames || '') + errorClass
+    const placeholder = rules && rule && rules[rule].placeholder
+    const style = (errorClass && options?.errorStyle) || {}
+    const ref = (el: HTMLInputElement) => (inputRefs.current[name] = el)
+    if (options?.required) requiredItemsRef.current.push(name)
+    if (isValid) validItemsRef.current[name] = true
+
     return {
+      ref,
+      style,
       'data-name': name,
       'data-rule': rule,
+      'data-reset': reset,
+      'data-reset-value': resetValue,
       'data-match': match,
       'data-type': type,
       'data-value': options?.value,
@@ -109,11 +162,17 @@ export const useFormHandler = (
     setForm({ ...form, ...setData })
   }
 
-  const isSubmitting = () => {
+  const isSubmitting = (
+    callback?: (
+      validItems: Partial<Record<keyof FormType, boolean>>,
+      requiredItems: (keyof FormType)[]
+    ) => void
+  ) => {
     const isisValidPass = Object.values(validItems).every((value) => value)
     const isFormFilled = requiredItems.every((key: keyof FormType) =>
       Array.isArray(form[key]) ? form[key][0] : form[key]
     )
+    if (callback) callback(validItems, requiredItems)
     return isisValidPass && isFormFilled
   }
 
@@ -128,7 +187,9 @@ export const useFormHandler = (
     getField,
     setField,
     attributes,
-    validItems,
     isSubmitting,
+    validItems,
+    requiredItems,
+    inputRefs,
   }
 }

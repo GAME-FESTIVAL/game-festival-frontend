@@ -1,9 +1,19 @@
 import { useFormHandler } from '@common/hooks'
-
+import { defaultValidRules } from '@common/constants'
 export const Join = () => {
-  const { form, attributes, isSubmitting } = useFormHandler({
-    gender: 'male',
-  })
+  const { form, attributes, isSubmitting, inputRefs } = useFormHandler(
+    { gender: 'male' },
+    defaultValidRules
+  )
+
+  const onSubmit = () => {
+    isSubmitting((_, requiredItems) => {
+      for (const key of requiredItems) {
+        const value = Array.isArray(form[key]) ? form[key][0] : form[key]
+        if (!value) return inputRefs.current[key]?.focus()
+      }
+    })
+  }
 
   return (
     <main>
@@ -17,6 +27,9 @@ export const Join = () => {
               {...attributes('name', {
                 required: true,
                 rule: 'name',
+                errorStyle: {
+                  backgroundColor: 'red',
+                },
               })}
             />
           </dd>
@@ -30,6 +43,7 @@ export const Join = () => {
               {...attributes('password', {
                 required: true,
                 rule: 'password',
+                reset: 'name',
               })}
             />
           </dd>
@@ -43,6 +57,9 @@ export const Join = () => {
               {...attributes('password_confirm', {
                 required: true,
                 match: 'password',
+                errorStyle: {
+                  backgroundColor: 'red',
+                },
               })}
               placeholder="비밀번호를 다시 입력해주세요."
             />
@@ -85,7 +102,7 @@ export const Join = () => {
                   type="checkbox"
                   {...attributes('interest', {
                     value: el.value,
-                    type: 'array',
+                    type: 'checkbox',
                   })}
                 />
               </label>
@@ -93,7 +110,9 @@ export const Join = () => {
           </dd>
         </dl>
 
-        <button>{isSubmitting() ? '제출가능' : '제출불가'}</button>
+        <button onClick={onSubmit}>
+          {isSubmitting() ? '제출가능' : '제출불가'}
+        </button>
       </fieldset>
     </main>
   )
