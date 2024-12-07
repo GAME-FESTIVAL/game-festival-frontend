@@ -6,8 +6,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(new QueryClient())
 
-  console.log('test')
-
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
