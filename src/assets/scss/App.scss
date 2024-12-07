@@ -1,15 +1,16 @@
 //base
-@import "./base/reset";
-@import "./base/typography";
-@import "./base/typography";
+@import './base/reset';
+@import './base/typography';
+@import './base/variables';
+@import './base/global';
 
 //utils
-@import "./utils/variables";
-@import "./utils/mixins";
-@import "./utils/functions";
+@import './utils/variables';
+@import './utils/mixins';
+@import './utils/functions';
 
 //component
-@import "./component/button";
+@import './component/button';
 
 //pages
-@import "./pages/main";
+@import './pages/main';
