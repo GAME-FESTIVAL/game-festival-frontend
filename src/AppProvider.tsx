@@ -1,10 +1,12 @@
-import { Suspense, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Suspense, useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { ErrorBoundary } from 'react-error-boundary'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [queryClient] = useState(new QueryClient());
+  const [queryClient] = useState(new QueryClient())
+
+  console.log('test')
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -14,5 +16,5 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         </ErrorBoundary>
       </BrowserRouter>
     </QueryClientProvider>
-  );
-};
+  )
+}
