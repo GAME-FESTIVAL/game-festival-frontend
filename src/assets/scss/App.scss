@@ -1,13 +1,17 @@
 //base
-@import './base/reset';
-@import './base/typography';
 @import './base/variables';
+@import './base/reset';
 @import './base/global';
+@import './base/typography';
 
 //utils
 @import './utils/variables';
 @import './utils/mixins';
 @import './utils/functions';
+
+// loyout
+@import './layout/header'; // 헤더
+@import './layout/footer'; // 풋터
 
 //component
 @import './component/button';

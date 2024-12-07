@@ -31,7 +31,8 @@
       "@main/*": ["domains/main/*"],
       "@mypage/*": ["domains/mypage/*"],
       "@news/*": ["domains/news/*"],
-      "@newSpecial/*": ["domains/newSpecial/*"]
+      "@newSpecial/*": ["domains/newSpecial/*"],
+      "@components/*": ["components/*"]
     }
   },
   "include": ["src"]

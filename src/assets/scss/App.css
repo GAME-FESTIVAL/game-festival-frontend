@@ -1,0 +1,622 @@
+@charset "UTF-8";
+/* 
+    #변수명 기준은 www.color-name.com 사이트에서 별칭 따옴 
+    #사용법 예시
+        map-get($color_palette, neutral, EerieBlack);
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  position: relative;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+input {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  padding: 0;
+}
+input:focus-visible {
+  outline: none;
+}
+
+button {
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  padding: 0;
+}
+
+.font-primary {
+  font-family: "NeoDunggeunmo";
+}
+
+.font-scondary {
+  font-family: "DNFBitBitv2";
+}
+
+@font-face {
+  font-family: "NeoDunggeunmo";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "DNFBitBitv2";
+  font-style: normal;
+  font-weight: 400;
+  src: url("//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf") format("opentype");
+}
+@font-face {
+  font-family: "GasoekOne-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_JAMO@1.0/GasoekOne-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 
+    #FlexBox 속성 mixin
+    #사용법 예시
+        .my-container {
+            @include flexLayout($jc: center, $ai: center, $gap: 10px);
+        }
+*/
+/* 
+    #폰트 설정 mixin
+    #사용법 위와 같음
+*/
+/* #포지셔닝 mixin */
+/* #컨텐츠 사이즈 mixin */
+.header {
+  padding: 20px 0;
+  background: #2b2b2b;
+}
+.header .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 1400px;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+.header .left_column form {
+  padding-left: 100px;
+}
+.header .left_column form .logo {
+  position: absolute;
+  top: -20px;
+  right: auto;
+  left: 0;
+}
+.header .left_column form .search_box input {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "NeoDunggeunmo";
+  color: #a7b0bf;
+  line-height: 1.3;
+  width: 230px;
+  height: 48px;
+  padding: 0 15px;
+  border-radius: 10px;
+  background: #1d1d1d;
+}
+.header .left_column form .search_box .search_btn {
+  position: absolute;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  top: 50%;
+  right: 15px;
+}
+.header .right_column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0 10px;
+  /* 신규 및 특집 · 찾아보기 · 뉴스 */
+  /* 로그인 · 회원가입 */
+}
+.header .right_column ul {
+  border-radius: 10px;
+}
+.header .right_column ul li a {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "NeoDunggeunmo";
+  line-height: 1.3;
+}
+.header .right_column .menu {
+  padding: 15px 40px;
+  background: #1d1d1d;
+}
+.header .right_column .menu li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0 40px;
+}
+.header .right_column .menu li a {
+  color: #a7b0bf;
+}
+.header .right_column .signIn {
+  padding: 15px 17px;
+  background: #a7b0bf;
+}
+.header .right_column .signIn li a {
+  color: #000;
+}
+.header .right_column .signIn li a:first-child {
+  margin-right: 10px;
+  padding-right: 10px;
+}
+.header .right_column .signIn li a:first-child::after {
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  top: 50%;
+  right: -4px;
+  content: "";
+  background: #000;
+}
+
+.childText {
+  font-size: 200px;
+  font-weight: 400;
+  font-family: "GasoekOne-Regular";
+  color: #9355fe;
+  line-height: 1;
+  text-shadow: -3px 0px #000, 0px 3px #000, 3px 0px #000, 0px -3px #000;
+}
+.childText p {
+  display: table;
+  z-index: 1;
+}
+.childText p::after {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  font-size: inherit;
+  font-weight: 400;
+  font-family: inherit;
+  color: #45ffca;
+  line-height: 1.3;
+  text-shadow: -3px 0px #eee, 0px 3px #eee, 3px 0px #eee, 0px -3px #eee;
+  content: attr(data-child);
+  z-index: -1;
+}
+.childText.small {
+  text-shadow: -2px 0px #000, 0px 2px #000, 2px 0px #000, 0px -2px #000;
+  font-size: 100px;
+}
+.childText.small p::after {
+  text-shadow: -2px 0px #eee, 0px 2px #eee, 2px 0px #eee, 0px -2px #eee;
+}
+.childText.small p:nth-child(2) {
+  margin-top: 5px;
+}
+
+.main {
+  background: #1d1d1d;
+}
+.main .sc_hero .banner_line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0 60px;
+  padding: 12px 0;
+  background: #246dc2;
+}
+.main .sc_hero .banner_line p {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: "NeoDunggeunmo";
+  line-height: 1.3;
+  margin-bottom: -3px;
+}
+.main .sc_hero .banner_line > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0 60px;
+}
+.main .sc_hero .banner_line > div:nth-child(even) p {
+  color: #d0eb13;
+}
+.main .sc_hero .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 160px 171px 117px;
+}
+.main .sc_hero .inner .left_column .childText p:first-child::before {
+  width: 213px;
+  height: 213px;
+  position: absolute;
+  right: -230px;
+  content: "";
+  background: url(/img_hero_character.png) no-repeat top;
+}
+.main .sc_hero .inner .left_column .getDate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 45px;
+  font-weight: 400;
+  font-family: "NeoDunggeunmo";
+  color: #ff6a00;
+  line-height: 1.3;
+  padding-top: 60px;
+}
+.main .sc_hero .inner .left_column .getDate .time::before {
+  width: 48px;
+  height: 24px;
+  position: absolute;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  top: calc(50% - 2px);
+  left: -61px;
+  content: "";
+  background: url(/img_hero_timeArrow.png) no-repeat top;
+}
+.main .sc_hero .inner .right_column {
+  position: static;
+}
+.main .sc_hero .inner .right_column > div:first-child {
+  position: absolute;
+  top: 61px;
+  right: 266px;
+  z-index: 3;
+}
+.main .sc_hero .inner .right_column > div:nth-child(2) {
+  position: absolute;
+  top: 233px;
+  right: 58px;
+  z-index: 2;
+}
+.main .sc_hero .inner .right_column > div:last-child {
+  position: absolute;
+  top: 434px;
+  right: 232px;
+}
+.main .sc_popularGame {
+  padding: 62px 0 138px;
+  background: url(/img_popularGame_bg.png) no-repeat top, #000;
+}
+.main .sc_popularGame .top_tit {
+  width: 100%;
+  height: 650px;
+  max-width: 1325px;
+  margin: 0 auto;
+  background: url(/img_popularGame_tit_bg.png) no-repeat top;
+}
+.main .sc_popularGame .top_tit::before {
+  width: 353px;
+  height: 350px;
+  position: absolute;
+  top: 115px;
+  left: -19px;
+  content: "";
+  background: url(/img_popularGame_character.png) no-repeat top;
+}
+.main .sc_popularGame .top_tit .childText {
+  position: relative;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  top: 50%;
+  right: -65px;
+}
+.main .sc_popularGame .top_tit .childText p {
+  margin: 0 auto;
+  margin-right: 0;
+}
+.main .sc_popularGame .top_tit .childText p:nth-child(2) {
+  margin-top: 19px;
+  margin-right: 357px;
+}
+.main .sc_popularGame .bott_game_slide {
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.main .sc_popularGame .bott_game_slide .game_img {
+  width: 100%;
+  height: 300px;
+  max-width: 300px;
+  padding-bottom: 30px;
+}
+.main .sc_popularGame .bott_game_slide .game_img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+}
+.main .sc_popularGame .bott_game_slide .game_txt p {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "NeoDunggeunmo";
+  line-height: 1.5;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+}
+.main .sc_popularGame .bott_game_slide .game_txt span {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "NeoDunggeunmo";
+  color: #eee;
+  line-height: 1.4;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+  padding-top: 12px;
+}
+.main .sc_popularGame .bott_game_slide .swiper-etc-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0 45px;
+  margin-top: 48px;
+}
+.main .sc_popularGame .bott_game_slide .swiper-etc-box .arrow {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: auto;
+  left: auto;
+  margin: 0;
+  border: 1px solid #246dc2;
+}
+.main .sc_popularGame .bott_game_slide .swiper-etc-box .arrow::after {
+  display: none;
+}
+.main .sc_popularGame .bott_game_slide .swiper-etc-box .swiper-pagination {
+  height: 5px;
+  max-width: 380px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.3);
+}
+.main .sc_popularGame .bott_game_slide .swiper-etc-box .swiper-pagination-progressbar-fill {
+  background: #9355fe;
+}
+.main .sc_hotDeal .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0 150px;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab {
+  width: 100%;
+  max-width: 410px;
+  margin: 0 auto;
+  margin-right: 0;
+  padding-top: 60px;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0 25px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 2px solid #246dc2;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab .txt {
+  width: calc(100% - 125px);
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab .txt p {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "NeoDunggeunmo";
+  line-height: 1.3;
+  padding-bottom: 10px;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab .txt span {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "NeoDunggeunmo";
+  color: #eee;
+  line-height: 1.3;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab .game_img {
+  width: 100px;
+  height: 100px;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab .game_img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab.select {
+  background: #246dc2;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab.select .txt span {
+  color: #000;
+}
+.main .sc_hotDeal .inner .left_column .game_select_tab .tab:last-child {
+  margin-bottom: 0;
+}
+.main .sc_hotDeal .inner .right_column {
+  width: 100%;
+  max-width: 1015px;
+}
