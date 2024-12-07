@@ -2,6 +2,7 @@ name: Auto Assign Reviewers and Assignees
 
 on:
   pull_request:
+    types: [opened, ready_for_review]
     branches:
       - dev # dev 브랜치로 들어오는 PR에만 실행
 
