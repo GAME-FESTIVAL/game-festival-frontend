@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 
 // 이미지
-import logo from '@/assets/imgs/main/logo.png'
-import search from '@/assets/imgs/main/search.png'
+import logo from '@/assets/imgs/common/logo.png'
+import search from '@/assets/imgs/common/search.png'
 
 export const Header = () => {
   return (
