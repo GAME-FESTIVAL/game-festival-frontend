@@ -1,0 +1,8 @@
+reviewers:
+  - yonghwan1231
+addReviewers: true
+
+assignees:
+  # PR 생성자(작업자)는 자동으로 할당
+  - ${{ github.actor }}
+addAssignees: true
