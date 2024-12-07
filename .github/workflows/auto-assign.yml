@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Auto Assign Reviewers and Assignees
-        uses: kentaro-m/auto-assign-action@v1.2.0
-        with:
-          config: .github/auto-assign.yml
+    - name: Auto Assign Reviewers and Assignees
+      uses: kentaro-m/auto-assign-action@v1.2.0
+      with:
+        configuration-path: .github/auto-assign.yml
