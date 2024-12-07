@@ -1,0 +1,20 @@
+name: Auto Assign Reviewers and Assignees
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+    branches:
+      - dev # dev 브랜치로 들어오는 PR에만 실행
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Auto Assign Reviewers and Assignees
+        uses: kentaro-m/auto-assign-action@v1.2.0
+        with:
+          configuration-path: .github/auto-assign.yml
