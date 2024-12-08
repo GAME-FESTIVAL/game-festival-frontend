@@ -5,6 +5,17 @@ import logo from '@/assets/imgs/common/logo.png'
 import search from '@/assets/imgs/common/search.png'
 
 export const Header = () => {
+  const headerMainMenus = [
+    { path: '/new-special', title: '신규 및 특집' },
+    { path: '/', title: '찾아보기' },
+    { path: '/news', title: '뉴스' },
+  ]
+
+  const headerAuthMenus = [
+    { path: '/login', title: '로그인' },
+    { path: '/join', title: '회원가입' },
+  ]
+
   return (
     <header className="header">
       <div className="inner">
@@ -22,15 +33,20 @@ export const Header = () => {
         <div className="right_column">
           <ul className="menu">
             <li>
-              <Link to="/new-special">신규 및 특집</Link>
-              <Link to="/">찾아보기</Link>
-              <Link to="/news">뉴스</Link>
+              {headerMainMenus.map((el) => (
+                <Link key={el.path} to={el.path}>
+                  {el.title}
+                </Link>
+              ))}
             </li>
           </ul>
           <ul className="signIn">
             <li>
-              <Link to="/login">로그인</Link>
-              <Link to="/join">회원가입</Link>
+              {headerAuthMenus.map((el) => (
+                <Link key={el.path} to={el.path}>
+                  {el.title}
+                </Link>
+              ))}
             </li>
           </ul>
         </div>
@@ -38,4 +54,3 @@ export const Header = () => {
     </header>
   )
 }
-export default Header
