@@ -60,35 +60,120 @@
   background: map-get(map-get($color_palette, neutral), EerieBlack);
   //---------------- 키비주얼 영역 ----------------//
   .sc_hero {
+    /* 상·하단 흐르는 배너 */
     .banner_line {
       @include flexLayout($gap: 0 60px);
+      overflow: hidden;
       padding: 12px 0;
       background: map-get(map-get($color_palette, blue), CelticBlue);
       p {
         @include font(30px);
         margin-bottom: -3px;
       }
-      & > div {
-        @include flexLayout($ai: center, $gap: 0 60px);
-        animation: rollingleft1 10s linear infinite;
-        @keyframes rollingleft1 {
-          // 원본용
-          0% {
-            transform: translate3d(0, 0, 0);
-          }
-          50% {
-            transform: translate3d(-100%, 0, 0);
-          }
-          50.01% {
-            transform: translate3d(100%, 0, 0);
-          }
-          100% {
-            transform: translate3d(0);
+      .roller_wrap {
+        @include flexLayout($ai: center, $gap: 0 65px);
+
+        .rolling_list {
+          @include flexLayout($ai: center, $jc: flex-end, $gap: 0 65px);
+          flex-shrink: 0;
+          & > div {
+            @include flexLayout($ai: center, $gap: 0 60px);
+            animation: rollingleft1 10s linear infinite;
+            @keyframes rollingleft1 {
+              // 원본용
+              0% {
+                transform: translate3d(0, 0, 0);
+              }
+              50% {
+                transform: translate3d(-100%, 0, 0);
+              }
+              50.01% {
+                transform: translate3d(100%, 0, 0);
+              }
+              100% {
+                transform: translate3d(0);
+              }
+            }
+            &:nth-child(even) {
+              p {
+                color: map-get(map-get($color_palette, point), BitterLemon);
+              }
+            }
           }
         }
-        &:nth-child(even) {
-          p {
-            color: map-get(map-get($color_palette, point), BitterLemon);
+      }
+
+      /* 상단 배너 (왼쪽으로 이동) */
+      &.left {
+        .rolling_list {
+          &.original {
+            animation: rollingLeft1 45s linear infinite;
+            animation-fill-mode: forwards;
+            @keyframes rollingLeft1 {
+              // 원본용
+              0% {
+                transform: translate3d(0, 0, 0);
+              }
+              50% {
+                transform: translate3d(-100%, 0, 0);
+              }
+              50.01% {
+                transform: translate3d(100%, 0, 0);
+              }
+              100% {
+                transform: translate3d(0);
+              }
+            }
+          }
+          &.clone {
+            animation: rollingLeft2 45s linear infinite;
+            animation-fill-mode: forwards;
+            @keyframes rollingLeft2 {
+              // 클론용
+              0% {
+                transition: translate3d(0, 0, 0);
+              }
+              100% {
+                transform: translate3d(-200%, 0, 0);
+              }
+            }
+          }
+        }
+      }
+      /* 하단 배너 (오른쪽으로 이동) */
+      &.right {
+        .rolling_list {
+          &.original {
+            animation: rollingLeft1 45s linear infinite;
+            animation-fill-mode: forwards;
+            @keyframes rollingLeft1 {
+              // 원본용
+              0% {
+                transform: translate3d(0, 0, 0);
+              }
+              50% {
+                transform: translate3d(-100%, 0, 0);
+              }
+              50.01% {
+                transform: translate3d(100%, 0, 0);
+              }
+              100% {
+                transform: translate3d(0);
+              }
+            }
+          }
+          &.clone {
+            animation: rollingLeft2 45s linear infinite;
+            animation-fill-mode: forwards;
+            @keyframes rollingLeft2 {
+              // 클론용
+              0% {
+                transition: translate3d(0, 0, 0);
+              }
+              100% {
+                transform: translate3d(-200%, 0, 0);
+              }
+            }
           }
         }
       }
