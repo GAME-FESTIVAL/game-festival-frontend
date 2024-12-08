@@ -2,7 +2,7 @@
 /* 
     #변수명 기준은 www.color-name.com 사이트에서 별칭 따옴 
     #사용법 예시
-        map-get($color_palette, neutral, EerieBlack);
+        map-get(map-get($color_palette, neutral), Basic)
 */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -234,13 +234,13 @@ button {
   left: 0;
 }
 .header .left_column form .search_box input {
+  width: 230px;
+  height: 48px;
   font-size: 16px;
   font-weight: 400;
   font-family: "NeoDunggeunmo";
   color: #a7b0bf;
   line-height: 1.3;
-  width: 230px;
-  height: 48px;
   padding: 0 15px;
   border-radius: 10px;
   background: #1d1d1d;
@@ -367,6 +367,44 @@ button {
       -ms-flex-align: center;
           align-items: center;
   gap: 0 60px;
+  -webkit-animation: rollingleft1 10s linear infinite;
+          animation: rollingleft1 10s linear infinite;
+}
+@-webkit-keyframes rollingleft1 {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+  }
+  50.01% {
+    -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0);
+            transform: translate3d(0);
+  }
+}
+@keyframes rollingleft1 {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+  }
+  50.01% {
+    -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0);
+            transform: translate3d(0);
+  }
 }
 .main .sc_hero .banner_line > div:nth-child(even) p {
   color: #d0eb13;
@@ -432,195 +470,4 @@ button {
   position: absolute;
   top: 434px;
   right: 232px;
-}
-.main .sc_popularGame {
-  padding: 62px 0 138px;
-  background: url(/img_popularGame_bg.png) no-repeat top, #000;
-}
-.main .sc_popularGame .top_tit {
-  width: 100%;
-  height: 650px;
-  max-width: 1325px;
-  margin: 0 auto;
-  background: url(/img_popularGame_tit_bg.png) no-repeat top;
-}
-.main .sc_popularGame .top_tit::before {
-  width: 353px;
-  height: 350px;
-  position: absolute;
-  top: 115px;
-  left: -19px;
-  content: "";
-  background: url(/img_popularGame_character.png) no-repeat top;
-}
-.main .sc_popularGame .top_tit .childText {
-  position: relative;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
-  top: 50%;
-  right: -65px;
-}
-.main .sc_popularGame .top_tit .childText p {
-  margin: 0 auto;
-  margin-right: 0;
-}
-.main .sc_popularGame .top_tit .childText p:nth-child(2) {
-  margin-top: 19px;
-  margin-right: 357px;
-}
-.main .sc_popularGame .bott_game_slide {
-  width: 100%;
-  max-width: 1680px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-.main .sc_popularGame .bott_game_slide .game_img {
-  width: 100%;
-  height: 300px;
-  max-width: 300px;
-  padding-bottom: 30px;
-}
-.main .sc_popularGame .bott_game_slide .game_img img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 20px;
-}
-.main .sc_popularGame .bott_game_slide .game_txt p {
-  font-size: 24px;
-  font-weight: 400;
-  font-family: "NeoDunggeunmo";
-  line-height: 1.5;
-  overflow: hidden;
-  white-space: normal;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  word-break: keep-all;
-}
-.main .sc_popularGame .bott_game_slide .game_txt span {
-  font-size: 16px;
-  font-weight: 400;
-  font-family: "NeoDunggeunmo";
-  color: #eee;
-  line-height: 1.4;
-  overflow: hidden;
-  white-space: normal;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  word-break: keep-all;
-  padding-top: 12px;
-}
-.main .sc_popularGame .bott_game_slide .swiper-etc-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 0 45px;
-  margin-top: 48px;
-}
-.main .sc_popularGame .bott_game_slide .swiper-etc-box .arrow {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  top: auto;
-  left: auto;
-  margin: 0;
-  border: 1px solid #246dc2;
-}
-.main .sc_popularGame .bott_game_slide .swiper-etc-box .arrow::after {
-  display: none;
-}
-.main .sc_popularGame .bott_game_slide .swiper-etc-box .swiper-pagination {
-  height: 5px;
-  max-width: 380px;
-  position: relative;
-  background: rgba(255, 255, 255, 0.3);
-}
-.main .sc_popularGame .bott_game_slide .swiper-etc-box .swiper-pagination-progressbar-fill {
-  background: #9355fe;
-}
-.main .sc_hotDeal .inner {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 0 150px;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab {
-  width: 100%;
-  max-width: 410px;
-  margin: 0 auto;
-  margin-right: 0;
-  padding-top: 60px;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 0 25px;
-  padding: 20px;
-  margin-bottom: 15px;
-  border: 2px solid #246dc2;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab .txt {
-  width: calc(100% - 125px);
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab .txt p {
-  font-size: 20px;
-  font-weight: 400;
-  font-family: "NeoDunggeunmo";
-  line-height: 1.3;
-  padding-bottom: 10px;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab .txt span {
-  font-size: 15px;
-  font-weight: 400;
-  font-family: "NeoDunggeunmo";
-  color: #eee;
-  line-height: 1.3;
-  overflow: hidden;
-  white-space: normal;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  word-break: keep-all;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab .game_img {
-  width: 100px;
-  height: 100px;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab .game_img img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 10px;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab.select {
-  background: #246dc2;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab.select .txt span {
-  color: #000;
-}
-.main .sc_hotDeal .inner .left_column .game_select_tab .tab:last-child {
-  margin-bottom: 0;
-}
-.main .sc_hotDeal .inner .right_column {
-  width: 100%;
-  max-width: 1015px;
 }

@@ -6,10 +6,13 @@
   @include font(
     200px,
     $ff: $font-tertiary,
-    $color: map-get($color_palette, point, LavenderIndigo),
+    $color: map-get(map-get($color_palette, point), LavenderIndigo),
     $lh: 1
   );
-  @include text-shadow-border(map-get($color_palette, neutral, Basic), 3px);
+  @include text-shadow-border(
+    map-get(map-get($color_palette, neutral), Basic),
+    3px
+  );
   p {
     display: table;
     z-index: 1;
@@ -18,9 +21,12 @@
       @include font(
         inherit,
         $ff: inherit,
-        $color: map-get($color_palette, point, Turquoise)
+        $color: map-get(map-get($color_palette, point), Turquoise)
       );
-      @include text-shadow-border(map-get($color_palette, neutral, White), 3px);
+      @include text-shadow-border(
+        map-get(map-get($color_palette, neutral), White),
+        3px
+      );
 
       content: attr(data-child);
       z-index: -1;
@@ -28,12 +34,15 @@
   }
 
   &.small {
-    @include text-shadow-border(map-get($color_palette, neutral, Basic), 2px);
+    @include text-shadow-border(
+      map-get(map-get($color_palette, neutral), Basic),
+      2px
+    );
     font-size: 100px;
     p {
       &::after {
         @include text-shadow-border(
-          map-get($color_palette, neutral, White),
+          map-get(map-get($color_palette, neutral), White),
           2px
         );
       }
@@ -48,23 +57,38 @@
 // 메인
 //------------------------------------------//
 .main {
-  background: map-get($color_palette, neutral, EerieBlack);
-
+  background: map-get(map-get($color_palette, neutral), EerieBlack);
   //---------------- 키비주얼 영역 ----------------//
   .sc_hero {
     .banner_line {
       @include flexLayout($gap: 0 60px);
       padding: 12px 0;
-      background: map-get($color_palette, blue, CelticBlue);
+      background: map-get(map-get($color_palette, blue), CelticBlue);
       p {
         @include font(30px);
         margin-bottom: -3px;
       }
       & > div {
         @include flexLayout($ai: center, $gap: 0 60px);
+        animation: rollingleft1 10s linear infinite;
+        @keyframes rollingleft1 {
+          // 원본용
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          50% {
+            transform: translate3d(-100%, 0, 0);
+          }
+          50.01% {
+            transform: translate3d(100%, 0, 0);
+          }
+          100% {
+            transform: translate3d(0);
+          }
+        }
         &:nth-child(even) {
           p {
-            color: map-get($color_palette, point, BitterLemon);
+            color: map-get(map-get($color_palette, point), BitterLemon);
           }
         }
       }
@@ -87,7 +111,7 @@
           @include flexLayout($ai: center, $jc: space-between);
           @include font(
             45px,
-            $color: map-get($color_palette, point, BlazeOrange)
+            $color: map-get(map-get($color_palette, point), BlazeOrange)
           );
           padding-top: 60px;
 
@@ -116,160 +140,6 @@
             @include position($top: 434px, $right: 232px);
           }
         }
-      }
-    }
-  }
-  //---------------- 현재 인기있는 게임 영역 ----------------//
-  .sc_popularGame {
-    padding: 62px 0 138px;
-    background: url(#{$main_src}/img_popularGame_bg.png) no-repeat top, #000;
-    .top_tit {
-      @include size(100%, 650px, $maxWidth: 1325px);
-      margin: 0 auto;
-      background: url(#{$main_src}/img_popularGame_tit_bg.png) no-repeat top;
-
-      &::before {
-        @include size(353px, 350px);
-        @include position($top: 115px, $left: -19px);
-
-        content: '';
-        background: url(#{$main_src}/img_popularGame_character.png) no-repeat
-          top;
-      }
-
-      .childText {
-        @include position(relative, 50%, -65px, $y: -50%);
-        p {
-          margin: 0 auto;
-          margin-right: 0;
-          &:nth-child(2) {
-            margin-top: 19px;
-            margin-right: 357px;
-          }
-        }
-      }
-    }
-    .bott_game_slide {
-      @include size(100%, $maxWidth: 1680px);
-      margin: 0 auto;
-      overflow: hidden;
-
-      .game {
-        &_img {
-          @include size(100%, 300px, $maxWidth: 300px);
-          padding-bottom: 30px;
-
-          img {
-            @include size(100%, 100%);
-            object-fit: cover;
-            border-radius: 20px;
-          }
-        }
-        &_txt {
-          p {
-            @include font(
-              24px,
-              $color: map-get($color_palette, blue, PaleCornflowerBlue),
-              $lh: 1.5
-            );
-            @include textOverflow(1);
-          }
-          span {
-            @include font(
-              $color: map-get($color_palette, neutral, White),
-              $lh: 1.4
-            );
-            @include textOverflow(4);
-            padding-top: 12px;
-          }
-        }
-      }
-      .swiper-etc-box {
-        @include flexLayout($jc: center, $ai: center, $gap: 0 45px);
-        margin-top: 48px;
-        .arrow {
-          @include size(50px, 50px);
-          @include position(relative, $top: auto, $left: auto);
-          margin: 0;
-          border: 1px solid map-get($color_palette, blue, CelticBlue);
-          &::after {
-            display: none;
-          }
-        }
-        .swiper-pagination {
-          @include size($height: 5px, $maxWidth: 380px);
-          @include position(relative);
-          background: rgba(255, 255, 255, 0.3);
-          &-progressbar-fill {
-            background: map-get($color_palette, point, LavenderIndigo);
-          }
-        }
-      }
-    }
-  }
-  //---------------- 특가 상품 영역 ----------------//
-  .sc_hotDeal {
-    .inner {
-      @include flexLayout($gap: 0 150px);
-
-      .left_column {
-        .game_select_tab {
-          @include size(100%, $maxWidth: 410px);
-          margin: 0 auto;
-          margin-right: 0;
-          padding-top: 60px;
-
-          .tab {
-            @include flexLayout($ai: center, $gap: 0 25px);
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 2px solid map-get($color_palette, blue, CelticBlue);
-            border-radius: 10px;
-            cursor: pointer;
-
-            .txt {
-              width: calc(100% - 125px);
-              p {
-                @include font(
-                  20px,
-                  $color: map-get($color_palette, blue, PaleCornflowerBlue)
-                );
-                padding-bottom: 10px;
-              }
-              span {
-                @include font(
-                  15px,
-                  $color: map-get($color_palette, neutral, White),
-                  $lh: 1.3
-                );
-                @include textOverflow(2);
-              }
-            }
-            .game_img {
-              @include size(100px, 100px);
-              img {
-                @include size(100%, 100%);
-                object-fit: cover;
-                border-radius: 10px;
-              }
-            }
-
-            &.select {
-              background: map-get($color_palette, blue, CelticBlue);
-              .txt {
-                span {
-                  color: map-get($color_palette, neutral, Basic);
-                }
-              }
-            }
-            &:last-child {
-              margin-bottom: 0;
-            }
-          }
-        }
-      }
-      .right_column {
-        @include size(100%, $maxWidth: 1015px);
       }
     }
   }

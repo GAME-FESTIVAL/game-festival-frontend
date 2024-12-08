@@ -4,7 +4,7 @@
 /* 
     #변수명 기준은 www.color-name.com 사이트에서 별칭 따옴 
     #사용법 예시
-        map-get($color_palette, neutral, EerieBlack);
+        map-get(map-get($color_palette, neutral), Basic)
 */
 $color_palette: (
   neutral: (

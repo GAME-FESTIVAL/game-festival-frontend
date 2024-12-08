@@ -131,7 +131,7 @@ table {
   border-spacing: 0;
 }
 a {
-  color: map-get($color_palette, neutral, Basic);
+  color: map-get(map-get($color_palette, neutral), Basic);
   text-decoration: none;
 }
 input {
