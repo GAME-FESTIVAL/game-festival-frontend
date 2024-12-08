@@ -18,12 +18,13 @@
       }
       .search_box {
         input {
-          @include font($color: map-get($color_palette, blue, CadetBlue));
-          width: 230px;
-          height: 48px;
+          @include size(230px, 48px);
+          @include font(
+            $color: map-get(map-get($color_palette, blue), CadetBlue)
+          );
           padding: 0 15px;
           border-radius: 10px;
-          background: map-get($color_palette, neutral, EerieBlack);
+          background: map-get(map-get($color_palette, neutral), EerieBlack);
         }
         .search_btn {
           @include position($top: 50%, $right: 15px, $y: -50%);
@@ -44,21 +45,21 @@
     /* 신규 및 특집 · 찾아보기 · 뉴스 */
     .menu {
       padding: 15px 40px;
-      background: map-get($color_palette, neutral, EerieBlack);
+      background: map-get(map-get($color_palette, neutral), EerieBlack);
       li {
         @include flexLayout($gap: 0 40px);
         a {
-          color: map-get($color_palette, blue, CadetBlue);
+          color: map-get(map-get($color_palette, blue), CadetBlue);
         }
       }
     }
     /* 로그인 · 회원가입 */
     .signIn {
       padding: 15px 17px;
-      background: map-get($color_palette, blue, CadetBlue);
+      background: map-get(map-get($color_palette, blue), CadetBlue);
       li {
         a {
-          color: map-get($color_palette, neutral, Basic);
+          color: map-get(map-get($color_palette, neutral), Basic);
           &:first-child {
             margin-right: 10px;
             padding-right: 10px;
@@ -66,7 +67,7 @@
               @include size(2px, 100%);
               @include position($top: 50%, $right: -4px, $y: -50%);
               content: '';
-              background: map-get($color_palette, neutral, Basic);
+              background: map-get(map-get($color_palette, neutral), Basic);
             }
           }
         }
