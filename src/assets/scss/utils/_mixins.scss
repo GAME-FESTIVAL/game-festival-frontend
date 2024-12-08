@@ -1,0 +1,126 @@
+//-----------------------------------------//
+//-------------- css display --------------//
+//-----------------------------------------//
+/* 
+    #FlexBox 속성 mixin
+    #사용법 예시
+        .my-container {
+            @include flexLayout($jc: center, $ai: center, $gap: 10px);
+        }
+*/
+@mixin flexLayout($display: flex, $jc: null, $ai: null, $ff: null, $gap: null) {
+  display: $display;
+  @if $jc != null {
+    justify-content: $jc;
+  }
+  @if $ai != null {
+    align-items: $ai;
+  }
+  @if $ff != null {
+    flex-flow: $ff;
+  }
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+
+//--------------------------------------//
+//-------------- css 폰트 --------------//
+//--------------------------------------//
+/* 
+    #폰트 설정 mixin
+    #사용법 위와 같음
+*/
+@mixin font($fs: 16px, $fw: 400, $ff: 'NeoDunggeunmo', $color: null, $lh: 1.3) {
+  @if $fs != null {
+    font-size: $fs;
+  }
+  @if $fw != null {
+    font-weight: $fw;
+  }
+  @if $ff != null {
+    font-family: $ff;
+  }
+  @if $color != null {
+    color: $color;
+  }
+  @if $lh != null {
+    line-height: $lh;
+  }
+}
+
+//----------------------------------------//
+//-------------- css 포지션 --------------//
+//---------------------------------------//
+/* #포지셔닝 mixin */
+@mixin position(
+  $position: absolute,
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null,
+  $x: null,
+  $y: null
+) {
+  position: $position;
+  @if $x != null or $y != null {
+    transform: translate(#{if($x != null, $x, 0)}, #{if($y != null, $y, 0)});
+  }
+  @if $top != null {
+    top: $top;
+  }
+  @if $right != null {
+    right: $right;
+  }
+  @if $bottom != null {
+    bottom: $bottom;
+  }
+  @if $left != null {
+    left: $left;
+  }
+}
+
+//----------------------------------------------//
+//-------------- css 컨텐츠 사이즈 --------------//
+//----------------------------------------------//
+/* #컨텐츠 사이즈 mixin */
+@mixin size(
+  $width: null,
+  $height: null,
+  $minWidth: null,
+  $maxWidth: null,
+  $minHeight: null,
+  $maxHeight: null
+) {
+  @if $width != null {
+    width: $width;
+  }
+  @if $height != null {
+    height: $height;
+  }
+  @if $minWidth != null {
+    min-width: $minWidth;
+  }
+  @if $maxWidth != null {
+    max-width: $maxWidth;
+  }
+  @if $minHeight != null {
+    min-height: $minHeight;
+  }
+  @if $maxHeight != null {
+    max-height: $maxHeight;
+  }
+}
+
+//----------------------------------------//
+//-------------- css 말줄임 --------------//
+//---------------------------------------//
+@mixin textOverflow($number: null) {
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $number;
+  -webkit-box-orient: vertical;
+  word-break: keep-all; // 문단으로 끊어져서 줄바꿈 됨
+}
