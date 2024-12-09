@@ -1,10 +1,29 @@
 import { Suspense, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { errorHandler } from '@common/hooks'
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [queryClient] = useState(new QueryClient())
+  const [queryClient] = useState(
+    new QueryClient({
+      defaultOptions: {
+        mutations: {
+          onError: (error) => {
+            errorHandler(error)
+          },
+        },
+      },
+      queryCache: new QueryCache({
+        onError: errorHandler,
+        onSuccess: () => {},
+      }),
+    })
+  )
 
   return (
     <QueryClientProvider client={queryClient}>
