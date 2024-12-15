@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { RollingBanner, CurrentTime } from '@main/components'
 import { bannerItemsList } from '@main/constants'
+import { StarEffect } from '@main/components'
 
 //--------------- 이미지 ---------------//
 /* sc_hero 키비주얼 영역 */
@@ -14,6 +15,7 @@ export const Main = () => {
 
   return (
     <main className="main">
+      {/* ## 키비주얼 영역 */}
       <section className="sc_hero">
         {/* 상단 배너 */}
         <RollingBanner items={overlapItems} direction="left" />
@@ -26,9 +28,11 @@ export const Main = () => {
                 <p data-child="GAME">GAME</p>
                 <p data-child="FESTIVAL">FESTIVAL</p>
               </h1>
-              <CurrentTime />
-              <div className="star"></div>
+
+              {/* 반짝이 데코 요소 */}
+              <StarEffect count={10} />
             </div>
+            <CurrentTime />
           </div>
           <div className="right_column">
             {[window1, window2, window3].map((el, idx) => (
@@ -41,6 +45,16 @@ export const Main = () => {
 
         {/* 하단 배너 */}
         <RollingBanner items={overlapItems} direction="right" />
+      </section>
+      {/* ## 풋터 상단 마지막 배너 단락 */}
+      <section className="sc_lastBanner">
+        <div className="tit">
+          <p>
+            Find more games to play
+            <br /> at the game festival!
+          </p>
+          <span>게임 페스티발에서 더 많은 게임을 찾아보세요!</span>
+        </div>
       </section>
     </main>
   )
