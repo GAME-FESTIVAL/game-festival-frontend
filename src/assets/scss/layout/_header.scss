@@ -5,7 +5,7 @@
   padding: 20px 0;
   background: #2b2b2b;
   .inner {
-    @include flexLayout($jc: space-between, $ai: center);
+    @include flex($jc: space-between, $ai: center);
     max-width: 1400px;
     padding: 0 40px;
     margin: 0 auto;
@@ -33,7 +33,7 @@
     }
   }
   .right_column {
-    @include flexLayout($gap: 0 10px);
+    @include flex($gap: 0 10px);
     ul {
       border-radius: 10px;
       li {
@@ -47,7 +47,7 @@
       padding: 15px 40px;
       background: map-get(map-get($color_palette, neutral), EerieBlack);
       li {
-        @include flexLayout($gap: 0 40px);
+        @include flex($gap: 0 40px);
         a {
           color: map-get(map-get($color_palette, blue), CadetBlue);
         }

@@ -1,8 +1,3 @@
-/* #그림자 텍스트 사용 시 */
-@mixin text-shadow-border($color, $size: 3px) {
-  text-shadow: -#{$size} 0px $color, 0px #{$size} $color, #{$size} 0px $color,
-    0px -#{$size} $color;
-}
 .childText {
   @include font(
     200px,
@@ -10,7 +5,7 @@
     $color: map-get(map-get($color_palette, point), LavenderIndigo),
     $lh: 1
   );
-  @include text-shadow-border(
+  @include textShadowBorder(
     map-get(map-get($color_palette, neutral), Basic),
     3px
   );
@@ -24,7 +19,7 @@
         $ff: inherit,
         $color: map-get(map-get($color_palette, point), Turquoise)
       );
-      @include text-shadow-border(
+      @include textShadowBorder(
         map-get(map-get($color_palette, neutral), White),
         3px
       );
@@ -35,14 +30,14 @@
   }
 
   &.small {
-    @include text-shadow-border(
+    @include textShadowBorder(
       map-get(map-get($color_palette, neutral), Basic),
       2px
     );
     font-size: 100px;
     p {
       &::after {
-        @include text-shadow-border(
+        @include textShadowBorder(
           map-get(map-get($color_palette, neutral), White),
           2px
         );
@@ -103,7 +98,7 @@ $star-sizes: (
   .sc_hero {
     /* 상·하단 흐르는 배너 */
     .banner_line {
-      @include flexLayout($gap: 0 60px);
+      @include flex($gap: 0 60px);
       overflow: hidden;
       padding: 12px 0;
       background: map-get(map-get($color_palette, blue), CelticBlue);
@@ -112,13 +107,13 @@ $star-sizes: (
         margin-bottom: -3px;
       }
       .roller_wrap {
-        @include flexLayout($ai: center, $gap: 0 65px);
+        @include flex($ai: center, $gap: 0 65px);
 
         .rolling_list {
-          @include flexLayout($ai: center, $jc: flex-end, $gap: 0 65px);
+          @include flex($ai: center, $jc: flex-end, $gap: 0 65px);
           flex-shrink: 0;
           & > div {
-            @include flexLayout($ai: center, $gap: 0 60px);
+            @include flex($ai: center, $gap: 0 60px);
             animation: rollingleft1 10s linear infinite;
             @keyframes rollingleft1 {
               // 원본용
@@ -220,7 +215,7 @@ $star-sizes: (
       }
     }
     .inner {
-      @include flexLayout;
+      @include flex;
       padding: 160px 171px 117px;
       .left_column {
         .childText {
@@ -234,7 +229,7 @@ $star-sizes: (
           }
         }
         .getDate {
-          @include flexLayout($ai: center, $jc: space-between);
+          @include flex($ai: center, $jc: space-between);
           @include font(
             45px,
             $color: map-get(map-get($color_palette, point), BlazeOrange)

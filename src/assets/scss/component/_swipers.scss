@@ -18,7 +18,7 @@
   }
 
   .swiper {
-    @include flexLayout($gap: 20px);
+    @include flex($gap: 20px);
     @include size($width: 100%, $height: 100%);
     padding-bottom: 48px;
 
@@ -28,7 +28,7 @@
   }
 
   .swiper-slide {
-    @include flexLayout($jc: center, $ai: center);
+    @include flex($jc: center, $ai: center);
     text-align: center;
     // padding: 12px;
     font-size: 18px;
@@ -68,7 +68,7 @@
 
   .swiper_custom_button_next,
   .swiper_custom_button_prev {
-    @include flexLayout($ai: center, $jc: center);
+    @include flex($ai: center, $jc: center);
     @include position($position: absolute, $bottom: 0);
     @include size($width: 50px, $height: 50px);
     border-radius: 0;
@@ -130,7 +130,7 @@
   .slide_wrap {
     .swiper_custom_button_next,
     .swiper_custom_button_prev {
-      @include flexLayout($ai: center, $jc: center);
+      @include flex($ai: center, $jc: center);
       @include position($position: absolute, $top: 50%, $y: -50%);
       @include size($width: 32px, $height: 32px);
       border-radius: 0;
@@ -218,7 +218,7 @@
 
   .main_slide_hotdeal {
     .slide_wrap {
-      @include flexLayout($ai: center, $gap: 25px);
+      @include flex($ai: center, $gap: 25px);
       padding: 20px;
       height: 100%;
       border: 2px solid map-get(map-get($color_palette, blue), CelticBlue);

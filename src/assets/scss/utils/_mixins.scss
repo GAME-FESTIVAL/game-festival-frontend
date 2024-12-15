@@ -5,10 +5,10 @@
     #FlexBox 속성 mixin
     #사용법 예시
         .my-container {
-            @include flexLayout($jc: center, $ai: center, $gap: 10px);
+            @include flex($jc: center, $ai: center, $gap: 10px);
         }
 */
-@mixin flexLayout($display: flex, $jc: null, $ai: null, $ff: null, $gap: null) {
+@mixin flex($display: flex, $jc: null, $ai: null, $ff: null, $gap: null) {
   display: $display;
   @if $jc != null {
     justify-content: $jc;
@@ -23,10 +23,17 @@
     gap: $gap;
   }
 }
-@mixin flex-center($ai: center, $jc: center) {
+
+@mixin flexCenter($ai: center, $jc: center) {
   display: flex;
   align-items: $ai;
   justify-content: $jc;
+}
+
+@mixin gridLayout($cols: 2, $gap: 5px) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  grid-gap: $gap;
 }
 
 //--------------------------------------//
@@ -128,6 +135,12 @@
   -webkit-line-clamp: $number;
   -webkit-box-orient: vertical;
   word-break: keep-all; // 문단으로 끊어져서 줄바꿈 됨
+}
+
+/* #그림자 텍스트 사용 시 */
+@mixin textShadowBorder($color, $size: 3px) {
+  text-shadow: -#{$size} 0px $color, 0px #{$size} $color, #{$size} 0px $color,
+    0px -#{$size} $color;
 }
 
 //----------------------------------------//
