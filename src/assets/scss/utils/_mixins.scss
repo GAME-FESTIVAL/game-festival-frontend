@@ -124,3 +124,24 @@
   -webkit-box-orient: vertical;
   word-break: keep-all; // 문단으로 끊어져서 줄바꿈 됨
 }
+
+//----------------------------------------//
+//-------------- 디바이스 별 미디어쿼리 --------------//
+//---------------------------------------//
+@mixin mobile {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 1024px) and (max-width: 1960px) {
+    @content;
+  }
+}
