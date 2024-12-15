@@ -11,6 +11,7 @@ import { NewSpecial } from '@newSpecial/components'
 
 // 레이아웃
 import { Header } from '@common/components'
+import { Footer } from '@common/components'
 
 type RouteType = {
   path: string
@@ -43,6 +44,7 @@ const App = () => {
     <AppProvider>
       <Header />
       <Routes>{renderRoutes(routes)}</Routes>
+      <Footer />
     </AppProvider>
   )
 }

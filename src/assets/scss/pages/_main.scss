@@ -1,3 +1,4 @@
+/* #그림자 텍스트 사용 시 */
 @mixin text-shadow-border($color, $size: 3px) {
   text-shadow: -#{$size} 0px $color, 0px #{$size} $color, #{$size} 0px $color,
     0px -#{$size} $color;
@@ -49,6 +50,46 @@
       &:nth-child(2) {
         margin-top: 5px;
       }
+    }
+  }
+}
+
+/* #반짝이 */
+$star-sizes: (
+  'large': (
+    'img_hero_starLarge',
+    76px,
+    76px,
+  ),
+  'medium': (
+    'img_hero_starMedium',
+    52px,
+    52px,
+  ),
+  'small': (
+    'img_hero_starSmall',
+    28px,
+    28px,
+  ),
+);
+.star-container {
+  @include size(100%, 100%);
+  @include position($top: 0, $left: 0);
+  z-index: 5;
+  pointer-events: none;
+
+  @each $size, $values in $star-sizes {
+    $image: nth($values, 1);
+    $width: nth($values, 2);
+    $height: nth($values, 3);
+
+    .star-#{$size} {
+      @include size($width, $height);
+      position: absolute;
+      background-image: url(#{$main_src}/#{$image}.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
     }
   }
 }
@@ -225,6 +266,34 @@
             @include position($top: 434px, $right: 232px);
           }
         }
+      }
+    }
+  }
+  //---------------- 풋터 위 마지막 배너 영역 ----------------//
+  .sc_lastBanner {
+    padding: 247px 0 433px;
+    text-align: center;
+    &::before {
+      @include size(100%, 100%);
+      @include position($top: 0, $left: 0);
+      content: '';
+      background: url(#{$main_src}/img_lastBanner_bg.png) no-repeat top;
+      z-index: 5;
+      filter: brightness(0.5) opacity(0.8);
+      pointer-events: none;
+    }
+
+    .tit {
+      p {
+        @include font(
+          70px,
+          $ff: $font-secondary,
+          $color: get-color(point, LavenderIndigo)
+        );
+        padding-bottom: 30px;
+      }
+      span {
+        @include font(40px, $color: get-color(blue, PaleCornflowerBlue));
       }
     }
   }
