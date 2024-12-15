@@ -10,7 +10,7 @@
 */
 @import '../font/pretendard/pretendard.css';
 * {
-  font-family: "NeoDunggeunmo";
+  font-family: 'NeoDunggeunmo';
 }
 
 html,
@@ -102,7 +102,7 @@ video {
   vertical-align: baseline;
   position: relative;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -138,7 +138,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 
@@ -154,7 +154,7 @@ a {
 
 input {
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   border: none;
   padding: 0;
 }
@@ -165,17 +165,17 @@ input:focus-visible {
 button {
   background: none;
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   border: none;
   padding: 0;
 }
 
 .font-primary {
-  font-family: "NeoDunggeunmo";
+  font-family: 'NeoDunggeunmo';
 }
 
 .font-scondary {
-  font-family: "DNFBitBitv2";
+  font-family: 'DNFBitBitv2';
 }
 
 .comm_container .inner {
@@ -185,20 +185,23 @@ button {
 }
 
 @font-face {
-  font-family: "NeoDunggeunmo";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff") format("woff");
+  font-family: 'NeoDunggeunmo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "DNFBitBitv2";
+  font-family: 'DNFBitBitv2';
   font-style: normal;
   font-weight: 400;
-  src: url("//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf") format("opentype");
+  src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
+    format('opentype');
 }
 @font-face {
-  font-family: "GasoekOne-Regular";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_JAMO@1.0/GasoekOne-Regular.woff2") format("woff2");
+  font-family: 'GasoekOne-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_JAMO@1.0/GasoekOne-Regular.woff2')
+    format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -224,11 +227,11 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   max-width: 1400px;
   padding: 0 40px;
   margin: 0 auto;
@@ -247,7 +250,7 @@ button {
   height: 48px;
   font-size: 16px;
   font-weight: 400;
-  font-family: "NeoDunggeunmo";
+  font-family: 'NeoDunggeunmo';
   color: #a7b0bf;
   line-height: 1.3;
   padding: 0 15px;
@@ -257,7 +260,7 @@ button {
 .header .left_column form .search_box .search_btn {
   position: absolute;
   -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
+  transform: translate(0, -50%);
   top: 50%;
   right: 15px;
 }
@@ -275,7 +278,7 @@ button {
 .header .right_column ul li a {
   font-size: 16px;
   font-weight: 400;
-  font-family: "NeoDunggeunmo";
+  font-family: 'NeoDunggeunmo';
   line-height: 1.3;
 }
 .header .right_column .menu {
@@ -307,10 +310,10 @@ button {
   height: 100%;
   position: absolute;
   -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
+  transform: translate(0, -50%);
   top: 50%;
   right: -4px;
-  content: "";
+  content: '';
   background: #000;
 }
 
@@ -323,15 +326,15 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 0 20px;
   margin-bottom: 20px;
 }
 .footer .top_column p {
   font-size: 40px;
   font-weight: 400;
-  font-family: "DNFBitBitv2";
+  font-family: 'DNFBitBitv2';
   color: #afcae9;
   line-height: 1.3;
 }
@@ -348,7 +351,7 @@ button {
   max-width: 690px;
   font-size: 30px;
   font-weight: 400;
-  font-family: "DNFBitBitv2";
+  font-family: 'DNFBitBitv2';
   color: #afcae9;
   line-height: 1.3;
 }
@@ -357,11 +360,11 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin-bottom: 50px;
 }
 .footer .bott_column .etc .line .deco span {
@@ -380,11 +383,11 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 .footer .bott_column .etc .line .deco-circle span {
   border-radius: 50%;
@@ -420,19 +423,19 @@ button {
 .footer .bott_column .etc .line.third .deco-center span {
   position: absolute;
   -webkit-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
 }
 .footer .bott_column .etc .line.third .deco-center span:first-child {
   width: 20px;
   height: 5px;
   -webkit-transform: rotate(45deg) scale(1.13);
-          transform: rotate(45deg) scale(1.13);
+  transform: rotate(45deg) scale(1.13);
 }
 .footer .bott_column .etc .line.third .deco-center span:last-child {
   width: 20px;
   height: 5px;
   -webkit-transform: rotate(-45deg) scale(1.13);
-          transform: rotate(-45deg) scale(1.13);
+  transform: rotate(-45deg) scale(1.13);
 }
 .footer .bott_column .etc .line.third .deco-grid span {
   width: 8px;
@@ -451,17 +454,17 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
 }
 .footer .bott_column .main_section_link li a {
   font-size: 16px;
   font-weight: 400;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   color: #afcae9;
   line-height: 1;
   display: block;
@@ -475,8 +478,8 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 0 10px;
 }
 .footer .bott_column .main_section_link li.email a {
@@ -487,7 +490,7 @@ button {
 .childText {
   font-size: 200px;
   font-weight: 400;
-  font-family: "GasoekOne-Regular";
+  font-family: 'GasoekOne-Regular';
   color: #9355fe;
   line-height: 1;
   text-shadow: -3px 0px #000, 0px 3px #000, 3px 0px #000, 0px -3px #000;
@@ -578,7 +581,7 @@ button {
 .main .sc_hero .banner_line p {
   font-size: 30px;
   font-weight: 400;
-  font-family: "NeoDunggeunmo";
+  font-family: 'NeoDunggeunmo';
   line-height: 1.3;
   margin-bottom: -3px;
 }
@@ -587,8 +590,8 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 0 65px;
 }
 .main .sc_hero .banner_line .roller_wrap .rolling_list {
@@ -596,60 +599,60 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 0 65px;
   -ms-flex-negative: 0;
-      flex-shrink: 0;
+  flex-shrink: 0;
 }
 .main .sc_hero .banner_line .roller_wrap .rolling_list > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 0 60px;
   -webkit-animation: rollingleft1 10s linear infinite;
-          animation: rollingleft1 10s linear infinite;
+  animation: rollingleft1 10s linear infinite;
 }
 @-webkit-keyframes rollingleft1 {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(-100%, 0, 0);
-            transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
   50.01% {
     -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
   }
   100% {
     -webkit-transform: translate3d(0);
-            transform: translate3d(0);
+    transform: translate3d(0);
   }
 }
 @keyframes rollingleft1 {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(-100%, 0, 0);
-            transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
   50.01% {
     -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
   }
   100% {
     -webkit-transform: translate3d(0);
-            transform: translate3d(0);
+    transform: translate3d(0);
   }
 }
 .main .sc_hero .banner_line .roller_wrap .rolling_list > div:nth-child(even) p {
@@ -657,51 +660,51 @@ button {
 }
 .main .sc_hero .banner_line.left .rolling_list.original {
   -webkit-animation: rollingLeft1 45s linear infinite;
-          animation: rollingLeft1 45s linear infinite;
+  animation: rollingLeft1 45s linear infinite;
   -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 @-webkit-keyframes rollingLeft1 {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(-100%, 0, 0);
-            transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
   50.01% {
     -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
   }
   100% {
     -webkit-transform: translate3d(0);
-            transform: translate3d(0);
+    transform: translate3d(0);
   }
 }
 @keyframes rollingLeft1 {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(-100%, 0, 0);
-            transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
   50.01% {
     -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
   }
   100% {
     -webkit-transform: translate3d(0);
-            transform: translate3d(0);
+    transform: translate3d(0);
   }
 }
 .main .sc_hero .banner_line.left .rolling_list.clone {
   -webkit-animation: rollingLeft2 45s linear infinite;
-          animation: rollingLeft2 45s linear infinite;
+  animation: rollingLeft2 45s linear infinite;
   -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 @-webkit-keyframes rollingLeft2 {
   0% {
@@ -710,7 +713,7 @@ button {
   }
   100% {
     -webkit-transform: translate3d(-200%, 0, 0);
-            transform: translate3d(-200%, 0, 0);
+    transform: translate3d(-200%, 0, 0);
   }
 }
 @keyframes rollingLeft2 {
@@ -720,38 +723,38 @@ button {
   }
   100% {
     -webkit-transform: translate3d(-200%, 0, 0);
-            transform: translate3d(-200%, 0, 0);
+    transform: translate3d(-200%, 0, 0);
   }
 }
 .main .sc_hero .banner_line.right .rolling_list.original {
   -webkit-animation: rollingLeft1 45s linear infinite;
-          animation: rollingLeft1 45s linear infinite;
+  animation: rollingLeft1 45s linear infinite;
   -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 @keyframes rollingLeft1 {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(-100%, 0, 0);
-            transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
   50.01% {
     -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
   }
   100% {
     -webkit-transform: translate3d(0);
-            transform: translate3d(0);
+    transform: translate3d(0);
   }
 }
 .main .sc_hero .banner_line.right .rolling_list.clone {
   -webkit-animation: rollingLeft2 45s linear infinite;
-          animation: rollingLeft2 45s linear infinite;
+  animation: rollingLeft2 45s linear infinite;
   -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 @keyframes rollingLeft2 {
   0% {
@@ -760,7 +763,7 @@ button {
   }
   100% {
     -webkit-transform: translate3d(-200%, 0, 0);
-            transform: translate3d(-200%, 0, 0);
+    transform: translate3d(-200%, 0, 0);
   }
 }
 .main .sc_hero .inner {
@@ -774,7 +777,7 @@ button {
   height: 213px;
   position: absolute;
   right: -230px;
-  content: "";
+  content: '';
   background: url(../imgs/main/img_hero_character.png) no-repeat top;
 }
 .main .sc_hero .inner .left_column .getDate {
@@ -782,14 +785,14 @@ button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-size: 45px;
   font-weight: 400;
-  font-family: "NeoDunggeunmo";
+  font-family: 'NeoDunggeunmo';
   color: #ff6a00;
   line-height: 1.3;
   padding-top: 60px;
@@ -799,10 +802,10 @@ button {
   height: 24px;
   position: absolute;
   -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
+  transform: translate(0, -50%);
   top: calc(50% - 2px);
   left: -61px;
-  content: "";
+  content: '';
   background: url(../imgs/main/img_hero_timeArrow.png) no-repeat top;
 }
 .main .sc_hero .inner .right_column {
@@ -835,17 +838,17 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-  content: "";
+  content: '';
   background: url(../imgs/main/img_lastBanner_bg.png) no-repeat top;
   z-index: 5;
   -webkit-filter: brightness(0.5) opacity(0.8);
-          filter: brightness(0.5) opacity(0.8);
+  filter: brightness(0.5) opacity(0.8);
   pointer-events: none;
 }
 .main .sc_lastBanner .tit p {
   font-size: 70px;
   font-weight: 400;
-  font-family: "DNFBitBitv2";
+  font-family: 'DNFBitBitv2';
   color: #9355fe;
   line-height: 1.3;
   padding-bottom: 30px;
@@ -853,7 +856,7 @@ button {
 .main .sc_lastBanner .tit span {
   font-size: 40px;
   font-weight: 400;
-  font-family: "NeoDunggeunmo";
+  font-family: 'NeoDunggeunmo';
   color: #afcae9;
   line-height: 1.3;
 }

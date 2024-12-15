@@ -1,12 +1,18 @@
 import { useState } from 'react'
-import { RollingBanner, CurrentTime } from '@main/components'
+import {
+  RollingBanner,
+  CurrentTime,
+  PopularGamesSwiper,
+  HotdealSwiper,
+} from '@main/components'
 import { bannerItemsList } from '@main/constants'
 import { StarEffect } from '@main/components'
+import { Swiper } from '@common/components/blocks/swipers'
 
 //--------------- 이미지 ---------------//
 /* sc_hero 키비주얼 영역 */
 // ## 가운데 콘텐츠
-import window1 from '@/assets/imgs/main/img_hero_window1.png'
+import window1 from '@/assets/imgs/main/img_hero_icon1.png'
 import window2 from '@/assets/imgs/main/img_hero_window2.png'
 import window3 from '@/assets/imgs/main/img_hero_window3.png'
 

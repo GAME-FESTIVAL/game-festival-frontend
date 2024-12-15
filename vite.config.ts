@@ -8,10 +8,4 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  resolve: {
-    alias: {
-      '@': '/src',
-      '@components': '/src/components',
-    },
-  },
 })

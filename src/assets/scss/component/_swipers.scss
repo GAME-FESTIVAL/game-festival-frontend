@@ -1,0 +1,263 @@
+.swiper_basic {
+  .swiper-wrapper {
+    padding-bottom: 50px;
+
+    @include mobile {
+      padding-bottom: 25px;
+    }
+  }
+}
+
+.swiper_progress {
+  .swiper-wrapper {
+    padding-bottom: 50px;
+
+    @include mobile {
+      padding-bottom: 25px;
+    }
+  }
+
+  .swiper {
+    @include flexLayout($gap: 20px);
+    @include size($width: 100%, $height: 100%);
+    padding-bottom: 48px;
+
+    @include mobile {
+      padding-bottom: 24px;
+    }
+  }
+
+  .swiper-slide {
+    @include flexLayout($jc: center, $ai: center);
+    text-align: center;
+    // padding: 12px;
+    font-size: 18px;
+
+    .content {
+      @include size($width: 100%, $height: 100%);
+    }
+  }
+
+  .swiper_container {
+    .swiper-pagination {
+      @include position(
+        $position: absolute,
+        $top: unset !important,
+        $bottom: 0,
+        $left: 50% !important,
+        $x: -50%,
+        $y: calc(50% - 25px)
+      );
+      @include size($width: 400px !important, $height: 4px !important);
+      margin: 0 auto;
+
+      @include mobile {
+        @include size($width: 100% !important, $height: 9px !important);
+        border-radius: 4.5px;
+        overflow: hidden;
+      }
+
+      .swiper-pagination-progressbar-fill {
+        background-color: map-get(
+          map-get($color_palette, point),
+          LavenderIndigo
+        );
+      }
+    }
+  }
+
+  .swiper_custom_button_next,
+  .swiper_custom_button_prev {
+    @include flexLayout($ai: center, $jc: center);
+    @include position($position: absolute, $bottom: 0);
+    @include size($width: 50px, $height: 50px);
+    border-radius: 0;
+    border: 1px solid #246dc2;
+    cursor: pointer;
+  }
+
+  .swiper_custom_button_prev {
+    left: calc(50% - 200px - 50px - 45px);
+    img {
+      transform: rotate(180deg);
+    }
+  }
+
+  .swiper_custom_button_next {
+    right: calc(50% - 200px - 50px - 45px);
+  }
+}
+
+.swiper_vertical {
+  position: relative;
+  width: 410px;
+  overflow: hidden;
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+
+    .content {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.swiper_thumb {
+  width: 540px;
+  .thumbs_wrap {
+    .swiper {
+      height: 325px;
+      border-radius: 15px;
+      .slide_wrap {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .slide_wrap {
+    .swiper_custom_button_next,
+    .swiper_custom_button_prev {
+      @include flexLayout($ai: center, $jc: center);
+      @include position($position: absolute, $top: 50%, $y: -50%);
+      @include size($width: 32px, $height: 32px);
+      border-radius: 0;
+      cursor: pointer;
+    }
+
+    .swiper_custom_button_prev {
+      left: 0;
+      img {
+        transform: rotate(180deg);
+      }
+    }
+
+    .swiper_custom_button_next {
+      left: calc(100% - 32px);
+    }
+
+    .swiper {
+      margin-top: 20px;
+      width: calc(100% - 48px - 48px);
+
+      .slide_wrap {
+        border-radius: 10px;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// 아래 코드 main.scss 파일로 옮길 예정
+
+.main_swiper_popular_games {
+  margin: 0 auto;
+  // padding: 0 24px; // 임시값
+  max-width: 1680px;
+
+  @include mobile {
+    // padding-right: 0;
+  }
+
+  .img_wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+
+  .desc {
+    width: 100%;
+    margin-top: 30px;
+    text-align: left;
+
+    @include mobile {
+      margin-top: 16px;
+    }
+
+    dt {
+      @include font($fs: '24px', $color: #afcae9);
+      @include textOverflow(1);
+
+      @include mobile {
+        font-size: 16px;
+      }
+    }
+    dd {
+      @include font($color: #eee);
+      @include textOverflow(4);
+      margin-top: 16px;
+
+      @include mobile {
+        @include textOverflow(2);
+        margin-top: 8px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.hotdeal_swiper_wrap {
+  display: flex;
+
+  .main_slide_hotdeal {
+    .slide_wrap {
+      @include flexLayout($ai: center, $gap: 25px);
+      padding: 20px;
+      height: 100%;
+      border: 2px solid map-get(map-get($color_palette, blue), CelticBlue);
+      border-radius: 10px;
+      overflow: hidden;
+
+      &.active {
+        background-color: map-get(map-get($color_palette, blue), CelticBlue);
+        dd {
+          color: #000;
+        }
+      }
+
+      dl {
+        max-height: 100%;
+        text-align: left;
+
+        dt {
+          @include font($fs: 20px, $color: #afcae9);
+        }
+
+        dd {
+          @include font($fs: 15px, $color: #eee);
+          @include textOverflow(2);
+          margin-top: 10px;
+        }
+      }
+
+      .img_wrap {
+        @include size($width: 100px, $height: 100px);
+        flex-shrink: 0;
+        border-radius: 10px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
