@@ -10,8 +10,7 @@ import { NewSpecial } from '@newSpecial/components'
 //마이페이지 구조 구상중
 
 // 레이아웃
-import { Header } from '@common/components'
-import { Footer } from '@common/components'
+import { Header, Footer } from '@common/components'
 
 type RouteType = {
   path: string

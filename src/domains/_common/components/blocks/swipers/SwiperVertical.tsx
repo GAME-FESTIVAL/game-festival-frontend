@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Mousewheel } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 
-type SwiperVerticalPropsType = {
+type SwiperVerticalProps = {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
@@ -19,7 +19,7 @@ export const SwiperVertical = ({
   height = '140px',
   className,
   ...props
-}: SwiperVerticalPropsType) => {
+}: SwiperVerticalProps) => {
   const slideHeight = parseFloat(height)
   const totalHeight = `${
     slideHeight * slidesPerView + (slidesPerView - 1) * spaceBetween

@@ -3,12 +3,12 @@ type BannerItemType = {
   icon: string
 }
 
-type RollingBannerPropsType = {
+type RollingBannerProps = {
   items: BannerItemType[]
   direction: 'left' | 'right'
 }
 
-export const RollingBanner = ({ items, direction }: RollingBannerPropsType) => {
+export const RollingBanner = ({ items, direction }: RollingBannerProps) => {
   return (
     <div className={`banner_line ${direction}`}>
       <div className="roller_wrap">
