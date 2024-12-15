@@ -4,7 +4,7 @@ import 'swiper/swiper-bundle.css'
 
 import swiperButton from '@/assets/imgs/icons/swiper_button.svg'
 
-type SwiperProgressPropsType = {
+type SwiperProgressProps = {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
@@ -32,7 +32,7 @@ export const SwiperProgress = ({
   height = 'auto',
   className,
   ...props
-}: SwiperProgressPropsType) => {
+}: SwiperProgressProps) => {
   return (
     <figure className={`swiper_progress ${className}`} style={{ height }}>
       <Swiper

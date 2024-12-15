@@ -5,7 +5,7 @@ import type { Swiper as SwiperType } from 'swiper'
 
 import swiperButton from '@/assets/imgs/icons/swiper_button_black.svg'
 
-type SwiperThumbsPropsType = {
+type SwiperThumbsProps = {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
@@ -32,7 +32,7 @@ export const SwiperThumbs = ({
   spaceBetween = 15,
   height,
   className,
-}: SwiperThumbsPropsType) => {
+}: SwiperThumbsProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
 
   return (

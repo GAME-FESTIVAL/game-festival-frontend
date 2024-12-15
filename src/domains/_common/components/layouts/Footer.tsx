@@ -1,13 +1,13 @@
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { LineDeco } from '@common/components'
-import { LineItemsList } from '@common/constants'
+import { lineItemsList } from '@common/constants'
 
 // 이미지
 import logo from '@/assets/imgs/common/img_footer_logo.png'
 import icon from '@/assets/imgs/common/img_footer_icon.png'
 
 export const Footer = () => {
-  const FooterLinkMove = [
+  const footerLinkMove = [
     { path: '/#test', title: '현재 인기 게임' },
     { path: '/', title: '특가 상품' },
     { path: '/', title: 'What your favorite game?' },
@@ -24,14 +24,14 @@ export const Footer = () => {
         <div className="bott_column">
           {/* 좌측 꾸밈 컨텐츠 */}
           <div className="etc">
-            <LineDeco lineType="first" items={LineItemsList.first} />
-            <LineDeco lineType="second" items={LineItemsList.second} />
-            <LineDeco lineType="third" items={LineItemsList.third} />
+            <LineDeco lineType="first" items={lineItemsList.first} />
+            <LineDeco lineType="second" items={lineItemsList.second} />
+            <LineDeco lineType="third" items={lineItemsList.third} />
           </div>
           {/* 우측 링크, 이메일 컨텐츠 */}
           <ul className="main_section_link">
             <li className="link">
-              {FooterLinkMove.map((el) => (
+              {footerLinkMove.map((el) => (
                 <Link key={el.path} to={el.path}>
                   {el.title}
                 </Link>
