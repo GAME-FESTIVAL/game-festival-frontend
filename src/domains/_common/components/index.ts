@@ -5,3 +5,6 @@ export * from './pages/NotFound'
 export * from './layouts/Header'
 export * from './layouts/Footer'
 export * from './blocks/LineDeco'
+
+// blocks
+export * from './blocks/swipers'
