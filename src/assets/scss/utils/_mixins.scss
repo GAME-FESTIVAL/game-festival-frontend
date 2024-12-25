@@ -8,7 +8,14 @@
             @include flex($jc: center, $ai: center, $gap: 10px);
         }
 */
-@mixin flex($display: flex, $jc: null, $ai: null, $ff: null, $gap: null) {
+@mixin flex(
+  $display: flex,
+  $jc: null,
+  $ai: null,
+  $ff: null,
+  $gap: null,
+  $fd: null
+) {
   display: $display;
   @if $jc != null {
     justify-content: $jc;
@@ -22,6 +29,10 @@
   @if $gap != null {
     gap: $gap;
   }
+
+  @if $fd != null {
+    flex-direction: $fd;
+  }
 }
 
 @mixin flexCenter($ai: center, $jc: center) {
@@ -30,7 +41,7 @@
   justify-content: $jc;
 }
 
-@mixin gridLayout($cols: 2, $gap: 5px) {
+@mixin grid($cols: 2, $gap: 5px) {
   display: grid;
   grid-template-columns: repeat($cols, 1fr);
   grid-gap: $gap;

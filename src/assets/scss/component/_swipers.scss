@@ -1,9 +1,51 @@
 .swiper_basic {
-  .swiper-wrapper {
-    padding-bottom: 50px;
+  .swiper_header {
+    @include flex($ai: center);
+    margin-bottom: 40px;
 
     @include mobile {
-      padding-bottom: 25px;
+      margin-bottom: 20px;
+    }
+    .swiper_title {
+      flex-grow: 1;
+      font-size: 36px;
+
+      @include mobile {
+        font-size: 20px;
+      }
+    }
+    .swiper_button_group {
+      @include flex($gap: 16px);
+
+      @include mobile {
+        gap: 8px;
+      }
+
+      .swiper_custom_button_next,
+      .swiper_custom_button_prev {
+        @include flex($jc: center, $ai: center);
+        @include size($width: 52px, $height: 52px);
+        background-color: get-color(blue, CelticBlue);
+        border-radius: 26px;
+        cursor: pointer;
+
+        @include mobile {
+          @include size($width: 24px, $height: 24px);
+        }
+
+        img {
+          width: 20px;
+
+          @include mobile {
+            width: 12px;
+          }
+        }
+      }
+      .swiper_custom_button_prev {
+        img {
+          transform: rotate(180deg);
+        }
+      }
     }
   }
 }
@@ -163,6 +205,12 @@
   }
 }
 
+.swiper_rolling {
+  .swiper-wrapper {
+    transition-timing-function: linear;
+  }
+}
+
 // 아래 코드 main.scss 파일로 옮길 예정
 
 .main_swiper_popular_games {
@@ -258,6 +306,114 @@
           object-fit: contain;
         }
       }
+    }
+  }
+}
+
+.main_swiper_new_games {
+  .content {
+    @include grid(3, 24px);
+    row-gap: 48px;
+
+    @include mobile {
+      @include flex($fd: column);
+      row-gap: 16px;
+    }
+
+    .grid_item {
+      @include mobile {
+        @include flex($gap: 10px);
+      }
+
+      .img_wrap {
+        @include mobile {
+          width: 40%;
+          flex-shrink: 0;
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .desc {
+        @include flex($fd: column, $gap: 16px);
+        margin-top: 20px;
+        overflow: hidden;
+
+        @include mobile {
+          @include flex($fd: column, $jc: space-between);
+          margin-top: 0;
+        }
+
+        dt {
+          @include textOverflow(1);
+          color: get-color(neutral, White);
+          @include mobile {
+            font-size: 14px;
+          }
+        }
+        dd {
+          @include textOverflow(2);
+          color: get-color(blue, CadetBlue);
+          @include mobile {
+            font-size: 12px;
+          }
+
+          &.tags {
+            @include flex($gap: 10px);
+            @include font($fs: 14px, $color: white);
+            span {
+              @include flexCenter;
+              text-wrap: nowrap;
+              padding: 8px 16px;
+              border-radius: 38px;
+              background-color: get-color(blue, MaastrichtBlue);
+
+              @include mobile {
+                padding: 4px 8px;
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.favorit_game_wrap {
+  @include flex($fd: column, $gap: 30px);
+  @include mobile {
+    gap: 20px;
+  }
+  .main_swiper_favorite_game {
+    .content {
+      border-radius: 20px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.rolling_banner_wrap {
+  .swiper-slide {
+    background-color: get-color(blue, CelticBlue);
+    @include font($fs: 30px, $color: get-color(neutral, EerieBlack));
+    .even-slide {
+      color: get-color(point, BitterLemon);
+    }
+  }
+  .content {
+    .banner_item {
+      @include flex($ai: center, $gap: 65px);
+      margin-bottom: -3px;
+      padding: 12px 0;
+      background-color: get-color(blue, CelticBlue);
     }
   }
 }

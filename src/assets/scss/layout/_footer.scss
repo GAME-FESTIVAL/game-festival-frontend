@@ -37,7 +37,7 @@
             background: get-color(blue, CelticBlue);
           }
           &-grid {
-            @include gridLayout;
+            @include grid;
           }
           &-center {
             @include flexCenter;

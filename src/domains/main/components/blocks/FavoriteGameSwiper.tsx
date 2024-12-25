@@ -1,0 +1,29 @@
+import { Swiper } from '@common/components'
+import main_favorite_game_slide_img_1 from '@/assets/imgs/temp/main_favorite_game_slide_img_1.png'
+import { checkDevice } from '@common/utils/checkDevice'
+
+export const FavoriteGameSwiper = () => {
+  const swiperProps = {
+    id: 'mainRollingSwiper',
+    className: 'main_swiper_favorite_game',
+    slidesPerView: checkDevice.isMobile() ? 3.5 : 6.5,
+    spaceBetween: checkDevice.isMobile() ? 10 : 20, // 임시값
+    speed: 2000,
+  }
+
+  return (
+    <section className="favorit_game_wrap">
+      <Swiper.Rolling {...swiperProps}>
+        {Array.from({ length: 20 }).map(() => (
+          <img src={main_favorite_game_slide_img_1} alt="" />
+        ))}
+      </Swiper.Rolling>
+
+      <Swiper.Rolling {...swiperProps} reverseDirection={true}>
+        {Array.from({ length: 20 }).map(() => (
+          <img src={main_favorite_game_slide_img_1} alt="" />
+        ))}
+      </Swiper.Rolling>
+    </section>
+  )
+}
