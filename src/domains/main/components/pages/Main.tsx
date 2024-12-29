@@ -2,12 +2,14 @@ import { useState } from 'react'
 import {
   RollingBanner,
   CurrentTime,
+  RollingBannerSwiper,
   PopularGamesSwiper,
   HotdealSwiper,
+  NewGamesSwiper,
+  FavoriteGameSwiper,
 } from '@main/components'
 import { bannerItemsList } from '@main/constants'
 import { StarEffect } from '@main/components'
-import { Swiper } from '@common/components/blocks/swipers'
 
 //--------------- 이미지 ---------------//
 /* sc_hero 키비주얼 영역 */
@@ -52,6 +54,14 @@ export const Main = () => {
         {/* 하단 배너 */}
         <RollingBanner items={overlapItems} direction="right" />
       </section>
+
+      {/* <PopularGamesSwiper />, */}
+      {/* <HotdealSwiper /> */}
+      {/* <NewGamesSwiper /> */}
+      {/* <FavoriteGameSwiper /> */}
+      {/* <RollingBannerSwiper direction="left" /> */}
+      {/* <RollingBannerSwiper direction="right" /> */}
+
       {/* ## 풋터 상단 마지막 배너 단락 */}
       <section className="sc_lastBanner">
         <div className="tit">

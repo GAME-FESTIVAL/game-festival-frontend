@@ -8,8 +8,10 @@ type SwiperProgressProps = {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
-  slidesPerGroup?: number
+  slidePerGroup?: number
+  pagination?: boolean
   height?: string
+  title?: string
   className?: string
 }
 
@@ -27,27 +29,40 @@ const SwiperButton = ({ direction, id }: { direction: string; id: string }) => {
 export const SwiperBasic = ({
   id,
   children,
-  slidesPerView = 5,
-  slidesPerGroup = 1,
+  slidesPerView = 3,
+  slidePerGroup = 1,
+  pagination,
   height = 'auto',
+  title,
   className,
   ...props
 }: SwiperProgressProps) => {
   return (
     <figure className={`swiper_basic ${className}`} style={{ height }}>
+      <div className="swiper_header">
+        <h1 className="swiper_title">{title}</h1>
+        <div className="swiper_button_group">
+          <SwiperButton id={id} direction="prev" />
+          <SwiperButton id={id} direction="next" />
+        </div>
+      </div>
+
       <Swiper
+        slidesPerView={slidesPerView}
+        slidesPerGroup={slidePerGroup}
+        pagination={
+          pagination && {
+            clickable: true,
+          }
+        }
         modules={[Pagination, Navigation]}
         navigation={{
           nextEl: `#${id}next`,
           prevEl: `#${id}prev`,
         }}
-        slidesPerView={slidesPerView}
-        slidesPerGroup={slidesPerGroup}
         className="swiper_container"
         {...props}
       >
-        <SwiperButton direction="prev" id={id} />
-        <SwiperButton direction="next" id={id} />
         {children?.map((el) => (
           <SwiperSlide>
             <div className="content">{el}</div>
