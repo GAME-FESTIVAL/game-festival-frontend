@@ -1,3 +1,3 @@
-export * from "./pages/FindAccount";
-export * from "./pages/Join";
-export * from "./pages/Login";
+export * from './pages/FindAccount'
+export * from './pages/Join'
+export * from './pages/Login'

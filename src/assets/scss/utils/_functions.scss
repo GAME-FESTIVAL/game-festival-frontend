@@ -1,0 +1,8 @@
+/*
+    자주 사용되는 컬러
+    #사용법 예시 
+        get-color(neutral, Basic)
+*/
+@function get-color($category, $name) {
+  @return map-get(map-get($color_palette, $category), $name);
+}
