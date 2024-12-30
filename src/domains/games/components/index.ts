@@ -1,2 +1,2 @@
-export * from "./pages/GameDetail";
-export * from "./pages/GameList";
+export * from './pages/GameDetail'
+export * from './pages/GameList'
