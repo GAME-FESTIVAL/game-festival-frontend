@@ -40,16 +40,14 @@ export const HotdealSwiper = () => {
       </Swiper.Vertical>
 
       <Swiper.Thubms id="mainThumbsSwiper">
-        {Array(10)
-          .fill(0)
-          .map((_, idx) => (
-            <div className="slide_wrap">
-              <img
-                src={`https://swiperjs.com/demos/images/nature-${idx + 1}.jpg`}
-                alt=""
-              />
-            </div>
-          ))}
+        {Array.from({ length: 10 }).map((_, idx) => (
+          <div className="slide_wrap">
+            <img
+              src={`https://swiperjs.com/demos/images/nature-${idx + 1}.jpg`}
+              alt=""
+            />
+          </div>
+        ))}
       </Swiper.Thubms>
     </figure>
   )

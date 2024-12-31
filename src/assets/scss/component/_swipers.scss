@@ -21,8 +21,7 @@
         gap: 8px;
       }
 
-      .swiper_custom_button_next,
-      .swiper_custom_button_prev {
+      .swiper_custom_button {
         @include flex($jc: center, $ai: center);
         @include size($width: 52px, $height: 52px);
         background-color: get-color(blue, CelticBlue);
@@ -33,17 +32,18 @@
           @include size($width: 24px, $height: 24px);
         }
 
+        &.prev {
+          img {
+            transform: rotate(180deg);
+          }
+        }
+
         img {
           width: 20px;
 
           @include mobile {
             width: 12px;
           }
-        }
-      }
-      .swiper_custom_button_prev {
-        img {
-          transform: rotate(180deg);
         }
       }
     }
@@ -108,25 +108,24 @@
     }
   }
 
-  .swiper_custom_button_next,
-  .swiper_custom_button_prev {
+  .swiper_custom_button {
     @include flex($ai: center, $jc: center);
     @include position($position: absolute, $bottom: 0);
     @include size($width: 50px, $height: 50px);
     border-radius: 0;
     border: 1px solid #246dc2;
     cursor: pointer;
-  }
 
-  .swiper_custom_button_prev {
-    left: calc(50% - 200px - 50px - 45px);
-    img {
-      transform: rotate(180deg);
+    &.prev {
+      left: calc(50% - 200px - 50px - 45px);
+      img {
+        transform: rotate(180deg);
+      }
     }
-  }
 
-  .swiper_custom_button_next {
-    right: calc(50% - 200px - 50px - 45px);
+    &.next {
+      right: calc(50% - 200px - 50px - 45px);
+    }
   }
 }
 
@@ -170,24 +169,22 @@
   }
 
   .slide_wrap {
-    .swiper_custom_button_next,
-    .swiper_custom_button_prev {
+    .swiper_custom_button {
       @include flex($ai: center, $jc: center);
       @include position($position: absolute, $top: 50%, $y: -50%);
       @include size($width: 32px, $height: 32px);
       border-radius: 0;
       cursor: pointer;
-    }
 
-    .swiper_custom_button_prev {
-      left: 0;
-      img {
-        transform: rotate(180deg);
+      &.prev {
+        left: 0;
+        img {
+          transform: rotate(180deg);
+        }
       }
-    }
-
-    .swiper_custom_button_next {
-      left: calc(100% - 32px);
+      &.next {
+        left: calc(100% - 32px);
+      }
     }
 
     .swiper {

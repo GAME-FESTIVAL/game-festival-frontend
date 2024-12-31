@@ -18,7 +18,7 @@ const SwiperButton = ({ id, direction }: { id: string; direction: string }) => {
   return (
     <button
       id={`${id}${direction}`}
-      className={`swiper_custom_button_${direction}`}
+      className={`swiper_custom_button ${direction}`}
     >
       <img src={swiperButton} alt="" />
     </button>
@@ -36,7 +36,7 @@ export const SwiperThumbs = ({
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
 
   return (
-    <figure className={`swiper_thumb ${className}`}>
+    <figure className={`swiper_thumb ${className}`} style={{ height }}>
       <section className="thumbs_wrap">
         <Swiper modules={[Thumbs]} thumbs={{ swiper: thumbsSwiper }}>
           {children.map((el) => (

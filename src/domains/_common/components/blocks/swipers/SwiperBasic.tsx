@@ -19,7 +19,7 @@ const SwiperButton = ({ direction, id }: { direction: string; id: string }) => {
   return (
     <button
       id={`${id}${direction}`}
-      className={`swiper_custom_button_${direction}`}
+      className={`swiper_custom_button ${direction}`}
     >
       <img src={swiperButton} alt="" />
     </button>

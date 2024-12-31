@@ -2,11 +2,11 @@ import { useState } from 'react'
 import {
   RollingBanner,
   CurrentTime,
-  RollingBannerSwiper,
-  PopularGamesSwiper,
-  HotdealSwiper,
-  NewGamesSwiper,
-  FavoriteGameSwiper,
+  // RollingBannerSwiper,
+  // PopularGamesSwiper,
+  // HotdealSwiper,
+  // NewGamesSwiper,
+  // FavoriteGameSwiper,
 } from '@main/components'
 import { bannerItemsList } from '@main/constants'
 import { StarEffect } from '@main/components'
