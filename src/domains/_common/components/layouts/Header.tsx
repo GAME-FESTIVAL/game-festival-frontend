@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 
-// 이미지
+//--------------- 이미지 ---------------//
 import logo from '@/assets/imgs/common/logo.png'
-import search from '@/assets/imgs/common/search.png'
+import search from '@/assets/imgs/common/layout/search.png'
+import menuBtn from '@/assets/imgs/common/layout/menuBtn.png'
 
 export const Header = () => {
   const headerMainMenus = [
@@ -22,7 +23,7 @@ export const Header = () => {
         <div className="left_column">
           <form action="">
             <img src={logo} alt="logo" className="logo" />
-            <div className="search_box">
+            <div className="search_box show-pc">
               <input type="text" name="" />
               <button className="search_btn" type="submit">
                 <img src={search} alt="검색" />
@@ -30,7 +31,7 @@ export const Header = () => {
             </div>
           </form>
         </div>
-        <div className="right_column">
+        <div className="right_column show-pc">
           <ul className="menu">
             <li>
               {headerMainMenus.map((el) => (
@@ -49,6 +50,9 @@ export const Header = () => {
               ))}
             </li>
           </ul>
+        </div>
+        <div className="right_column show-mo show-ta">
+          <img src={menuBtn} alt="" />
         </div>
       </div>
     </header>

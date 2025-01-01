@@ -1,21 +1,25 @@
+//utils
+@import './utils/variables';
+@import './utils/mixins';
+@import './utils/functions';
+
 //base
 @import './base/variables';
 @import './base/reset';
 @import './base/global';
 @import './base/typography';
 
-//utils
-@import './utils/variables';
-@import './utils/mixins';
-@import './utils/functions';
+//component
+@import './component/button';
+@import './component/swipers';
+@import './component/input';
+@import './component/stickyMenu'; // 서브 페이지 스티키 메뉴
 
 // loyout
 @import './layout/header'; // 헤더
 @import './layout/footer'; // 풋터
 
-//component
-@import './component/button';
-@import './component/swipers';
-
 //pages
 @import './pages/main';
+@import './pages/member'; // 로그인, 회원가입, 계정 찾기
+@import './pages/newSpecial'; // 신규 및 특집

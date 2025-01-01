@@ -2,13 +2,10 @@
   @include font(
     200px,
     $ff: $font-tertiary,
-    $color: map-get(map-get($color_palette, point), LavenderIndigo),
+    $color: get-color(point, LavenderIndigo),
     $lh: 1
   );
-  @include textShadowBorder(
-    map-get(map-get($color_palette, neutral), Basic),
-    3px
-  );
+  @include textShadowBorder(get-color(neutral, Basic), 3px);
   p {
     display: table;
     z-index: 1;
@@ -19,10 +16,7 @@
         $ff: inherit,
         $color: map-get(map-get($color_palette, point), Turquoise)
       );
-      @include textShadowBorder(
-        map-get(map-get($color_palette, neutral), White),
-        3px
-      );
+      @include textShadowBorder(get-color(neutral, White), 3px);
 
       content: attr(data-child);
       z-index: -1;
@@ -30,17 +24,11 @@
   }
 
   &.small {
-    @include textShadowBorder(
-      map-get(map-get($color_palette, neutral), Basic),
-      2px
-    );
+    @include textShadowBorder(get-color(neutral, Basuc), 2px);
     font-size: 100px;
     p {
       &::after {
-        @include textShadowBorder(
-          map-get(map-get($color_palette, neutral), White),
-          2px
-        );
+        @include textShadowBorder(get-color(neutral, White), 2px);
       }
       &:nth-child(2) {
         margin-top: 5px;
@@ -93,7 +81,7 @@ $star-sizes: (
 // 메인
 //------------------------------------------//
 .main {
-  background: map-get(map-get($color_palette, neutral), EerieBlack);
+  background: get-color(neutral, EerieBlack);
   //---------------- 키비주얼 영역 ----------------//
   .sc_hero {
     /* 상·하단 흐르는 배너 */
@@ -101,9 +89,9 @@ $star-sizes: (
       @include flex($gap: 0 60px);
       overflow: hidden;
       padding: 12px 0;
-      background: map-get(map-get($color_palette, blue), CelticBlue);
+      background: get-color(blue, CelticBlue);
       p {
-        @include font(30px);
+        font-size: 30px;
         margin-bottom: -3px;
       }
       .roller_wrap {
@@ -114,25 +102,9 @@ $star-sizes: (
           flex-shrink: 0;
           & > div {
             @include flex($ai: center, $gap: 0 60px);
-            animation: rollingleft1 10s linear infinite;
-            @keyframes rollingleft1 {
-              // 원본용
-              0% {
-                transform: translate3d(0, 0, 0);
-              }
-              50% {
-                transform: translate3d(-100%, 0, 0);
-              }
-              50.01% {
-                transform: translate3d(100%, 0, 0);
-              }
-              100% {
-                transform: translate3d(0);
-              }
-            }
             &:nth-child(even) {
               p {
-                color: map-get(map-get($color_palette, point), BitterLemon);
+                color: get-color(point, BitterLemon);
               }
             }
           }
@@ -143,7 +115,7 @@ $star-sizes: (
       &.left {
         .rolling_list {
           &.original {
-            animation: rollingLeft1 45s linear infinite;
+            animation: rollingLeft1 55s linear infinite;
             animation-fill-mode: forwards;
             @keyframes rollingLeft1 {
               // 원본용
@@ -162,7 +134,7 @@ $star-sizes: (
             }
           }
           &.clone {
-            animation: rollingLeft2 45s linear infinite;
+            animation: rollingLeft2 65s linear infinite;
             animation-fill-mode: forwards;
             @keyframes rollingLeft2 {
               // 클론용
@@ -230,10 +202,7 @@ $star-sizes: (
         }
         .getDate {
           @include flex($ai: center, $jc: space-between);
-          @include font(
-            45px,
-            $color: map-get(map-get($color_palette, point), BlazeOrange)
-          );
+          @include font(45px, $color: get-color(point, BlazeOrange));
           padding-top: 60px;
 
           .time {
@@ -289,6 +258,48 @@ $star-sizes: (
       }
       span {
         @include font(40px, $color: get-color(blue, PaleCornflowerBlue));
+      }
+    }
+  }
+
+  //-------------- 1023 반응형 --------------//
+  @include tablet {
+    // ## 풋터 위 마지막 배너 영역
+    .sc_lastBanner {
+      padding: 247px 0 467px;
+      background: linear-gradient(
+        to bottom,
+        get-color(neutral, Basic),
+        #412b4a 112%
+      );
+      &::before {
+        background: url(#{$main_src}/img_lastBanner_bg_MO.png) no-repeat top /
+          auto 100%;
+      }
+
+      .tit {
+        p {
+          font-size: 45px;
+        }
+        span {
+          @include font(30px, $lh: 1.4);
+        }
+      }
+    }
+  }
+  //-------------- 767 반응형 --------------//
+  @include mobile {
+    // ## 풋터 위 마지막 배너 영역
+    .sc_lastBanner {
+      padding: 34.31vw 0 64.86vw;
+
+      .tit {
+        p {
+          font-size: 6.25vw;
+        }
+        span {
+          font-size: 4.17vw;
+        }
       }
     }
   }

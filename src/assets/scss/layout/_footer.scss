@@ -128,7 +128,7 @@
       li {
         a {
           @include font(
-            16px,
+            18px,
             $ff: 'Pretendard',
             $color: get-color(blue, PaleCornflowerBlue),
             $lh: 1
@@ -144,6 +144,124 @@
           @include flex($ai: center, $gap: 0 10px);
           a {
             color: get-color(neutral, White);
+          }
+        }
+      }
+    }
+  }
+
+  //-------------- 1023 반응형 --------------//
+  @include tablet {
+    padding: 130px 0;
+
+    .top_column {
+      margin-bottom: 30px;
+      p {
+        font-size: 50px;
+      }
+    }
+    .bott_column {
+      @include flex($ff: column, $gap: 50px 0);
+
+      /* 우측 컨텐츠 - 링크 이동 영역 */
+      .main_section_link {
+        li {
+          a {
+            font-size: 24px;
+            margin-bottom: 20px;
+          }
+          &.link {
+            margin-bottom: 40px;
+          }
+        }
+      }
+    }
+  }
+  //-------------- 767 반응형 --------------//
+  @include mobile {
+    padding: 18.06vw 0;
+
+    .top_column {
+      margin-bottom: 4.17vw;
+      gap: 0 2.78vw;
+      p {
+        font-size: 6.94vw;
+      }
+      img {
+        height: 7.36vw;
+      }
+    }
+    .bott_column {
+      gap: 6.94vw 0;
+
+      /* 좌측 컨텐츠 */
+      .etc {
+        font-size: 4.17vw;
+        .line {
+          margin-bottom: 6.94vw;
+
+          .deco {
+            span {
+              @include size(1.11vw, 1.11vw);
+            }
+          }
+
+          &.second {
+            .deco {
+              &-center {
+                span {
+                  &:first-child {
+                    @include size(2.78vw, 0.69vw);
+                  }
+                  &:last-child {
+                    @include size(0.69vw, 2.78vw);
+                  }
+                }
+              }
+            }
+          }
+          &.third {
+            .deco {
+              &-circle {
+                span {
+                  @include size(2.78vw, 2.78vw);
+                }
+              }
+
+              &-center {
+                span {
+                  &:first-child {
+                    @include size(2.78vw, 0.69vw);
+                  }
+                  &:last-child {
+                    @include size(2.78vw, 0.69vw);
+                  }
+                }
+              }
+
+              &-grid {
+                span {
+                  @include size(1.11vw, 1.11vw);
+                }
+              }
+            }
+          }
+        }
+      }
+      /* 우측 컨텐츠 - 링크 이동 영역 */
+      .main_section_link {
+        li {
+          a {
+            font-size: 3.33vw;
+            margin-bottom: 2.78vw;
+          }
+          &.link {
+            margin-bottom: 5.56vw;
+          }
+          &.email {
+            img {
+              height: 4.58vw;
+            }
           }
         }
       }

@@ -1,0 +1,233 @@
+//------------------------------------------//
+// 신규 및 특집 newSpecial.tsx
+//------------------------------------------//
+.newSpecial {
+  section {
+    margin-bottom: 80px;
+
+    .tit {
+      @include font(20px, $color: get-color(neutral, White));
+      margin-bottom: 30px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  //---------------- 메인 게임 슬라이드 영역 ----------------//
+  .sc_gameSlider {
+    @include flex(flex, $gap: 0 20px);
+
+    /* 좌측 */
+    .basic {
+      @include size(100%, $maxWidth: 965px);
+
+      /* 게임 이미지 */
+      .game_img {
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      /* 게임 정보 */
+      .game_info {
+        @include size(100%, 100%);
+        @include flex($ff: column, $jc: flex-end);
+        @include position(absolute, $bottom: 0, $left: 0);
+        padding: 40px;
+
+        &::before {
+          @include size(100%, 100%);
+          @include position(absolute, 0, $left: 0);
+          content: '';
+          box-shadow: inset 411px 4px 154px rgba(0, 0, 0, 0.75);
+        }
+
+        & > * {
+          visibility: hidden;
+          opacity: 0;
+          transform: translateX(30px);
+          transition: all 0.7s;
+        }
+
+        /* 게임명 */
+        .game_name {
+          font-size: 32px;
+        }
+        /* 게임 설명 텍스트 */
+        .game_description {
+          @include resetTextOverflow;
+          @include font(
+            $ff: 'Pretendard',
+            $fw: 300,
+            $color: get-color(neutral, White),
+            $lh: 1.5
+          );
+          max-width: 477px;
+          margin: 8px 0 25px;
+        }
+        /* 자세히 보기 */
+        .game_detail {
+          @include size(100%, 45px, $maxWidth: 143px);
+          line-height: 45px;
+          padding: 0 20px;
+          display: inline-block;
+          background-color: get-color(blue, CelticBlue);
+          border-radius: 5px;
+
+          .arrow {
+            @include size(25px, 25px);
+            @include position(absolute, calc(50% - 1px), 10px, $y: -50%);
+            background: url(#{$comm_src}/component/link_arrow.png) no-repeat top;
+          }
+        }
+      }
+
+      .swiper-wrapper {
+        height: auto;
+        .swiper-slide {
+          height: auto;
+
+          &-active {
+            .game_info {
+              & > * {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0);
+              }
+            }
+          }
+        }
+      }
+    }
+    /* 우측 */
+    .thumb {
+      @include size(100%, $maxWidth: 365px);
+
+      .game_name {
+        @include font($color: get-color(neutral, SpanishGray));
+      }
+      .game_img {
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .swiper-wrapper {
+        @include flex($ff: column, $gap: 10px 0);
+
+        .swiper-slide {
+          @include size(100%, 123px);
+          @include flex(flex, $ai: center, $gap: 0 15px);
+          padding: 0 10px;
+          background-color: get-color(neutral, EerieBlack);
+          border-radius: 10px;
+          cursor: pointer;
+          overflow: hidden;
+
+          &::before {
+            @include size(0px, 100%);
+            @include position(absolute, 0, $left: 0);
+            content: '';
+            z-index: -1;
+            background-color: get-color(blue, MaastrichtBlue);
+            transition: all 0.8s;
+          }
+
+          &-thumb-active {
+            &::before {
+              width: 100%;
+            }
+            .game_name {
+              color: get-color(neutral, White);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //---------------- 인기 신규 출시 게임 영역 ----------------//
+  .sc_newGames {
+    .game_img {
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    .game_info {
+      padding-top: 20px;
+
+      .game_tag {
+        padding: 5px 0 20px;
+      }
+    }
+
+    .tab_area {
+      margin-bottom: 40px;
+      .tab_list {
+        @include flex(flex, $gap: 0 10px);
+        margin-bottom: 30px;
+        li {
+          @include font($color: get-color(neutral, White), $lh: 46px);
+          height: 46px;
+          flex: 1;
+          background: get-color(neutral, EerieBlack);
+          text-align: center;
+          border-radius: 5px;
+          cursor: pointer;
+
+          &.active {
+            background: get-color(blue, CelticBlue);
+            color: get-color(neutral, Basic);
+          }
+        }
+      }
+      .tab_game {
+        height: 350px;
+        padding: 30px 25px;
+        background: get-color(neutral, CharlestonGreen);
+        border-radius: 15px;
+
+        &_element {
+          @include flex(flex, $gap: 0 20px);
+          opacity: 0;
+          visibility: hidden;
+          display: none;
+
+          &.visible {
+            opacity: 1;
+            visibility: visible;
+            display: flex;
+            &.notFound {
+              @include flex($ai: center, $jc: center);
+              height: 100%;
+
+              p {
+                @include font(18px, $color: get-color(neutral, White));
+              }
+            }
+          }
+        }
+      }
+    }
+    .banner_area {
+      img {
+        margin: 0;
+      }
+    }
+  }
+
+  //---------------- 추천 신규 제품 영역 ----------------//
+  .sc_newProduct {
+    .swiper-slide {
+      img {
+        margin: 0;
+      }
+    }
+  }
+
+  //---------------- 출시 예정 영역 ----------------//
+  .sc_upcoming {
+    img {
+      margin: 0;
+    }
+    .upcomingGames_list {
+      @include flex(flex, $gap: 0 20px);
+    }
+  }
+}
