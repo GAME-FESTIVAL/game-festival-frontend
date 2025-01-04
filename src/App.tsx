@@ -1,13 +1,12 @@
 import '@/assets/scss/App.css'
-
-import { Routes, Route, useLocation } from 'react-router-dom'
-import { Header, Footer, StickyMenu } from '@common/components'
-import { AppProvider } from 'AppProvider'
+import { Routes, Route } from 'react-router-dom'
+import { Header, Footer, PageContainer, StickyMenu } from '@common/components'
 import { NotFound } from '@common/components'
 import { FindAccount, Join, Login } from '@auth/components'
 import { Main } from '@main/components'
 import { GameDetail, GameList } from '@games/components'
 import { NewSpecial } from '@newSpecial/components'
+import { Fragment } from 'react/jsx-runtime'
 
 type RouteType = {
   path: string
@@ -16,11 +15,6 @@ type RouteType = {
 }
 
 const App = () => {
-  const location = useLocation()
-
-  const excludedPaths = ['/', '/login', '/join', '/*'] // 스티키 메뉴 제외할 경로
-  const shouldRenderStickyMenu = !excludedPaths.includes(location.pathname) // 제외 경로가 아닐 때만 렌더링
-
   const routes: RouteType[] = [
     { path: '/*', element: <NotFound /> },
     { path: '/', element: <Main /> },
@@ -44,20 +38,14 @@ const App = () => {
   }
 
   return (
-    <AppProvider>
+    <Fragment>
       <Header />
-      {shouldRenderStickyMenu ? (
-        <div className="major_container">
-          <div className="inner">
-            <StickyMenu />
-            <Routes>{renderRoutes(routes)}</Routes>
-          </div>
-        </div>
-      ) : (
+      <PageContainer>
+        <StickyMenu />
         <Routes>{renderRoutes(routes)}</Routes>
-      )}
+      </PageContainer>
       <Footer />
-    </AppProvider>
+    </Fragment>
   )
 }
 

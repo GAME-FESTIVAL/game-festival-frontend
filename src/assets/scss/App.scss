@@ -13,11 +13,11 @@
 @import './component/button';
 @import './component/swipers';
 @import './component/input';
-@import './component/stickyMenu'; // 서브 페이지 스티키 메뉴
 
 // loyout
 @import './layout/header'; // 헤더
 @import './layout/footer'; // 풋터
+@import './layout/stickyMenu'; // 서브 페이지 스티키 메뉴
 
 //pages
 @import './pages/main';
