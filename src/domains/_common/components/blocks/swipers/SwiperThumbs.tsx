@@ -1,16 +1,15 @@
 import { useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
 import { Thumbs, Navigation } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
 
 import swiperButton from '@/assets/imgs/icons/swiper_button_black.svg'
 
-type SwiperThumbsProps = {
+type SwiperThumbsProps = SwiperProps & {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
   spaceBetween?: number
-  height?: string
   className?: string
 }
 
@@ -30,13 +29,12 @@ export const SwiperThumbs = ({
   children,
   slidesPerView = 5,
   spaceBetween = 15,
-  height,
   className,
 }: SwiperThumbsProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
 
   return (
-    <figure className={`swiper_thumb ${className}`} style={{ height }}>
+    <figure className={`swiper_thumb ${className}`}>
       <section className="thumbs_wrap">
         <Swiper modules={[Thumbs]} thumbs={{ swiper: thumbsSwiper }}>
           {children.map((el) => (

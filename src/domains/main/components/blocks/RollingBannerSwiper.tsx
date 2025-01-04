@@ -27,7 +27,7 @@ export const RollingBannerSwiper = ({
     className: 'main_swiper_rolling_banner',
     slidesPerView: calculateSlidesPerView(),
     spaceBetween: 0,
-    speed: 2000,
+    speed: 3000,
   }
 
   return (

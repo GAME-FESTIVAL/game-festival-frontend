@@ -22,13 +22,11 @@ export const NewSpecial = () => {
 
       {/* 추천 신규 제품 > 덜 작업함 */}
       <section className="sc_newProduct">
-        <div className="tit">추천 신규 제품</div>
         <NewProductGames />
       </section>
 
       {/* 출시 예정 > 덜 작업함 */}
       <section className="sc_upcoming ">
-        <div className="tit">출시 예정</div>
         <UpcomingGames />
       </section>
 

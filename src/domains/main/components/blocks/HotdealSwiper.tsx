@@ -1,4 +1,4 @@
-import { Swiper } from '@common/components/blocks/swipers'
+import { Swiper } from '@common/components'
 import main_hotdeal_slide_img_1 from '@/assets/imgs/temp/main_hotdeal_slide_img_1.png'
 import { useState } from 'react'
 
@@ -13,7 +13,7 @@ export const HotdealSwiper = () => {
         id="mainVerticalSwiper"
         className="main_slide_hotdeal"
         spaceBetween={15}
-        height={'140px'}
+        height={140}
       >
         {Array(10)
           .fill(0)

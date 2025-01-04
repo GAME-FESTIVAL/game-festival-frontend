@@ -1,21 +1,23 @@
 .swiper_basic {
   .swiper_header {
     @include flex($ai: center);
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 
     @include mobile {
       margin-bottom: 20px;
     }
     .swiper_title {
       flex-grow: 1;
-      font-size: 36px;
+      // font-size: 36px;
+      font-size: 20px;
+      color: get-color(neutral, white);
 
       @include mobile {
         font-size: 20px;
       }
     }
     .swiper_button_group {
-      @include flex($gap: 16px);
+      @include flex($gap: 10px);
 
       @include mobile {
         gap: 8px;
@@ -23,9 +25,9 @@
 
       .swiper_custom_button {
         @include flex($jc: center, $ai: center);
-        @include size($width: 52px, $height: 52px);
+        @include size($width: 40px, $height: 40px);
         background-color: get-color(blue, CelticBlue);
-        border-radius: 26px;
+        border-radius: 20px;
         cursor: pointer;
 
         @include mobile {
@@ -308,6 +310,24 @@
 }
 
 .main_swiper_new_games {
+  .swiper_header {
+    .swiper_title {
+      font-size: 32px;
+      color: get-color(neutral, Basic);
+      @include mobile {
+        font-size: 20px;
+      }
+    }
+    .swiper_button_group {
+      @include flex($gap: 16px);
+      .swiper_custom_button {
+        @include size($width: 52px, $height: 52px);
+        background-color: get-color(blue, CelticBlue);
+        border-radius: 26px;
+      }
+    }
+  }
+
   .content {
     @include grid(3, 24px);
     row-gap: 48px;
