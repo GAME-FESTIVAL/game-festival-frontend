@@ -18,8 +18,9 @@
 // 로그인, 회원가입 공통
 //------------------------------------------//
 .member {
-  padding: 165px 0;
+  // padding: 165px 0;
   background: get-color(neutral, Basic);
+  @include flex($fd: column, $ai: center);
   .tit {
     margin-bottom: 55px;
     text-align: center;
@@ -60,7 +61,7 @@
 //------------------------------------------//
 // 로그인 Login.tsx
 //------------------------------------------//
-.login {
+#login {
   .input_box {
     .input_cell {
       img {
@@ -73,6 +74,9 @@
   }
   .chk_box {
     margin: 20px 0 56px;
+  }
+  form {
+    width: 632px;
   }
   .form_util {
     margin-top: 35px;
@@ -164,10 +168,15 @@
 //------------------------------------------//
 // 회원가입 Join.tsx
 //------------------------------------------//
-.join {
+#join {
   .tit {
     margin-bottom: 75px;
   }
+
+  form {
+    width: 632px;
+  }
+
   .form_content {
     margin-bottom: 130px;
     & > span {
@@ -183,6 +192,9 @@
     .input_tit {
       @include flex(flex, $ai: center, $gap: 0 10px);
       margin-bottom: 20px;
+      img {
+        margin: 0;
+      }
     }
 
     .chk_box {

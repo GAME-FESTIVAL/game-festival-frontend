@@ -1,8 +1,8 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 
-type SwiperRollingProps = {
+type SwiperRollingProps = SwiperProps & {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
@@ -10,7 +10,6 @@ type SwiperRollingProps = {
   pagination?: boolean
   speed?: number
   reverseDirection?: boolean
-  height?: string
   title?: string
   className?: string
 }
@@ -23,13 +22,12 @@ export const SwiperRolling = ({
   pagination,
   speed = 1000,
   reverseDirection = false,
-  height = 'auto',
   title,
   className,
   ...props
 }: SwiperRollingProps) => {
   return (
-    <figure className={`swiper_rolling ${className}`} style={{ height }}>
+    <figure className={`swiper_rolling ${className}`}>
       <Swiper
         slidesPerView={slidesPerView}
         slidesPerGroup={slidePerGroup}

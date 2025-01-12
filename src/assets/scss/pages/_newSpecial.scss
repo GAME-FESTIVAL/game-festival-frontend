@@ -1,16 +1,12 @@
 //------------------------------------------//
 // 신규 및 특집 newSpecial.tsx
 //------------------------------------------//
-.newSpecial {
+#newSpecial {
+  @include flex($fd: column, $gap: 40px);
   section {
-    margin-bottom: 80px;
-
     .tit {
       @include font(20px, $color: get-color(neutral, White));
       margin-bottom: 30px;
-    }
-    &:last-child {
-      margin-bottom: 0;
     }
   }
   //---------------- 메인 게임 슬라이드 영역 ----------------//

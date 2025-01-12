@@ -32,8 +32,8 @@ export const Join = () => {
   }
 
   return (
-    <main className="main join member sub_container">
-      <div className="inner">
+    <main id="join" className="inner">
+      <div className="member">
         <div className="tit">
           <img
             src={isDesktop ? characterPC : characterMO}
@@ -184,9 +184,8 @@ export const Join = () => {
             <div className="input_box">
               <button
                 onClick={onSubmit}
-                className={`submit_btn ${
-                  isSubmitting() ? 'possible' : 'impossible'
-                }`}
+                disabled={!isSubmitting()}
+                className={`submit_btn`}
               >
                 Join
               </button>

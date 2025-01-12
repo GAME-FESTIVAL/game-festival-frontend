@@ -1,4 +1,4 @@
-import { Swiper } from '@common/components/blocks/swipers'
+import { Swiper } from '@common/components'
 import main_hotdeal_slide_img_1 from '@/assets/imgs/temp/main_hotdeal_slide_img_1.png'
 import { useState } from 'react'
 
@@ -13,7 +13,7 @@ export const HotdealSwiper = () => {
         id="mainVerticalSwiper"
         className="main_slide_hotdeal"
         spaceBetween={15}
-        height={'140px'}
+        height={140}
       >
         {Array(10)
           .fill(0)
@@ -40,16 +40,14 @@ export const HotdealSwiper = () => {
       </Swiper.Vertical>
 
       <Swiper.Thubms id="mainThumbsSwiper">
-        {Array(10)
-          .fill(0)
-          .map((_, idx) => (
-            <div className="slide_wrap">
-              <img
-                src={`https://swiperjs.com/demos/images/nature-${idx + 1}.jpg`}
-                alt=""
-              />
-            </div>
-          ))}
+        {Array.from({ length: 10 }).map((_, idx) => (
+          <div className="slide_wrap">
+            <img
+              src={`https://swiperjs.com/demos/images/nature-${idx + 1}.jpg`}
+              alt=""
+            />
+          </div>
+        ))}
       </Swiper.Thubms>
     </figure>
   )

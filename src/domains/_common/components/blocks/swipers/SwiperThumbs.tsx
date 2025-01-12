@@ -1,16 +1,15 @@
 import { useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
 import { Thumbs, Navigation } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
 
 import swiperButton from '@/assets/imgs/icons/swiper_button_black.svg'
 
-type SwiperThumbsProps = {
+type SwiperThumbsProps = SwiperProps & {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
   spaceBetween?: number
-  height?: string
   className?: string
 }
 
@@ -18,7 +17,7 @@ const SwiperButton = ({ id, direction }: { id: string; direction: string }) => {
   return (
     <button
       id={`${id}${direction}`}
-      className={`swiper_custom_button_${direction}`}
+      className={`swiper_custom_button ${direction}`}
     >
       <img src={swiperButton} alt="" />
     </button>
@@ -30,7 +29,6 @@ export const SwiperThumbs = ({
   children,
   slidesPerView = 5,
   spaceBetween = 15,
-  height,
   className,
 }: SwiperThumbsProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)

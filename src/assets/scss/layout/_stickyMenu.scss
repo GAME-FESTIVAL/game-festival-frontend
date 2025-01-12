@@ -4,6 +4,7 @@
 .sticky {
   @include size(100%, $maxWidth: 330px, $maxHeight: 806px);
   @include position(sticky, 20px);
+  margin: 100px 0 200px 40px;
   padding: 40px 20px;
   background: get-color(neutral, EerieBlack);
   border-radius: 10px;

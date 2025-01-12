@@ -1,15 +1,14 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
 import { Pagination, Navigation } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 
 import swiperButton from '@/assets/imgs/icons/swiper_button.svg'
 
-type SwiperProgressProps = {
+type SwiperProgressProps = SwiperProps & {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
   slidesPerGroup?: number
-  height?: string
   className?: string
 }
 
@@ -17,7 +16,7 @@ const SwiperButton = ({ id, direction }: { id: string; direction: string }) => {
   return (
     <button
       id={`${id}${direction}`}
-      className={`swiper_custom_button_${direction}`}
+      className={`swiper_custom_button ${direction}`}
     >
       <img src={swiperButton} alt="" />
     </button>
@@ -29,12 +28,11 @@ export const SwiperProgress = ({
   children,
   slidesPerView = 5,
   slidesPerGroup = 1,
-  height = 'auto',
   className,
   ...props
 }: SwiperProgressProps) => {
   return (
-    <figure className={`swiper_progress ${className}`} style={{ height }}>
+    <figure className={`swiper_progress ${className}`}>
       <Swiper
         pagination={{ type: 'progressbar' }}
         modules={[Pagination, Navigation]}

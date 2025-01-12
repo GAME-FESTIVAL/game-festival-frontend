@@ -18,8 +18,8 @@ export const NewGamesSwiper = () => {
         {Array.from({ length: 10 }).map(() => {
           return (
             <>
-              {Array.from({ length: 6 }).map((el) => (
-                <div className="grid_item">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <div key={`grid_item-${idx}`} className="grid_item">
                   <div className="img_wrap">
                     <img src={main_new_games_slide_img_1} alt="" />
                   </div>

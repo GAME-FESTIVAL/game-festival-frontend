@@ -13,8 +13,8 @@ export const Login = () => {
   const { isDesktop } = useDevice()
 
   return (
-    <main className="main login member sub_container">
-      <div className="inner">
+    <main id="login" className="inner">
+      <div className="member">
         <div className="tit">
           <img
             src={isDesktop ? characterPC : characterMO}

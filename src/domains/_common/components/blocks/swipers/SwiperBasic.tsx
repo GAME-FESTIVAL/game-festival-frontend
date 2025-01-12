@@ -1,16 +1,16 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
 import { Pagination, Navigation } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 
 import swiperButton from '@/assets/imgs/icons/swiper_button.svg'
 
-type SwiperProgressProps = {
+type SwiperProgressProps = SwiperProps & {
   id: string
   children: React.ReactNode[]
   slidesPerView?: number
-  slidePerGroup?: number
+  slidesPerGroup?: number
   pagination?: boolean
-  height?: string
+  navigation?: boolean
   title?: string
   className?: string
 }
@@ -19,7 +19,7 @@ const SwiperButton = ({ direction, id }: { direction: string; id: string }) => {
   return (
     <button
       id={`${id}${direction}`}
-      className={`swiper_custom_button_${direction}`}
+      className={`swiper_custom_button ${direction}`}
     >
       <img src={swiperButton} alt="" />
     </button>
@@ -30,31 +30,34 @@ export const SwiperBasic = ({
   id,
   children,
   slidesPerView = 3,
-  slidePerGroup = 1,
+  slidesPerGroup = 1,
   pagination,
-  height = 'auto',
+  navigation = true,
   title,
   className,
   ...props
 }: SwiperProgressProps) => {
   return (
-    <figure className={`swiper_basic ${className}`} style={{ height }}>
+    <figure className={`swiper_basic ${className}`}>
       <div className="swiper_header">
         <h1 className="swiper_title">{title}</h1>
-        <div className="swiper_button_group">
-          <SwiperButton id={id} direction="prev" />
-          <SwiperButton id={id} direction="next" />
-        </div>
+        {navigation && (
+          <div className="swiper_button_group">
+            <SwiperButton id={id} direction="prev" />
+            <SwiperButton id={id} direction="next" />
+          </div>
+        )}
       </div>
 
       <Swiper
         slidesPerView={slidesPerView}
-        slidesPerGroup={slidePerGroup}
+        slidesPerGroup={slidesPerGroup}
         pagination={
           pagination && {
             clickable: true,
           }
         }
+        spaceBetween={20}
         modules={[Pagination, Navigation]}
         navigation={{
           nextEl: `#${id}next`,

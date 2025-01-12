@@ -32,17 +32,21 @@
   }
 }
 
-/* 큰 컨테이너 */
-.major_container {
+/* 페이지 컨테이너 */
+.page_container {
+  @include flex;
   background: get-color(neutral, Basic);
-  & > .inner {
-    @include flex(flex, $gap: 0 40px);
-    max-width: 1800px;
-    padding: 100px 40px 200px;
+
+  .inner {
+    flex-grow: 1;
     margin: 0 auto;
-  }
-  .major_content {
-    @include size(100%, $maxWidth: calc(100% - 370px));
+    padding: 100px 40px 200px;
+    width: 100%;
+    min-width: 0;
+
+    &.fill {
+      padding: 0;
+    }
   }
 }
 

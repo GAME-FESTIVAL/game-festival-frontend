@@ -1,11 +1,9 @@
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { AppProvider } from './AppProvider.tsx'
 import App from './App.tsx'
 
-const root = ReactDOM.createRoot(document.getElementById('root')!)
-
-root.render(
-  <BrowserRouter>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <AppProvider>
     <App />
-  </BrowserRouter>
+  </AppProvider>
 )

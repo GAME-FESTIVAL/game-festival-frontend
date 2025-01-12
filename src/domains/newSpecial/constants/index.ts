@@ -1,0 +1,6 @@
+export * from './popularNewGamesData'
+export * from './newProductGamesData'
+export * from './bannerData'
+export * from './gameSlidesData'
+export * from './upcomingGamesData'
+export * from './gameCategories'

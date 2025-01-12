@@ -8,7 +8,6 @@ import {
   NewGamesSwiper,
   FavoriteGameSwiper,
 } from '@main/components'
-import { bannerItemsList } from '@main/constants'
 import { StarEffect } from '@main/components'
 
 //--------------- 이미지 ---------------//
@@ -19,14 +18,12 @@ import window2 from '@/assets/imgs/main/img_hero_window2.png'
 import window3 from '@/assets/imgs/main/img_hero_window3.png'
 
 export const Main = () => {
-  const [overlapItems] = useState(bannerItemsList.concat(bannerItemsList))
-
   return (
-    <main className="main">
+    <main id="main" className="inner fill">
       {/* ## 키비주얼 영역 */}
       <section className="sc_hero">
         {/* 상단 배너 */}
-        <RollingBanner items={overlapItems} direction="left" />
+        <RollingBannerSwiper direction="left" />
 
         {/* 가운데 콘텐츠 */}
         <div className="inner">
@@ -52,16 +49,12 @@ export const Main = () => {
         </div>
 
         {/* 하단 배너 */}
-        <RollingBanner items={overlapItems} direction="right" />
+        <RollingBannerSwiper direction="right" />
       </section>
-
       {/* <PopularGamesSwiper />, */}
       {/* <HotdealSwiper /> */}
-      {/* <NewGamesSwiper /> */}
+      <NewGamesSwiper />
       {/* <FavoriteGameSwiper /> */}
-      {/* <RollingBannerSwiper direction="left" /> */}
-      {/* <RollingBannerSwiper direction="right" /> */}
-
       {/* ## 풋터 상단 마지막 배너 단락 */}
       <section className="sc_lastBanner">
         <div className="tit">

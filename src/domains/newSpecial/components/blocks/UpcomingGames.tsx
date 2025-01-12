@@ -1,27 +1,28 @@
 import { Link } from 'react-router-dom'
-
-// --------------- 이미지 --------------- //
-import upcomingGamesImg1 from '@/assets/imgs/temp/sub_upcomingGames_img1.png'
-import upcomingGamesImg2 from '@/assets/imgs/temp/sub_upcomingGames_img2.png'
-import upcomingGamesImg3 from '@/assets/imgs/temp/sub_upcomingGames_img3.png'
-
-// 데이터 배열
-const upcomingGamesData = [
-  { id: 1, img: upcomingGamesImg1 },
-  { id: 2, img: upcomingGamesImg2 },
-  { id: 3, img: upcomingGamesImg3 },
-]
+import { Swiper } from '@common/components'
+import { upcomingGamesData } from '@newSpecial/constants'
 
 export const UpcomingGames = () => {
   return (
-    <div className="upcomingGames_list">
+    <Swiper
+      id="upcomingGamesSwiper"
+      title="출시 예정"
+      slidesPerView={3}
+      slidesPerGroup={1}
+      navigation={false}
+      className="newProduct_swiper"
+    >
       {upcomingGamesData.map((game) => (
         <Link to="" key={game.id} className="upcomingGames_element">
           <div className="game_img">
-            <img src={game.img} alt={`Upcoming game ${game.id}`} />
+            <img
+              src={game.img}
+              alt={`Upcoming game ${game.id}`}
+              className="full cover"
+            />
           </div>
         </Link>
       ))}
-    </div>
+    </Swiper>
   )
 }

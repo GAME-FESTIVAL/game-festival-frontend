@@ -155,4 +155,11 @@ button {
 img {
   display: block;
   margin: 0 auto;
+
+  &.full {
+    width: 100%;
+  }
+  &.cover {
+    object-fit: cover;
+  }
 }

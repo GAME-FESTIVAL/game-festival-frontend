@@ -7,7 +7,7 @@ type SwiperVerticalProps = {
   children: React.ReactNode[]
   slidesPerView?: number
   spaceBetween?: number
-  height?: string
+  height: number
   className?: string
 }
 
@@ -16,11 +16,11 @@ export const SwiperVertical = ({
   children,
   slidesPerView = 5,
   spaceBetween = 10,
-  height = '140px',
+  height,
   className,
   ...props
 }: SwiperVerticalProps) => {
-  const slideHeight = parseFloat(height)
+  const slideHeight = height
   const totalHeight = `${
     slideHeight * slidesPerView + (slidesPerView - 1) * spaceBetween
   }px`
