@@ -45,7 +45,7 @@ export const SwiperThumbs = ({
         </Swiper>
       </section>
 
-      <section className="slide_wrap">
+      <section className="thumbsList_wrap">
         <Swiper
           modules={[Thumbs, Navigation]}
           watchSlidesProgress
