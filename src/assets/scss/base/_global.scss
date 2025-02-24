@@ -75,6 +75,10 @@
 }
 /* ## 게임 가격 */
 .game_price {
+  @include flex(flex, $ai: flex-end);
+  .left-column {
+    @include flex(flex, $ff: column);
+  }
   .original {
     @include font(20px, $color: get-color(blue, CadetBlue));
 
@@ -101,6 +105,14 @@
   @include position(absolute, $right: 0, $bottom: 0);
   background-color: get-color(blue, CelticBlue);
   text-align: center;
+
+  &_red {
+    @include size(52px, 28px);
+    @include font(18px, $color: get-color(neutral, basic), $lh: 28px);
+    border-radius: 3px;
+    background: get-color(point, SunburntCyclops);
+    text-align: center;
+  }
 }
 /* ## 게임 2개 배너 영역 */
 .banner_area {

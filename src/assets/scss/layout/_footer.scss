@@ -15,6 +15,9 @@
         $color: get-color(blue, PaleCornflowerBlue)
       );
     }
+    img {
+      margin: 0;
+    }
   }
   .bott_column {
     @include flex($gap: 0 180px);

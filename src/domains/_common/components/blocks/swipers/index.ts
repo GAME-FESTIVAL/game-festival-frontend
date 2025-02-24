@@ -3,12 +3,14 @@ import { SwiperProgress } from './SwiperProgress'
 import { SwiperVertical } from './SwiperVertical'
 import { SwiperThumbs } from './SwiperThumbs'
 import { SwiperRolling } from './SwiperRolling'
+import { SwiperReview } from './SwiperReview'
 
 const Swiper = Object.assign(SwiperBasic, {
   Progress: SwiperProgress,
   Vertical: SwiperVertical,
   Thubms: SwiperThumbs,
   Rolling: SwiperRolling,
+  Review: SwiperReview,
 })
 
 export { Swiper }

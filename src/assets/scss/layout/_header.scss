@@ -2,6 +2,8 @@
 // 헤더
 //------------------------------------------//
 .header {
+  @include position(sticky, 0);
+  z-index: 99;
   padding: 12px 0;
   background: get-color(neutral, CharlestonGreen);
   .inner {
@@ -13,8 +15,6 @@
   .left_column {
     form {
       @include flex($ai: center, $gap: 0 30px);
-      .logo {
-      }
       .search_box {
         input {
           @include size(230px, 48px);
