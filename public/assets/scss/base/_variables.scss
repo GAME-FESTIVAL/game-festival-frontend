@@ -1,0 +1,45 @@
+//-----------------------------------------------//
+//-------------- 자주 사용되는 컬러 --------------//
+//----------------------------------------------//
+/* 
+    #변수명 기준은 www.color-name.com 사이트에서 별칭 따옴 
+    #사용법 예시 function.scss 참고
+        get-color(neutral, Basic)
+*/
+$color_palette: (
+  neutral: (
+    Basic: #000,
+    White: #eee,
+    EerieBlack: #1d1d1d,
+    CharlestonGreen: #2b2b2b,
+    SpanishGray: #999999,
+  ),
+  blue: (
+    CadetBlue: #a7b0bf,
+    CelticBlue: #246dc2,
+    CelticBlue30: rgba(#246dc2, 0.3),
+    MaastrichtBlue: #0b213a,
+    PaleCornflowerBlue: #afcae9,
+  ),
+  point: (
+    BitterLemon: #d0eb13,
+    Sandstorm: #f5dc40,
+    LavenderIndigo: #9355fe,
+    SunburntCyclops: #fd4448,
+    Turquoise: #45ffca,
+    BlazeOrange: #ff6a00,
+  ),
+);
+
+//----------------------------------//
+//-------------- 폰트 --------------//
+//----------------------------------//
+$font-primary: 'NeoDunggeunmo';
+$font-secondary: 'DNFBitBitv2';
+$font-tertiary: 'GasoekOne-Regular';
+
+//----------------------------------------//
+//-------------- 이미지 경로 --------------//
+//----------------------------------------//
+$main_src: '../imgs/main';
+$comm_src: '../imgs/common';

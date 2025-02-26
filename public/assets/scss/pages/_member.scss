@@ -1,0 +1,258 @@
+.sub_container {
+  .inner {
+    max-width: 720px;
+    padding: 0 40px;
+    margin: 0 auto;
+  }
+
+  @include mobile {
+    .inner {
+      max-width: 680px;
+      padding: 0 20px;
+    }
+  }
+}
+
+//------------------------------------------//
+// Login, Join.tsx
+// 로그인, 회원가입 공통
+//------------------------------------------//
+.member {
+  // padding: 165px 0;
+  background: get-color(neutral, Basic);
+  @include flex($fd: column, $ai: center);
+  .tit {
+    margin-bottom: 55px;
+    text-align: center;
+    p {
+      @include font(35px, $color: get-color(neutral, white));
+      padding-top: 20px;
+    }
+  }
+
+  @include tablet {
+    padding: 160px 0;
+
+    .tit {
+      margin-bottom: 80px;
+      p {
+        @include font(55px, $lh: 1.2);
+        padding-top: 52px;
+        text-align: left;
+      }
+    }
+  }
+  @include mobile {
+    padding: 22.22vw 0;
+
+    .tit {
+      margin-bottom: 11.11vw;
+      p {
+        font-size: 7.64vw;
+        padding-top: 7.22vw;
+      }
+      img {
+        height: 20.83vw;
+      }
+    }
+  }
+}
+
+//------------------------------------------//
+// 로그인 Login.tsx
+//------------------------------------------//
+#login {
+  .input_box {
+    .input_cell {
+      img {
+        @include position(absolute, calc(50% - 2px), $left: 32px, $y: -50%);
+      }
+      input {
+        padding-left: 80px;
+      }
+    }
+  }
+  .chk_box {
+    margin: 20px 0 56px;
+  }
+  form {
+    width: 632px;
+  }
+  .form_util {
+    margin-top: 35px;
+    a {
+      @include font(18px, $color: get-color(neutral, White));
+    }
+    ul {
+      @include flex(flex, center, center);
+      li:first-child {
+        margin-right: 23px;
+        padding-right: 23px;
+        &::after {
+          @include size(1px, 16px);
+          @include position(absolute, 50%, 0, $y: -50%);
+          content: '';
+          background: #c1c1c1;
+        }
+      }
+    }
+  }
+
+  //-------------- 1023 반응형 --------------//
+  @include tablet {
+    .input_box {
+      .input_cell {
+        img {
+          left: 30px;
+        }
+        input {
+          padding-left: 95px;
+        }
+      }
+    }
+    .chk_box {
+      margin: 34px 0 78px;
+    }
+    .form_util {
+      margin-top: 50px;
+      a {
+        font-size: 24px;
+      }
+      ul {
+        li:first-child {
+          margin-right: 35px;
+          padding-right: 35px;
+          &::after {
+            @include size(2px, 22px);
+            top: calc(50% - 2px);
+          }
+        }
+      }
+    }
+  }
+  //-------------- 767 반응형 --------------//
+  @include mobile {
+    .input_box {
+      .input_cell {
+        img {
+          left: 4.17vw;
+          height: 6.67vw;
+        }
+        input {
+          padding-left: 13.19vw;
+        }
+      }
+    }
+    .chk_box {
+      margin: 4.72vw 0 10.83vw;
+    }
+    .form_util {
+      margin-top: 6.94vw;
+      a {
+        font-size: 3.33vw;
+      }
+      ul {
+        li:first-child {
+          margin-right: 4.86vw;
+          padding-right: 4.86vw;
+          &::after {
+            @include size(1px, 3.06vw);
+            top: calc(50% - 1px);
+          }
+        }
+      }
+    }
+  }
+}
+
+//------------------------------------------//
+// 회원가입 Join.tsx
+//------------------------------------------//
+#join {
+  .tit {
+    margin-bottom: 75px;
+  }
+
+  form {
+    width: 632px;
+  }
+
+  .form_content {
+    margin-bottom: 130px;
+    & > span {
+      @include font(16px, $ff: 'Pretendard', $color: get-color(neutral, White));
+      display: block;
+      margin-bottom: 25px;
+      text-align: right;
+    }
+
+    .input_cell {
+      margin-bottom: 40px;
+    }
+    .input_tit {
+      @include flex(flex, $ai: center, $gap: 0 10px);
+      margin-bottom: 20px;
+      img {
+        margin: 0;
+      }
+    }
+
+    .chk_box {
+      @include flex(flex, $ff: wrap, $gap: 0 50px);
+      margin-bottom: 40px;
+
+      .input_tit {
+        width: 100%;
+      }
+    }
+  }
+
+  //-------------- 1023 반응형 --------------//
+  @include tablet {
+    .tit {
+      margin-bottom: 77px;
+      p {
+        letter-spacing: -2px;
+      }
+    }
+    .form_content {
+      & > span {
+        font-size: 20px;
+        margin-bottom: 77px;
+      }
+      .chk_box {
+        gap: 0 90px;
+      }
+    }
+  }
+  //-------------- 767 반응형 --------------//
+  @include mobile {
+    .tit {
+      margin-bottom: 10.69vw;
+      p {
+        letter-spacing: -1px;
+      }
+    }
+    .form_content {
+      margin-bottom: 18.06vw;
+      & > span {
+        font-size: 2.78vw;
+        margin-bottom: 10.69vw;
+      }
+      .input_cell {
+        margin-bottom: 5.56vw;
+      }
+      .input_tit {
+        gap: 0 1.39vw;
+        margin-bottom: 2.78vw;
+        img {
+          height: 5.14vw;
+        }
+      }
+      .chk_box {
+        gap: 0 12.5vw;
+        margin-bottom: 5.56vw;
+      }
+    }
+  }
+}

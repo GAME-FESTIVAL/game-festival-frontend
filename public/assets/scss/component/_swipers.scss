@@ -1,0 +1,275 @@
+.swiper_basic {
+  .swiper_header {
+    @include flex($ai: center);
+    margin-bottom: 30px;
+
+    @include mobile {
+      margin-bottom: 20px;
+    }
+    .swiper_title {
+      flex-grow: 1;
+      // font-size: 36px;
+      font-size: 20px;
+      color: get-color(neutral, white);
+
+      @include mobile {
+        font-size: 20px;
+      }
+    }
+    .swiper_button_group {
+      @include flex($gap: 10px);
+
+      @include mobile {
+        gap: 8px;
+      }
+
+      .swiper_custom_button {
+        @include flex($jc: center, $ai: center);
+        @include size($width: 40px, $height: 40px);
+        background-color: get-color(blue, CelticBlue);
+        border-radius: 20px;
+        cursor: pointer;
+
+        @include mobile {
+          @include size($width: 24px, $height: 24px);
+        }
+
+        &.prev {
+          img {
+            transform: rotate(180deg);
+          }
+        }
+
+        img {
+          width: 20px;
+
+          @include mobile {
+            width: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.swiper_progress {
+  .swiper-wrapper {
+    @include mobile {
+      padding-bottom: 25px;
+    }
+  }
+
+  .swiper {
+    @include flex($gap: 20px);
+    @include size($width: 100%, $height: 100%);
+
+    @include mobile {
+      padding-bottom: 24px;
+    }
+  }
+
+  .swiper-slide {
+    @include flex($jc: center, $ai: center);
+    text-align: center;
+    // padding: 12px;
+    font-size: 18px;
+
+    .content {
+      @include size($width: 100%, $height: 100%);
+    }
+  }
+
+  .swiper_container {
+    .swiper-pagination {
+      //   @include position(
+      //     $position: absolute,
+      //     $top: unset !important,
+      //     $bottom: 0,
+      //     $left: 50% !important,
+      //     $x: -50%,
+      //     $y: calc(50% - 25px)
+      //   );
+      @include size($width: 400px, $height: 4px);
+      margin: 0 auto;
+
+      @include mobile {
+        @include size($width: 100% !important, $height: 9px !important);
+        border-radius: 4.5px;
+        overflow: hidden;
+      }
+
+      .swiper-pagination-progressbar-fill {
+        background-color: map-get(
+          map-get($color_palette, point),
+          LavenderIndigo
+        );
+      }
+    }
+  }
+
+  .swiper_custom_button {
+    @include flex($ai: center, $jc: center);
+    @include position($position: absolute, $bottom: 0);
+    @include size($width: 50px, $height: 50px);
+    border-radius: 0;
+    border: 1px solid #246dc2;
+    cursor: pointer;
+
+    &.prev {
+      //   left: calc(50% - 200px - 50px - 45px);
+      img {
+        transform: rotate(180deg);
+      }
+    }
+
+    &.next {
+      //   right: calc(50% - 200px - 50px - 45px);
+    }
+  }
+}
+
+.swiper_vertical {
+  position: relative;
+  //   width: 410px;
+  overflow: hidden;
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+
+    .content {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.swiper_rolling {
+  .swiper-wrapper {
+    transition-timing-function: linear;
+  }
+}
+
+// 아래 코드 main.scss 파일로 옮길 예정
+
+.main_swiper_new_games {
+  .swiper_header {
+    .swiper_title {
+      font-size: 32px;
+      color: get-color(neutral, Basic);
+      @include mobile {
+        font-size: 20px;
+      }
+    }
+    .swiper_button_group {
+      @include flex($gap: 16px);
+      .swiper_custom_button {
+        @include size($width: 52px, $height: 52px);
+        background-color: get-color(blue, CelticBlue);
+        border-radius: 26px;
+      }
+    }
+  }
+
+  .content {
+    @include grid(3, 24px);
+    row-gap: 48px;
+
+    @include mobile {
+      @include flex($fd: column);
+      row-gap: 16px;
+    }
+
+    .grid_item {
+      @include mobile {
+        @include flex($gap: 10px);
+      }
+
+      .img_wrap {
+        @include mobile {
+          width: 40%;
+          flex-shrink: 0;
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .desc {
+        @include flex($fd: column, $gap: 16px);
+        margin-top: 20px;
+        overflow: hidden;
+
+        @include mobile {
+          @include flex($fd: column, $jc: space-between);
+          margin-top: 0;
+        }
+
+        dt {
+          @include textOverflow(1);
+          color: get-color(neutral, White);
+          @include mobile {
+            font-size: 14px;
+          }
+        }
+        dd {
+          @include textOverflow(2);
+          color: get-color(blue, CadetBlue);
+          @include mobile {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.favorit_game_wrap {
+  @include flex($fd: column, $gap: 30px);
+  @include mobile {
+    gap: 20px;
+  }
+  .main_swiper_favorite_game {
+    .content {
+      border-radius: 20px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.rolling_banner_wrap {
+  .swiper-slide {
+    background-color: get-color(blue, CelticBlue);
+    @include font($fs: 30px, $color: get-color(neutral, EerieBlack));
+    .even-slide {
+      color: get-color(point, BitterLemon);
+    }
+  }
+  .content {
+    .banner_item {
+      @include flex($ai: center, $gap: 65px);
+      margin-bottom: -3px;
+      padding: 12px 0;
+      background-color: get-color(blue, CelticBlue);
+
+      img {
+        margin: 0;
+      }
+    }
+  }
+}

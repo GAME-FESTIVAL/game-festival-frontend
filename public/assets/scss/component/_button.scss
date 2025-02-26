@@ -1,0 +1,38 @@
+//------------------------------------------//
+// 버튼
+//------------------------------------------//
+.input_box {
+  button {
+    @include font(24px, $color: get-color(neutral, White));
+    cursor: pointer;
+
+    &.submit_btn {
+      @include size(100%, 80px, $maxWidth: 640px);
+      background: url(#{$comm_src}/component/input_button_bg.png) no-repeat top;
+    }
+    &:disabled {
+      filter: grayscale(1);
+    }
+  }
+
+  //-------------- 1023 반응형 --------------//
+  @include tablet {
+    button {
+      font-size: 28px;
+      &.submit_btn {
+        height: 101px;
+        background: url(#{$comm_src}/component/input_button_bg_MO.png) no-repeat
+          top / cover;
+      }
+    }
+  }
+  //-------------- 767 반응형 --------------//
+  @include mobile {
+    button {
+      font-size: 3.89vw;
+      &.submit_btn {
+        height: 14.03vw;
+      }
+    }
+  }
+}
