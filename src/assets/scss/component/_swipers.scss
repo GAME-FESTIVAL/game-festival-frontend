@@ -209,32 +209,6 @@
           object-fit: cover;
         }
       }
-
-      .desc {
-        @include flex($fd: column, $gap: 16px);
-        margin-top: 20px;
-        overflow: hidden;
-
-        @include mobile {
-          @include flex($fd: column, $jc: space-between);
-          margin-top: 0;
-        }
-
-        dt {
-          @include textOverflow(1);
-          color: get-color(neutral, White);
-          @include mobile {
-            font-size: 14px;
-          }
-        }
-        dd {
-          @include textOverflow(2);
-          color: get-color(blue, CadetBlue);
-          @include mobile {
-            font-size: 12px;
-          }
-        }
-      }
     }
   }
 }

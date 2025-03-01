@@ -1,12 +1,12 @@
 import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
-import { Pagination, Navigation } from 'swiper/modules'
+import { Pagination, Navigation, Grid } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 
 import swiperButton from '@/assets/imgs/icons/swiper_button.svg'
 
 type SwiperProgressProps = SwiperProps & {
   id: string
-  children: React.ReactNode[]
+  children?: React.ReactNode[]
   slidesPerView?: number
   slidesPerGroup?: number
   pagination?: boolean
@@ -58,7 +58,7 @@ export const SwiperBasic = ({
           }
         }
         spaceBetween={20}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation, Grid]}
         navigation={{
           nextEl: `#${id}next`,
           prevEl: `#${id}prev`,

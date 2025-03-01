@@ -6,7 +6,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { errorHandler } from '@common/hooks'
+// import { errorHandler } from '@common/hooks'
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(
@@ -14,13 +14,13 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       defaultOptions: {
         mutations: {
           onError: (error) => {
-            errorHandler(error)
+            // errorHandler(error)
           },
         },
       },
       queryCache: new QueryCache({
-        onError: errorHandler,
-        onSuccess: () => {},
+        // onError: ()=>{},
+        // onSuccess: () => {},
       }),
     })
   )

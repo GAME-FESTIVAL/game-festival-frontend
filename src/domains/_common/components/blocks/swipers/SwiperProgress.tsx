@@ -6,7 +6,7 @@ import swiperButton from '@/assets/imgs/icons/img_popularGame_button.png'
 
 type SwiperProgressProps = SwiperProps & {
   id: string
-  children: React.ReactNode[]
+  children?: React.ReactNode[]
   slidesPerView?: number
   slidesPerGroup?: number
   className?: string

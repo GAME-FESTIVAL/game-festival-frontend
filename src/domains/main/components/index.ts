@@ -1,5 +1,8 @@
 export * from './pages/Main'
 
+// units
+export * from './units/GameInfoTeb'
+
 // blocks
 export * from './blocks/CurrentTime'
 export * from './blocks/RollingBanner'
