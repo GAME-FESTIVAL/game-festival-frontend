@@ -14,7 +14,7 @@ type ReviewItemProps = {
 
 export const ReviewItem = ({ reviewData }: ReviewItemProps) => {
   return (
-    <figure>
+    <>
       <div className="review_text">{reviewData.content}</div>
       <div className="reviewer_info">
         <div className="left_column">
@@ -32,6 +32,6 @@ export const ReviewItem = ({ reviewData }: ReviewItemProps) => {
           <img src={star} alt="평점" /> {reviewData.rating}
         </div>
       </div>
-    </figure>
+    </>
   )
 }
