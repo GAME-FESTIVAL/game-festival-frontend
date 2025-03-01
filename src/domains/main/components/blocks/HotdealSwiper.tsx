@@ -1,20 +1,18 @@
-import { Swiper } from '@common/components'
-import main_hotdeal_slide_img_1 from '@/assets/imgs/temp/main_hotdeal_slide_img_1.png'
 import { useState } from 'react'
-import { checkDevice } from '@common/utils'
-import profileBasicImage from '@/assets/imgs/common/profileImage_basic.png'
-import star from '@/assets/imgs/common/star.png'
-
+import { Swiper, ReviewItem } from '@common/components'
+import main_hotdeal_slide_img_1 from '@/assets/imgs/temp/main_hotdeal_slide_img_1.png'
 export const HotdealSwiper = () => {
   const [selectedSlideIndex, setSelectedSlideIndex] = useState(0)
-
   const selectSlide = (idx: number) => setSelectedSlideIndex(idx)
 
-  const swiperProps = {
-    id: 'mainProgressSwiper',
-    className: 'main_swiper_popular_games',
-    slidesPerView: checkDevice.isMobile() ? 2.4 : 5,
-    spaceBetween: 45, // 임시값
+  const tempReviewDatas = {
+    id: '1',
+    parent_id: '1',
+    name: '닉네임',
+    totalReviews: 100,
+    content:
+      '진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한 해리포터 유저라도 즐겁게 플레이 가능!',
+    rating: 4.5,
   }
 
   return (
@@ -87,26 +85,7 @@ export const HotdealSwiper = () => {
             navigation={false}
           >
             {Array.from({ length: 10 }).map((_, idx) => (
-              <>
-                <div className="review_text">
-                  진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한
-                  해리포터 유저라도 즐겁게 플레이 가능!
-                </div>
-                <div className="reviewer_info">
-                  <div className="left_column">
-                    <div className="profile_image">
-                      <img src={profileBasicImage} alt="프로필 이미지" />
-                    </div>
-                    <div className="reviewer">
-                      <div className="name">닉네임</div>
-                      <div className="reviewCount">평가 작성 수 100</div>
-                    </div>
-                  </div>
-                  <div className="right-column">
-                    <img src={star} alt="평점" /> 4.5
-                  </div>
-                </div>
-              </>
+              <ReviewItem reviewData={tempReviewDatas} />
             ))}
           </Swiper>
         </div>
