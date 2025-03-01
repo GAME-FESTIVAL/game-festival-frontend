@@ -40,7 +40,7 @@ export const SwiperBasic = ({
   return (
     <figure className={`swiper_basic ${className}`}>
       <div className="swiper_header">
-        <h1 className="swiper_title">{title}</h1>
+        {title && <h1 className="swiper_title">{title}</h1>}
         {navigation && (
           <div className="swiper_button_group">
             <SwiperButton id={id} direction="prev" />

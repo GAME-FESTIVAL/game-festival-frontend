@@ -20,7 +20,7 @@ export const NewGamesSwiper = () => {
   }
 
   const [activeTab, setActiveTab] = useState(0)
-  const [hoverGame, setHoverGame] = useState(null)
+  const [hoverGame, setHoverGame] = useState()
 
   const hoverImages = [
     howNewGameImg1,
@@ -69,7 +69,7 @@ export const NewGamesSwiper = () => {
                           key={`grid_item-${idx}`}
                           className="grid_item"
                           onMouseEnter={() => setHoverGame(idx)}
-                          onMouseLeave={() => setHoverGame(null)}
+                          onMouseLeave={() => setHoverGame(undefined)}
                         >
                           <div className="img_wrap">
                             <img src={main_new_games_slide_img_1} alt="" />

@@ -2,6 +2,8 @@ import { Swiper } from '@common/components'
 import main_hotdeal_slide_img_1 from '@/assets/imgs/temp/main_hotdeal_slide_img_1.png'
 import { useState } from 'react'
 import { checkDevice } from '@common/utils'
+import profileBasicImage from '@/assets/imgs/common/profileImage_basic.png'
+import star from '@/assets/imgs/common/star.png'
 
 export const HotdealSwiper = () => {
   const [selectedSlideIndex, setSelectedSlideIndex] = useState(0)
@@ -77,18 +79,36 @@ export const HotdealSwiper = () => {
           </div>
         </div>
         <div className="review_collection">
-          <Swiper.Review id="ReviewSwiper">
+          <Swiper
+            id="ReviewSwiper"
+            slidesPerView={3.5}
+            slidesPerGroup={1}
+            spaceBetween={15}
+            navigation={false}
+          >
             {Array.from({ length: 10 }).map((_, idx) => (
-              <div className="slide_wrap">
-                <img
-                  src={`https://swiperjs.com/demos/images/nature-${
-                    idx + 1
-                  }.jpg`}
-                  alt=""
-                />
-              </div>
+              <>
+                <div className="review_text">
+                  진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한
+                  해리포터 유저라도 즐겁게 플레이 가능!
+                </div>
+                <div className="reviewer_info">
+                  <div className="left_column">
+                    <div className="profile_image">
+                      <img src={profileBasicImage} alt="프로필 이미지" />
+                    </div>
+                    <div className="reviewer">
+                      <div className="name">닉네임</div>
+                      <div className="reviewCount">평가 작성 수 100</div>
+                    </div>
+                  </div>
+                  <div className="right-column">
+                    <img src={star} alt="평점" /> 4.5
+                  </div>
+                </div>
+              </>
             ))}
-          </Swiper.Review>
+          </Swiper>
         </div>
       </div>
     </figure>

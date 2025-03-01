@@ -6,6 +6,10 @@
     @include mobile {
       margin-bottom: 20px;
     }
+
+    &:empty {
+      display: none;
+    }
     .swiper_title {
       flex-grow: 1;
       // font-size: 36px;
