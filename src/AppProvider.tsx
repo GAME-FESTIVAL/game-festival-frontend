@@ -13,7 +13,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     new QueryClient({
       defaultOptions: {
         mutations: {
-          onError: (error) => {
+          onError: (_) => {
             // errorHandler(error)
           },
         },

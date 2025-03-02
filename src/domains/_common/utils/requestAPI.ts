@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosError } from 'axios'
-import { config, messages } from '@common/constants'
+import { appConfig, messages } from '@common/constants'
 
 type AxiosOptionsType<T> = AxiosRequestConfig & {
   processor?: (data: unknown) => T
@@ -9,7 +9,7 @@ type AxiosOptionsType<T> = AxiosRequestConfig & {
 }
 
 const apiClient = axios.create({
-  baseURL: config.SERVER_URL,
+  baseURL: appConfig.SERVER_URL,
   withCredentials: true,
 })
 

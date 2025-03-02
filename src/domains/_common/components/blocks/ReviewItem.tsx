@@ -6,7 +6,7 @@ type ReviewItemProps = {
     id: string
     parent_id: string
     name: string
-    totalReviews: number
+    total_reviews: number
     content: string
     rating: number
   }
@@ -24,7 +24,7 @@ export const ReviewItem = ({ reviewData }: ReviewItemProps) => {
           <div className="reviewer">
             <div className="name">{reviewData.name}</div>
             <div className="reviewCount">
-              평가 작성 수 {reviewData.totalReviews}
+              평가 작성 수 {reviewData.total_reviews}
             </div>
           </div>
         </div>

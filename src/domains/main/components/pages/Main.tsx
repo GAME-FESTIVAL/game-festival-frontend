@@ -1,5 +1,4 @@
 import {
-  RollingBanner,
   CurrentTime,
   RollingBannerSwiper,
   PopularGamesSwiper,
@@ -43,7 +42,7 @@ export const Main = () => {
           </div>
           <div className="right_column">
             {[window1, window2, window3].map((el, idx) => (
-              <div>
+              <div key={`deco${idx}`}>
                 <img src={el} alt={`데코${idx}`} />
               </div>
             ))}

@@ -47,8 +47,8 @@ export const SwiperRolling = ({
         loop={true}
         {...props}
       >
-        {children?.map((el) => (
-          <SwiperSlide>
+        {children?.map((el, idx) => (
+          <SwiperSlide key={`${id}${idx}`}>
             <div className="content">{el}</div>
           </SwiperSlide>
         ))}

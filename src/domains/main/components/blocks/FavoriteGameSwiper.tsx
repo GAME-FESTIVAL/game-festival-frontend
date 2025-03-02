@@ -14,14 +14,22 @@ export const FavoriteGameSwiper = () => {
   return (
     <section className="favorit_game_wrap">
       <Swiper.Rolling {...swiperProps}>
-        {Array.from({ length: 20 }).map(() => (
-          <img src={main_favorite_game_slide_img_1} alt="" />
+        {Array.from({ length: 20 }).map((_, idx) => (
+          <img
+            key={`${swiperProps.id}${idx}`}
+            src={main_favorite_game_slide_img_1}
+            alt=""
+          />
         ))}
       </Swiper.Rolling>
 
       <Swiper.Rolling {...swiperProps} reverseDirection={true}>
-        {Array.from({ length: 20 }).map(() => (
-          <img src={main_favorite_game_slide_img_1} alt="" />
+        {Array.from({ length: 20 }).map((_, idx) => (
+          <img
+            key={`${swiperProps.id}${idx}`}
+            src={main_favorite_game_slide_img_1}
+            alt=""
+          />
         ))}
       </Swiper.Rolling>
     </section>

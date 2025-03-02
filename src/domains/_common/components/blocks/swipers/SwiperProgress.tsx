@@ -48,8 +48,8 @@ export const SwiperProgress = ({
         className="swiper_container"
         {...props}
       >
-        {children?.map((el) => (
-          <SwiperSlide>
+        {children?.map((el, idx) => (
+          <SwiperSlide key={`${id}${idx}`}>
             <div className="content">{el}</div>
           </SwiperSlide>
         ))}

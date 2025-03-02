@@ -9,16 +9,6 @@ export const HotdealSwiper = () => {
   const [currentGame, setCurrentGame] = useState(data?.[0])
   const { data: detailData } = useGetGameDetail(currentGame?.id || '')
 
-  const tempReviewDatas = {
-    id: '1',
-    parent_id: '1',
-    name: '닉네임',
-    totalReviews: 100,
-    content:
-      '진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한 해리포터 유저라도 즐겁게 플레이 가능!',
-    rating: 4.5,
-  }
-
   useEffect(() => {
     if (data) setCurrentGame(data[0])
   }, [data])
@@ -85,8 +75,8 @@ export const HotdealSwiper = () => {
             spaceBetween={15}
             navigation={false}
           >
-            {Array.from({ length: 10 }).map((_, idx) => (
-              <ReviewItem reviewData={tempReviewDatas} />
+            {detailData?.top_reviews.map((el, idx) => (
+              <ReviewItem reviewData={el} key={idx} />
             ))}
           </Swiper>
         </div>
