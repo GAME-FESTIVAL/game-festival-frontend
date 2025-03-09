@@ -1,4 +1,4 @@
-import '@/assets/scss/App.css'
+import '@/assets/scss/App.scss'
 import { Routes, Route } from 'react-router-dom'
 import { Header, Footer, PageContainer, StickyMenu } from '@common/components'
 import { NotFound } from '@common/components'

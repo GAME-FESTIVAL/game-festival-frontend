@@ -6,7 +6,7 @@ import swiperButton from '@/assets/imgs/icons/img_popularGame_button.png'
 
 type SwiperProgressProps = SwiperProps & {
   id: string
-  children: React.ReactNode[]
+  children?: React.ReactNode[]
   slidesPerView?: number
   slidesPerGroup?: number
   className?: string
@@ -48,8 +48,8 @@ export const SwiperProgress = ({
         className="swiper_container"
         {...props}
       >
-        {children?.map((el) => (
-          <SwiperSlide>
+        {children?.map((el, idx) => (
+          <SwiperSlide key={`${id}${idx}`}>
             <div className="content">{el}</div>
           </SwiperSlide>
         ))}

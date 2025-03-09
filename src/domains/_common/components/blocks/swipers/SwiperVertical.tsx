@@ -4,7 +4,7 @@ import 'swiper/swiper-bundle.css'
 
 type SwiperVerticalProps = {
   id: string
-  children: React.ReactNode[]
+  children?: React.ReactNode[]
   slidesPerView?: number
   spaceBetween?: number
   height: number
@@ -44,8 +44,8 @@ export const SwiperVertical = ({
         className="mySwiper"
         {...props}
       >
-        {children.map((el) => (
-          <SwiperSlide>
+        {children?.map((el, idx) => (
+          <SwiperSlide key={`${id}${idx}`}>
             <div className="content">{el}</div>
           </SwiperSlide>
         ))}

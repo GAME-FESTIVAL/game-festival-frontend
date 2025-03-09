@@ -46,7 +46,7 @@ export const SwiperReview = ({
         className="swiper_container"
         {...props}
       >
-        {children?.map((el) => (
+        {children?.map((_) => (
           <SwiperSlide>
             <div className="content">
               <div className="review_text">

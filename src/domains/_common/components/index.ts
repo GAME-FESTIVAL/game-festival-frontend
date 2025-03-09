@@ -10,3 +10,4 @@ export * from './layouts/StickyMenu'
 // blocks
 export * from './blocks/swipers'
 export * from './blocks/LineDeco'
+export * from './blocks/ReviewItem'

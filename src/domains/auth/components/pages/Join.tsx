@@ -1,6 +1,6 @@
-import { useFormHandler } from '@common/hooks'
-import { defaultValidRules } from '@common/constants'
 import { useDevice } from '@common/hooks'
+import { useJoinForm } from '@auth/hooks'
+import { GENDER_VALUES, INTEREST_VALUES } from '@auth/constants'
 
 //--------------- 이미지 ---------------//
 import characterPC from '@/assets/imgs/member/img_login_character_pc.png'
@@ -16,20 +16,13 @@ import InterestInputIconMO from '@/assets/imgs/member/img_join_InterestInput_ico
 
 export const Join = () => {
   const { isDesktop } = useDevice()
-
-  const { form, attributes, isSubmitting, inputRefs } = useFormHandler(
-    { gender: 'male' },
-    defaultValidRules
-  )
-
-  const onSubmit = () => {
-    isSubmitting((_, requiredItems) => {
-      for (const key of requiredItems) {
-        const value = Array.isArray(form[key]) ? form[key][0] : form[key]
-        if (!value) return inputRefs.current[key]?.focus()
-      }
-    })
-  }
+  const {
+    registers,
+    methods: {
+      handleSubmit,
+      formState: { errors },
+    },
+  } = useJoinForm()
 
   return (
     <main id="join" className="inner">
@@ -63,16 +56,8 @@ export const Join = () => {
                     />
                     이름<span className="asterisk">*</span>
                   </span>
-                  <input
-                    type="text"
-                    {...attributes('name', {
-                      required: true,
-                      rule: 'name',
-                      errorStyle: {
-                        backgroundColor: 'red',
-                      },
-                    })}
-                  />
+                  <input type="text" {...registers.name} />
+                  <p style={{ color: 'red' }}>{errors.name?.message}</p>
                 </div>
                 {/* ## 비밀번호 */}
                 <div className="input_cell">
@@ -84,14 +69,8 @@ export const Join = () => {
                     />
                     비밀번호<span className="asterisk">*</span>
                   </span>
-                  <input
-                    type="password"
-                    {...attributes('password', {
-                      required: true,
-                      rule: 'password',
-                      reset: 'name',
-                    })}
-                  />
+                  <input type="password" {...registers.password} />
+                  <p style={{ color: 'red' }}>{errors.password?.message}</p>
                 </div>
                 {/* ## 비밀번호 확인 */}
                 <div className="input_cell">
@@ -103,17 +82,11 @@ export const Join = () => {
                     />
                     비밀번호 확인<span className="asterisk">*</span>
                   </span>
-                  <input
-                    type="password"
-                    {...attributes('password_confirm', {
-                      required: true,
-                      match: 'password',
-                      errorStyle: {
-                        backgroundColor: 'red',
-                      },
-                    })}
-                    placeholder="비밀번호를 다시 입력해주세요."
-                  />
+                  <input type="password" {...registers.password_confirm} />
+                  <p style={{ color: 'red' }}>
+                    {errors.password_confirm?.message}
+                  </p>
+                  {}
                 </div>
               </div>
               {/* ## 성별 */}
@@ -126,19 +99,13 @@ export const Join = () => {
                   />
                   성별<span className="asterisk">*</span>
                 </span>
-                {[
-                  { name: '남성', value: 'male' },
-                  { name: '여성', value: 'female' },
-                ].map((el) => (
+                {GENDER_VALUES.map((el) => (
                   <div key={el.value}>
                     <input
                       type="radio"
+                      value={el.value}
                       id={`${el.value}`}
-                      checked={form['gender'] === el.value}
-                      {...attributes('gender', {
-                        required: true,
-                        value: el.value,
-                      })}
+                      {...registers.gender}
                     />
                     <label htmlFor={`${el.value}`}>
                       <span className="circle_check"></span>
@@ -157,19 +124,13 @@ export const Join = () => {
                   />
                   관심분야<span className="asterisk">*</span>
                 </span>
-                {[
-                  { name: 'FPS', value: 'fps' },
-                  { name: 'RPG', value: 'rpg' },
-                  { name: 'AOS', value: 'aos' },
-                ].map((el) => (
+                {INTEREST_VALUES.map((el) => (
                   <div key={el.value}>
                     <input
                       type="checkbox"
                       id={`${el.value}`}
-                      {...attributes('interest', {
-                        value: el.value,
-                        type: 'checkbox',
-                      })}
+                      value={el.value}
+                      {...registers.interest}
                     />
                     <label htmlFor={`${el.value}`} key={el.value}>
                       <span className="square_check"></span>
@@ -177,15 +138,20 @@ export const Join = () => {
                     </label>
                   </div>
                 ))}
+                <p style={{ color: 'red' }}>{errors.interest?.message}</p>
               </div>
             </div>
 
             {/* ## 가입 버튼 */}
             <div className="input_box">
               <button
-                onClick={onSubmit}
-                disabled={!isSubmitting()}
                 className={`submit_btn`}
+                onClick={handleSubmit(
+                  () => {},
+                  (error) => {
+                    console.log(error)
+                  }
+                )}
               >
                 Join
               </button>

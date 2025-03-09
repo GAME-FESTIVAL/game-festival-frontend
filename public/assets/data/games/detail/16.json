@@ -1,0 +1,60 @@
+{
+  "id": "16",
+  "title": "호그와트 레거시16",
+  "desc": " 호그와트 레거시는 몰입형 오픈월드 액션 RPG입니다. 이제 여러분도 꿈에 그리던 마법 세계에 직접 영향을 끼칠 수 있습니다. 마법 세계에서 펼쳐지는 모험의 주인공이 되어보세요.",
+  "release_at": "2024.01.01",
+  "thumbnail_urls": [
+    "thumbnail1.png",
+    "thumbnail2.png",
+    "thumbnail3.png",
+    "thumbnail4.png",
+    "thumbnail5.png"
+  ],
+  "tags": ["익스트렉션 슈터", "생존", "포스트아포칼립스"],
+  "discount_rate": 25,
+  "price": 42300,
+  "rating_summary": "대체로 긍정적",
+  "review_count": 6524,
+  "top_reviews": [
+    {
+      "id": "1",
+      "parent_id": "1",
+      "name": "닉네임",
+      "total_reviews": 100,
+      "content": "진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한 해리포터 유저라도 즐겁게 플레이 가능!",
+      "rating": 4.5
+    },
+    {
+      "id": "1",
+      "parent_id": "1",
+      "name": "닉네임",
+      "total_reviews": 100,
+      "content": "진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한 해리포터 유저라도 즐겁게 플레이 가능!",
+      "rating": 4.5
+    },
+    {
+      "id": "1",
+      "parent_id": "1",
+      "name": "닉네임",
+      "total_reviews": 100,
+      "content": "진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한 해리포터 유저라도 즐겁게 플레이 가능!",
+      "rating": 4.5
+    },
+    {
+      "id": "1",
+      "parent_id": "1",
+      "name": "닉네임",
+      "total_reviews": 100,
+      "content": "진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한 해리포터 유저라도 즐겁게 플레이 가능!",
+      "rating": 4.5
+    },
+    {
+      "id": "1",
+      "parent_id": "1",
+      "name": "닉네임",
+      "total_reviews": 100,
+      "content": "진짜 재밌습니다 강추합니다 특히 해덕들은 눈 돌아갈듯. 라이트한 해리포터 유저라도 즐겁게 플레이 가능!",
+      "rating": 4.5
+    }
+  ]
+}

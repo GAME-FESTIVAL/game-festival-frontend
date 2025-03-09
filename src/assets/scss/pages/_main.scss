@@ -488,8 +488,12 @@ $star-sizes: (
                   .slide_wrap {
                     border-radius: 10px;
                     overflow: hidden;
+                    width: 80px;
+                    height: 80px;
                     img {
                       width: 100%;
+                      height: 100%;
+                      object-fit: cover;
                     }
                   }
                 }
