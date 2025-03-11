@@ -25,13 +25,13 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
-      "@common/*": ["domains/_common/*"],
-      "@auth/*": ["domains/auth/*"],
-      "@games/*": ["domains/games/*"],
-      "@main/*": ["domains/main/*"],
-      "@mypage/*": ["domains/mypage/*"],
-      "@news/*": ["domains/news/*"],
-      "@newSpecial/*": ["domains/newSpecial/*"],
+      "@common/*": ["features/_common/*"],
+      "@auth/*": ["features/auth/*"],
+      "@games/*": ["features/games/*"],
+      "@main/*": ["features/main/*"],
+      "@mypage/*": ["features/mypage/*"],
+      "@news/*": ["features/news/*"],
+      "@newSpecial/*": ["features/newSpecial/*"],
       "@components/*": ["components/*"]
     }
   },
