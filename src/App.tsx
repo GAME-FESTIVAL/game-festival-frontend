@@ -1,11 +1,12 @@
 import '@/assets/scss/App.scss'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Header, Footer, PageContainer, StickyMenu } from '@common/components'
 import { NotFound } from '@common/components'
 import { FindAccount, Join, Login } from '@auth/components'
 import { Main } from '@main/components'
 import { GameDetail, GameList } from '@games/components'
 import { NewSpecial } from '@newSpecial/components'
+import { Admin } from '@admin/components'
 import { Fragment } from 'react/jsx-runtime'
 
 type RouteType = {
@@ -15,6 +16,8 @@ type RouteType = {
 }
 
 const App = () => {
+  const { pathname } = useLocation()
+
   const routes: RouteType[] = [
     { path: '/*', element: <NotFound /> },
     { path: '/', element: <Main /> },
@@ -37,16 +40,18 @@ const App = () => {
     })
   }
 
-  return (
-    <Fragment>
-      <Header />
-      <PageContainer>
-        <StickyMenu />
-        <Routes>{renderRoutes(routes)}</Routes>
-      </PageContainer>
-      <Footer />
-    </Fragment>
-  )
+  if (pathname === '/admin') return <Admin />
+  else
+    return (
+      <Fragment>
+        <Header />
+        <PageContainer>
+          <StickyMenu />
+          <Routes>{renderRoutes(routes)}</Routes>
+        </PageContainer>
+        <Footer />
+      </Fragment>
+    )
 }
 
 export default App
