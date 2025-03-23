@@ -32,6 +32,7 @@ export const requestAPI = async <ResponseData>(
 }
 
 export const errorNotify = <ResponseData>(error: AxiosError) => {
+  console.log(error)
   const options = error.config as AxiosOptionsType<ResponseData>
   const notify = (message: string) => {
     if (options?.messageOnly) return String

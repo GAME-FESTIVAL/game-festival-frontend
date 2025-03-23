@@ -1,8 +1,13 @@
 import { useFormx, useFile } from '@common/hooks'
 import type { FieldErrors } from 'react-hook-form'
 import { postGameDefaultValues, categories } from '@admin/constants'
+import { usePostGame } from '@admin/services'
+import { usePostFiles } from '@common/services'
 
 export const Admin = () => {
+  const { mutate: postGame } = usePostGame()
+  const { mutateAsync: postFiles } = usePostFiles()
+
   const { register, watch, handleSubmit, handleArrayField, useArrayField } =
     useFormx<AdminTypes.PostGame.Request>(postGameDefaultValues)
 
@@ -32,9 +37,26 @@ export const Admin = () => {
     length: Infinity,
   })
 
-  const onSubmit = (data: AdminTypes.PostGame.Request) => {
+  const onSubmit = async (data: AdminTypes.PostGame.Request) => {
     console.log('폼 제출 데이터:', data)
+    try {
+      if (thumbnailFiles[0]) data.thumbnails = await postFiles(thumbnailFiles)
+      if (detailFiles[0]) data.detailImages = await postFiles(detailFiles)
+    } catch {
+      return alert('파일 업로드에 실패했습니다.')
+    }
+    postGame(data, {
+      onSuccess: () => {
+        alert('게임이 등록되었습니다.')
+      },
+    })
   }
+
+  console.log(
+    decodeURIComponent(
+      '100be995c995bc4840722b1f5e64944d%20-%20%C3%AB%C2%B3%C2%B5%C3%AC%C2%82%C2%AC%C3%AB%C2%B3%C2%B8%20-%20%C3%AB%C2%B3%C2%B5%C3%AC%C2%82%C2%AC%C3%AB%C2%B3%C2%B8.jpg'
+    )
+  )
 
   const onInvalid = (errors: FieldErrors<AdminTypes.PostGame.Request>) => {
     const messages = Object.entries(errors)
@@ -227,13 +249,13 @@ export const Admin = () => {
             />
           </dd>
         </dl>
-        <dl>
+        {/* <dl>
           <dt>할인 기간</dt>
           <dd>
             <input {...register('discountPeriod.start')} type="date" /> ~{' '}
             <input {...register('discountPeriod.end')} type="date" />
           </dd>
-        </dl>
+        </dl> */}
         <dl>
           <dt>기본 정보</dt>
           <dd>

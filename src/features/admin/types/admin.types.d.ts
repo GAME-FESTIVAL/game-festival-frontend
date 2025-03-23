@@ -13,11 +13,11 @@ namespace AdminTypes {
       title: string
       description: string
       price: number
-      thumbnails: string[]
+      thumbnails: GlobalTypes.File.API.PostFiles.Response[]
       category: string[]
       tags: string[]
       releaseAt: string
-      detailImages: string[]
+      detailImages: GlobalTypes.File.API.PostFiles.Response[]
       options: { name: string; price: number }[]
       discountPercentage: number
       discountPeriod: { start: string; end: string }

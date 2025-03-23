@@ -10,32 +10,22 @@ declare namespace GlobalTypes {
     }
 
     type Item = {
-      file?: File
+      file: File
       url: string
       originalName: string
       // fileName: string; // uuid 필요 시 해제
       extension: string
       size: number
-      id?: string
     }
 
     namespace API {
-      type GetConnectedFiles = (id: number) => Promise<Item[]>
-
-      type ConnectFilesToPost = (
-        fileData: Item[],
-        id: number,
-        method: string
-      ) => Promise<void>
-
-      type UploadFileToServer = (
-        type: string,
-        id: string,
-        method: string
-      ) => Promise<void>
+      namespace PostFiles {
+        type Response = {
+          originalname: string
+          size: Number
+          location: string
+        }[]
+      }
     }
-    namespace Request {}
-
-    namespace Response {}
   }
 }
