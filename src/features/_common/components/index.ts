@@ -11,3 +11,6 @@ export * from './layouts/StickyMenu'
 export * from './blocks/swipers'
 export * from './blocks/LineDeco'
 export * from './blocks/ReviewItem'
+
+// units
+export * from './units/FileInput'

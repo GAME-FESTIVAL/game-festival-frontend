@@ -1,169 +1,125 @@
-import { useForm, useFieldArray } from 'react-hook-form'
-
-type GameFormValues = {
-  title: string
-  description: string
-  price: number
-  thumbnails: string[]
-  category: string[]
-  tags: { value: string }[]
-  releaseAt: string
-  detailImages: string[]
-  options: { name: string; price: number }[]
-  discountPercentage: number
-  discountPeriod: { start: string; end: string }
-  detailInfo: {
-    title: string
-    contentDescriptors: string
-    ageRating: number
-    ratingNumber: string
-    ratingDate: string
-    businessName: string
-    distributionLicenseNumber: string
-    publisher: string
-    franchise: string
-    developer: string
-  }
-  recommendedRequirements: {
-    os: string
-    processor: string
-    memory: string
-    graphics: string
-    network: string
-    storage: string
-  }
-  minimumRequirements: {
-    os: string
-    processor: string
-    memory: string
-    graphics: string
-    network: string
-    storage: string
-  }
-}
+import { useFormx, useFile } from '@common/hooks'
+import type { FieldErrors } from 'react-hook-form'
+import { postGameDefaultValues, categories } from '@admin/constants'
 
 export const Admin = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<GameFormValues>({
-    mode: 'all',
-    defaultValues: {
-      title: '',
-      description: '',
+  const { register, watch, handleSubmit, handleArrayField, useArrayField } =
+    useFormx<AdminTypes.PostGame.Request>(postGameDefaultValues)
+
+  const { fields, append, remove } = useArrayField('options')
+
+  const childForm = useFormx({
+    tag: '',
+    option: {
+      name: '',
       price: 0,
-      thumbnails: [],
-      category: [],
-      tags: [],
-      releaseAt: '',
-      detailImages: [],
-      options: [],
-      discountPercentage: 0,
-      discountPeriod: { start: '', end: '' },
-      detailInfo: {
-        contentDescriptors: '폭력성',
-        ageRating: 15,
-        ratingNumber: 'GC-CC-NP-191115-003',
-        ratingDate: '20191115',
-        businessName: '주식회사 님블뉴런',
-        distributionLicenseNumber: '2013-000005',
-        publisher: 'Activision',
-        franchise: 'Call of Duty, Black Ops',
-        developer: 'Treyarch, Raven Software, Beenox, High Moon Studios',
-      },
-      recommendedRequirements: {
-        os: 'WINDOWS® 10 (64Bit)',
-        processor: 'Intel Core i5-6600K , AMD Ryzen 5 1600',
-        memory: '16 GB RAM',
-        graphics:
-          'NVIDIA GeForce GTX 1060 , AMD Radeon RX 580 DirectX: 버전 11',
-        network: '초고속 인터넷 연결',
-        storage: '20 GB 사용 가능 공간',
-      },
-      minimumRequirements: {
-        os: 'WINDOWS® 10 (64Bit)',
-        processor: 'Intel Core i3-3225, AMD FX-4350',
-        memory: '8 GB RAM',
-        graphics: 'NVIDIA GeForce GTX 660, ATI Radeon HD 7850 DirectX: 버전 11',
-        network: '초고속 인터넷 연결',
-        storage: '15 GB 사용 가능 공간',
-      },
     },
   })
 
   const {
-    fields: tagFields,
-    append: addTag,
-    remove: removeTag,
-  } = useFieldArray({
-    control,
-    name: 'tags',
+    FileUploader: ThumbnailsUploader,
+    files: thumbnailFiles,
+    removeFile: removeThumbnail,
+  } = useFile({
+    length: 10,
   })
 
   const {
-    fields: optionFields,
-    append: addOption,
-    remove: removeOption,
-  } = useFieldArray({
-    control,
-    name: 'options',
+    FileUploader: DetailUploader,
+    files: detailFiles,
+    removeFile: removeDetail,
+  } = useFile({
+    length: Infinity,
   })
 
-  const categories = [
-    '생존',
-    '오픈월드',
-    '기지건설',
-    'RPG',
-    'FPS',
-    '리듬',
-    '액션',
-    '어드벤쳐',
-    '캐주얼',
-    '인디',
-    '전략',
-    '시뮬레이션',
-  ]
-
-  const onSubmit = (data: GameFormValues) => {
+  const onSubmit = (data: AdminTypes.PostGame.Request) => {
     console.log('폼 제출 데이터:', data)
+  }
+
+  const onInvalid = (errors: FieldErrors<AdminTypes.PostGame.Request>) => {
+    const messages = Object.entries(errors)
+      .map(([key, val]) => `${key}: ${val?.type}`)
+      .join('\n')
+    alert(messages)
+    console.log(errors)
   }
 
   return (
     <main className="admin_create">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
         <dl>
           <dt>게임명</dt>
           <dd>
             <input
               {...register('title', {
-                required: '게임명은 필수 입력값입니다.',
+                required: true,
               })}
               type="text"
             />{' '}
-            {errors.title && <span>{errors.title.message}</span>}
           </dd>
         </dl>
         <dl>
           <dt>게임 설명</dt>
           <dd>
-            <input {...register('description')} type="text" />
+            <input
+              {...register('description', {
+                required: true,
+              })}
+              type="text"
+            />
           </dd>
         </dl>
         <dl>
           <dt>가격</dt>
           <dd>
             <input
-              {...register('price', { valueAsNumber: true })}
-              type="number"
+              {...register('price', { required: true, valueAsNumber: true })}
+              type="text"
+              onInput={(e) => {
+                e.currentTarget.value = e.currentTarget.value.replace(
+                  /[^0-9]/g,
+                  ''
+                )
+              }}
             />
           </dd>
         </dl>
         <dl>
           <dt>썸네일</dt>
           <dd>
-            <input {...register('thumbnails')} type="file" multiple />
+            <label htmlFor="tnumbnailFiles">
+              [파일 업로드]
+              <ThumbnailsUploader id="tnumbnailFiles" />
+            </label>
+          </dd>
+          <dd className="full images">
+            {thumbnailFiles.map((file, idx) => {
+              return (
+                <div key={`file${idx}`}>
+                  <button onClick={() => removeThumbnail(idx)}>&times;</button>
+                  <img src={file.url} alt="" className="cover full" />
+                </div>
+              )
+            })}
+          </dd>
+        </dl>
+        <dl>
+          <dt>상세 이미지</dt>
+          <dd>
+            <label htmlFor="detailFiles">
+              [파일 업로드]
+              <DetailUploader id="detailFiles" />
+            </label>
+          </dd>
+          <dd className="full images">
+            {detailFiles.map((file, idx) => {
+              return (
+                <div key={`file${idx}`}>
+                  <button onClick={() => removeDetail(idx)}>&times;</button>
+                  <img src={file.url} alt="" className="contain full" />
+                </div>
+              )
+            })}
           </dd>
         </dl>
         <dl>
@@ -171,7 +127,13 @@ export const Admin = () => {
           <dd>
             {categories.map((el, idx) => (
               <label key={idx}>
-                <input type="checkbox" {...register('category')} value={el} />
+                <input
+                  type="checkbox"
+                  {...register('category', {
+                    required: true,
+                  })}
+                  value={el}
+                />
                 {el}
               </label>
             ))}
@@ -180,25 +142,26 @@ export const Admin = () => {
         <dl>
           <dt>태그</dt>
           <dd>
-            <input type="text" id="tagInput" />
+            <input type="text" id="tagInput" {...childForm.register('tag')} />
             <button
               type="button"
               className="add"
               onClick={() => {
-                const tagValue = (
-                  document.getElementById('tagInput') as HTMLInputElement
-                )?.value
-                if (tagValue) addTag({ value: tagValue })
+                handleArrayField('tags', childForm.watch('tag'))
+                childForm.resetField('tag')
               }}
             >
               추가
             </button>
           </dd>
           <dd className="full">
-            {tagFields.map((tag, index) => (
-              <span key={tag.id} className="item">
-                {tag.value}{' '}
-                <button type="button" onClick={() => removeTag(index)}>
+            {watch('tags').map((el, idx) => (
+              <span key={`tag${idx}`} className="item">
+                {el}{' '}
+                <button
+                  type="button"
+                  onClick={() => handleArrayField('tags', el, 'remove')}
+                >
                   &times;
                 </button>
               </span>
@@ -208,36 +171,40 @@ export const Admin = () => {
         <dl>
           <dt>출시일</dt>
           <dd>
-            <input {...register('releaseAt')} type="date" />
+            <input {...register('releaseAt', { required: true })} type="date" />
           </dd>
         </dl>
         <dl>
           <dt>옵션</dt>
           <dd>
-            <input type="text" id="optionName" placeholder="옵션명" />{' '}
-            <input type="number" id="optionPrice" placeholder="가격" />
+            <input
+              type="text"
+              id="optionName"
+              placeholder="옵션명"
+              {...childForm.register('option.name')}
+            />{' '}
+            <input
+              type="number"
+              id="optionPrice"
+              placeholder="가격"
+              {...childForm.register('option.price')}
+            />
             <button
               type="button"
               className="add"
               onClick={() => {
-                const name = (
-                  document.getElementById('optionName') as HTMLInputElement
-                )?.value
-                const price = parseFloat(
-                  (document.getElementById('optionPrice') as HTMLInputElement)
-                    ?.value || '0'
-                )
-                if (name) addOption({ name, price })
+                append(childForm.getValues('option'))
+                childForm.resetField('option')
               }}
             >
               추가
             </button>
           </dd>
           <dd className="full">
-            {optionFields.map((option, index) => (
+            {fields.map((option, index) => (
               <span key={option.id} className="item">
                 {option.name} : {option.price}원
-                <button type="button" onClick={() => removeOption(index)}>
+                <button type="button" onClick={() => remove(index)}>
                   &times;
                 </button>
               </span>
@@ -251,6 +218,12 @@ export const Admin = () => {
               {...register('discountPercentage', { valueAsNumber: true })}
               type="number"
               max={100}
+              onInput={(e) => {
+                e.currentTarget.value = e.currentTarget.value.replace(
+                  /[^0-9]/g,
+                  ''
+                )
+              }}
             />
           </dd>
         </dl>
