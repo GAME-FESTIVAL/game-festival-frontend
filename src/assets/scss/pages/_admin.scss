@@ -1,16 +1,33 @@
-.admin_create {
+#admin {
+  padding: 24px;
+}
+
+.admin_update {
+  .btn_wrap {
+    @include flex($jc: flex-end, $gap: 8px);
+    margin-bottom: 12px;
+    a {
+      @include flex($ai: center, $jc: center);
+      width: 100px;
+      height: 40px;
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
   form {
     @include flex($fd: column, $gap: 12px);
-    padding: 24px;
     dl {
       @include flex($gap: 8px);
       flex-wrap: wrap;
       padding-bottom: 12px;
       border-bottom: 1px solid #ccc;
+
       dt {
         @include flex($ai: center);
         width: 120px;
-        background-color: yellow;
+        // background-color: yellow;
+        font-weight: 1000;
       }
       dd {
         &.full {
@@ -78,9 +95,67 @@
       }
     }
 
-    & > button {
+    .btn_wrap {
+      @include flex($jc: flex-start, $gap: 8px);
+      button {
+        width: 100px;
+        height: 40px;
+        background-color: #000;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.admin_list {
+  .btn_wrap {
+    @include flex($jc: flex-end, $gap: 8px);
+    margin-bottom: 12px;
+    a {
+      @include flex($ai: center, $jc: center);
       width: 100px;
       height: 40px;
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
+  .table_wrap {
+    table,
+    th,
+    td {
+      border: 1px solid #999;
+      text-align: left;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: 8px;
+      }
+
+      th {
+        background-color: #ddd;
+      }
+    }
+  }
+
+  #pagination {
+    margin-top: 24px;
+    text-align: center;
+    button {
+      display: inline-block;
+      margin: 0 4px;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #000;
+    }
+    .active {
       background-color: #000;
       color: #fff;
     }

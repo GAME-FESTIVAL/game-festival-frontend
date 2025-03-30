@@ -13,7 +13,6 @@ declare namespace GlobalTypes {
       file: File
       url: string
       originalName: string
-      // fileName: string; // uuid 필요 시 해제
       extension: string
       size: number
     }
@@ -24,7 +23,7 @@ declare namespace GlobalTypes {
           originalname: string
           size: Number
           location: string
-        }[]
+        }
       }
     }
   }

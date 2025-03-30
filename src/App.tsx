@@ -6,7 +6,7 @@ import { FindAccount, Join, Login } from '@auth/components'
 import { Main } from '@main/components'
 import { GameDetail, GameList } from '@games/components'
 import { NewSpecial } from '@newSpecial/components'
-import { Admin } from '@admin/components'
+import { AdminRoutes } from '@admin/components'
 import { Fragment } from 'react/jsx-runtime'
 
 type RouteType = {
@@ -40,18 +40,17 @@ const App = () => {
     })
   }
 
-  if (pathname === '/admin') return <Admin />
-  else
-    return (
-      <Fragment>
-        <Header />
-        <PageContainer>
-          <StickyMenu />
-          <Routes>{renderRoutes(routes)}</Routes>
-        </PageContainer>
-        <Footer />
-      </Fragment>
-    )
+  if (pathname.includes('/admin')) return <AdminRoutes />
+  return (
+    <Fragment>
+      <Header />
+      <PageContainer>
+        <StickyMenu />
+        <Routes>{renderRoutes(routes)}</Routes>
+      </PageContainer>
+      <Footer />
+    </Fragment>
+  )
 }
 
 export default App
