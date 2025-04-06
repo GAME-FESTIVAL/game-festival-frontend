@@ -3,6 +3,18 @@
 }
 
 .admin_update {
+  position: relative;
+
+  aside {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    padding: 8px;
+    transform: translate(-50%, 0);
+    // text-align: center;
+    background-color: yellow;
+  }
+
   .btn_wrap {
     @include flex($jc: flex-end, $gap: 8px);
     margin-bottom: 12px;
@@ -64,10 +76,12 @@
         .item {
           display: inline-flex;
           align-items: center;
+          padding: 4px;
           background-color: #000;
           color: #fff;
           button {
             align-self: stretch;
+            margin-left: 8px;
             padding: 0 4px;
             background-color: #fff;
             cursor: pointer;
@@ -138,6 +152,14 @@
 
       th {
         background-color: #ddd;
+      }
+      td {
+        vertical-align: middle;
+        img {
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+        }
       }
     }
   }

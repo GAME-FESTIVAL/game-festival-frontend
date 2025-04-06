@@ -1,20 +1,36 @@
 import { useFormx, useFile } from '@common/hooks'
 import type { FieldErrors } from 'react-hook-form'
 import { postGameDefaultValues, categories } from '@admin/constants'
-import { usePostGame, usePatchGame, useGetGameDetail, useDeleteGame } from '@games/services'
+import { Registering } from '@admin/components'
+import {
+  usePostGame,
+  usePatchGame,
+  useGetGameDetail,
+  // useDeleteGame,
+} from '@games/services'
 import { usePostFiles } from '@common/services'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import { format } from 'date-fns'
 
 export const AdminGameUpdate = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
-  const { data: gameDetail } = useGetGameDetail(id || "")
-  const { mutate: postGame } = usePostGame()
-  const { mutate: patchGame } = usePatchGame()
-  const { mutate: deleteGame } = useDeleteGame()
+  const { data: gameDetail } = useGetGameDetail(id || '')
+  const { mutateAsync: postGame } = usePostGame()
+  const { mutateAsync: patchGame } = usePatchGame()
+  // const { mutateAsync: deleteGame } = useDeleteGame()
   const { mutateAsync: postFiles } = usePostFiles()
-  const { register, watch, reset, resetField, handleSubmit, handleArrayField, useArrayField, formState: { errors } } =
-    useFormx<GamesTypes.PatchGame.Request>(postGameDefaultValues)
+  const {
+    register,
+    watch,
+    reset,
+    resetField,
+    handleSubmit,
+    handleArrayField,
+    useArrayField,
+    formState: { isSubmitting },
+  } = useFormx<GamesTypes.PatchGame.Request>(postGameDefaultValues)
 
   const { fields, append, remove } = useArrayField('options')
 
@@ -26,36 +42,45 @@ export const AdminGameUpdate = () => {
     },
   })
 
-  console.log(errors)
   const {
-    FileUploader: ThumbnailsUploader,
+    FileUploader: ThumbnailUploader,
     files: thumbnailFiles,
+    setFiles: setThumbnailFiles,
     removeFile: removeThumbnail,
-  } = useFile({
-    length: 10,
-  })
+  } = useFile()
+
+  const {
+    FileUploader: ScreenshotUploader,
+    files: screenshotFiles,
+    setFiles: setScreenshotFiles,
+    removeFile: removeScreenshot,
+  } = useFile({ length: 10 })
 
   const {
     FileUploader: DetailUploader,
     files: detailFiles,
+    setFiles: setDetailFiles,
     removeFile: removeDetail,
-  } = useFile({
-    length: Infinity,
-  })
+  } = useFile({ length: Infinity })
 
   const actionType = gameDetail ? '수정' : '등록'
 
   const onSubmit = async (body: GamesTypes.PatchGame.Request) => {
     console.log('폼 제출 데이터:', body)
     try {
-      if (thumbnailFiles[0]) body.thumbnails = await postFiles(thumbnailFiles)
+      if (thumbnailFiles[0]) body.thumbnail = await postFiles(thumbnailFiles)
+      if (screenshotFiles[0])
+        body.screenshots = await postFiles(screenshotFiles)
       if (detailFiles[0]) body.detailImages = await postFiles(detailFiles)
     } catch {
       return alert('파일 업로드에 실패했습니다.')
     }
-    const onSuccess = () => alert(`게임이 ${actionType}되었습니다.`);
-    if (id) patchGame({ id, body }, { onSuccess })
-    else postGame(body, { onSuccess })
+    const onSuccess = () => {
+      alert(`게임이 ${actionType}되었습니다.`)
+      navigate('/admin/game')
+    }
+    if (id) await patchGame({ id, body }, { onSuccess })
+    else await postGame(body, { onSuccess })
   }
 
   const onInvalid = (errors: FieldErrors<GamesTypes.PatchGame.Request>) => {
@@ -66,23 +91,35 @@ export const AdminGameUpdate = () => {
     console.log(errors)
   }
 
-  const onDelete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault
-    if (!id) return
-    if (window.confirm('정말 삭제하시겠습니까?')) {
-      deleteGame(id, {
-        onSuccess: () => alert('게임이 삭제되었습니다.')
-      })
-    }
-  }
+  // const onDelete = async (
+  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ) => {
+  //   e.preventDefault
+  //   if (!id) return
+  //   if (window.confirm('정말 삭제하시겠습니까?')) {
+  //     await deleteGame(id, {
+  //       onSuccess: () => alert('게임이 삭제되었습니다.'),
+  //     })
+  //   }
+  // }
 
   useEffect(() => {
-    if (gameDetail) reset(gameDetail)
+    if (gameDetail) {
+      reset({
+        ...gameDetail,
+        releaseAt: format(gameDetail.releaseAt, 'yyyy-MM-dd'),
+      })
+      setScreenshotFiles(gameDetail.screenshots)
+      setThumbnailFiles(gameDetail.thumbnail)
+      setDetailFiles(gameDetail.detailImages)
+    }
   }, [gameDetail])
 
   return (
     <main className="admin_update">
-      <div className='btn_wrap'>
+      {isSubmitting && <Registering />}
+      <div className="btn_wrap">
+        {!id && <Link to="/admin/game/create/dummy">더미추가</Link>}
         <Link to="/admin/game">목록으로</Link>
       </div>
       <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
@@ -128,15 +165,46 @@ export const AdminGameUpdate = () => {
           <dd>
             <label htmlFor="tnumbnailFiles">
               [파일 업로드]
-              <ThumbnailsUploader id="tnumbnailFiles" />
+              <ThumbnailUploader id="tnumbnailFiles" />
             </label>
           </dd>
           <dd className="full images">
             {thumbnailFiles.map((file, idx) => {
               return (
                 <div key={`file${idx}`}>
-                  <button onClick={() => removeThumbnail(idx)}>&times;</button>
-                  <img src={file.url} alt="" className="cover full" />
+                  <button type="button" onClick={() => removeThumbnail(idx)}>
+                    &times;
+                  </button>
+                  <img
+                    src={file.url || file.location}
+                    alt=""
+                    className="cover full"
+                  />
+                </div>
+              )
+            })}
+          </dd>
+        </dl>
+        <dl>
+          <dt>스크린샷</dt>
+          <dd>
+            <label htmlFor="screenshotFiles">
+              [파일 업로드]
+              <ScreenshotUploader id="screenshotFiles" />
+            </label>
+          </dd>
+          <dd className="full images">
+            {screenshotFiles.map((file, idx) => {
+              return (
+                <div key={`file${idx}`}>
+                  <button type="button" onClick={() => removeScreenshot(idx)}>
+                    &times;
+                  </button>
+                  <img
+                    src={file.url || file.location}
+                    alt=""
+                    className="cover full"
+                  />
                 </div>
               )
             })}
@@ -154,8 +222,14 @@ export const AdminGameUpdate = () => {
             {detailFiles.map((file, idx) => {
               return (
                 <div key={`file${idx}`}>
-                  <button onClick={() => removeDetail(idx)}>&times;</button>
-                  <img src={file.url} alt="" className="contain full" />
+                  <button type="button" onClick={() => removeDetail(idx)}>
+                    &times;
+                  </button>
+                  <img
+                    src={file.url || file.location}
+                    alt=""
+                    className="contain full"
+                  />
                 </div>
               )
             })}
@@ -255,11 +329,12 @@ export const AdminGameUpdate = () => {
           <dd>
             <input
               {...register('discountPercentage', {
-                valueAsNumber: true, onChange: (e,) => {
+                valueAsNumber: true,
+                onChange: () => {
                   if (!watch('discountPercentage')) {
                     resetField('discountPeriod')
                   }
-                }
+                },
               })}
               type="number"
               max={100}
@@ -275,8 +350,19 @@ export const AdminGameUpdate = () => {
         <dl>
           <dt>할인 기간</dt>
           <dd>
-            <input {...register('discountPeriod.start')} type="date" disabled={!watch('discountPercentage')} max={watch('discountPeriod.end')} /> ~{' '}
-            <input {...register('discountPeriod.end')} type="date" disabled={!watch('discountPercentage')} min={watch('discountPeriod.start')} />
+            <input
+              {...register('discountPeriod.start')}
+              type="date"
+              disabled={!watch('discountPercentage')}
+              max={watch('discountPeriod.end')}
+            />{' '}
+            ~{' '}
+            <input
+              {...register('discountPeriod.end')}
+              type="date"
+              disabled={!watch('discountPercentage')}
+              min={watch('discountPeriod.start')}
+            />
           </dd>
         </dl>
         <dl>
@@ -395,16 +481,17 @@ export const AdminGameUpdate = () => {
             </details>
           </dd>
         </dl>
-        <section className='btn_wrap'>
+        <section className="btn_wrap">
           <button type="submit">{actionType}</button>
-          {
-            id && <button onClick={onDelete}>삭제</button>
-          }
-          <button onClick={(e) => {
-            e.preventDefault()
-            if (confirm('초기화하시겠습니까?')) reset()
-          }}>초기화</button>
-
+          {/* {id && <button onClick={onDelete}>삭제</button>} */}
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              if (confirm('초기화하시겠습니까?')) reset()
+            }}
+          >
+            초기화
+          </button>
         </section>
       </form>
     </main>

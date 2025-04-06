@@ -1,2 +1,3 @@
 export * from './categories'
-export * from './defaultValues'
+export * from './postGameDefaultValues'
+export * from './dummyGameImagesData'

@@ -27,7 +27,7 @@ export const adminApis = {
 
     patchGame: (id: string, data: GamesTypes.PatchGame.Request) => {
       return requestAPI(`/games/${id}`, {
-        method: 'POST',
+        method: 'PATCH',
         data,
       })
     },

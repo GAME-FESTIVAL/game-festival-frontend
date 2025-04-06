@@ -1,13 +1,12 @@
+import { Link, useNavigate } from 'react-router-dom'
 import { useGetGames } from '@games/services'
 import { useQueryString } from '@common/hooks'
 import { Pagination } from '@common/components'
-import { Link } from 'react-router-dom'
+import { format } from 'date-fns'
 
 export const AdminGameList = () => {
+  const navigate = useNavigate()
   const { queryString } = useQueryString({ page: 1 })
-
-  console.log(queryString)
-
   const { data } = useGetGames(queryString)
 
   return (
@@ -34,23 +33,22 @@ export const AdminGameList = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.list?.map((game, idx) => (
-              <tr key={`gameItem${idx}`}>
+            {data?.games?.map((game, idx) => (
+              <tr
+                key={`gameItem${idx}`}
+                onClick={() => navigate(`/admin/game/${game._id}`)}
+              >
                 <td>
-                  <img src={game.thumbnails[0].location} alt="" />
+                  <div className="thumbnail_wrap">
+                    <img src={game.thumbnail[0].location} alt="" />
+                  </div>
                 </td>
                 <td>{game.title}</td>
-                <td>{game.category}</td>
-                <td>{game.createdAt}</td>
+                <td>{game.category.join()}</td>
+                <td>{game.wishlistCount}</td>
+                <td>{format(game.createdAt, 'yyyy.MM.dd')}</td>
               </tr>
             ))}
-            <tr>
-              <td></td>
-              <td>테스트게임1</td>
-              <td>액션, RPG</td>
-              <td>3000</td>
-              <td>2025.03.25</td>
-            </tr>
           </tbody>
         </table>
       </div>

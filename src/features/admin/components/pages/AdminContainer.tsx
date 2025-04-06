@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 
-export const Admin = () => {
+export const AdminContainer = () => {
   return (
     <main id="admin">
       <Outlet />

@@ -9,15 +9,18 @@ export const commnApis = {
 
   utility: {
     postFiles: async (files: GlobalTypes.File.Item[]) => {
+      const newFiles = files.filter((file) => file.file)
+      const existingFiles = files.filter((file) => !file.file)
+      if (!newFiles[0]) return existingFiles
+
       const data = new FormData()
-      files.forEach(({ file }) => data.append('files', file))
-      return requestAPI<GlobalTypes.File.API.PostFiles.Response[]>(
+      newFiles.forEach(({ file }) => data.append('files', file as File))
+      const res = await requestAPI<GlobalTypes.File.API.PostFiles.Response[]>(
         `/files/uploads`,
-        {
-          method: 'POST',
-          data,
-        }
+        { method: 'POST', data }
       )
+
+      return [...existingFiles, ...res]
     },
   },
 }

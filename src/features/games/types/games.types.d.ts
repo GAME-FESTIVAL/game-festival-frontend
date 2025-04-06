@@ -9,11 +9,12 @@ namespace GamesTypes {
   }
 
   type ListItem = {
-    id: string
+    _id: string
     title: string
     description: string
     price: number
-    thumbnails: GlobalTypes.File.API.PostFiles.Response[]
+    thumbnail: GlobalTypes.File.API.PostFiles.Response[]
+    screenshots: GlobalTypes.File.API.PostFiles.Response[]
     category: string[]
     tags: string[]
     releaseAt: string
@@ -26,7 +27,7 @@ namespace GamesTypes {
 
   namespace GetGames {
     type Response = {
-      list: ListItem[]
+      games: ListItem[]
       totalCount: number
     }
   }
@@ -36,12 +37,18 @@ namespace GamesTypes {
       title: string
       description: string
       price: number
-      thumbnails:
+      thumbnail:
+        | GlobalTypes.File.Item[]
+        | GlobalTypes.File.API.PostFiles.Response[]
+      screenshots:
         | GlobalTypes.File.Item[]
         | GlobalTypes.File.API.PostFiles.Response[]
       category: string[]
       tags: string[]
       releaseAt: string
+      representativeImage:
+        | GlobalTypes.File.Item
+        | GlobalTypes.File.API.PostFiles.Response
       detailImages:
         | GlobalTypes.File.Item[]
         | GlobalTypes.File.API.PostFiles.Response[]

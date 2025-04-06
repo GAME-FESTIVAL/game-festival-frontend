@@ -9,19 +9,21 @@ declare namespace GlobalTypes {
       length?: number
     }
 
-    type Item = {
-      file: File
-      url: string
-      originalName: string
-      extension: string
-      size: number
-    }
+    type Item = Partial<
+      {
+        file: File
+        url: string
+        originalName: string
+        extension: string
+        size: number
+      } & API.PostFiles.Response
+    >
 
     namespace API {
       namespace PostFiles {
         type Response = {
           originalname: string
-          size: Number
+          size: number
           location: string
         }
       }

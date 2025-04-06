@@ -15,6 +15,7 @@
 @import './component/button';
 @import './component/swipers';
 @import './component/input';
+@import './component/registering';
 
 // loyout
 @import './layout/header'; // 헤더
@@ -25,4 +26,4 @@
 @import './pages/main';
 @import './pages/member'; // 로그인, 회원가입, 계정 찾기
 @import './pages/newSpecial'; // 신규 및 특집
-@import './pages/admin'; // 신규 및 특집
+@import './pages/admin';
