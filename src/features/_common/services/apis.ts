@@ -1,7 +1,13 @@
 import { requestAPI } from '@common/utils'
 
 export const commnApis = {
-  list: {},
+  list: {
+    getUsers: async () => {
+      return requestAPI<GlobalTypes.GetUsers.Response>(`/users`, {
+        method: 'GET',
+      })
+    },
+  },
 
   delete: {},
 

@@ -1,8 +1,15 @@
-import { useMutation } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import { createQueryKeyFactory } from '@common/utils'
 import { commnApis } from './apis'
 
-const USER_QUERY_KEYS = createQueryKeyFactory(commnApis, 'admin')
+const COMMON_QUERY_KEYS = createQueryKeyFactory(commnApis, 'common')
+
+export const useGetUsers = () => {
+  return useQuery({
+    queryKey: COMMON_QUERY_KEYS.getUsers,
+    queryFn: commnApis.list.getUsers,
+  })
+}
 
 export const usePostFiles = () => {
   return useMutation({
@@ -11,4 +18,4 @@ export const usePostFiles = () => {
   })
 }
 
-export default USER_QUERY_KEYS
+export default COMMON_QUERY_KEYS

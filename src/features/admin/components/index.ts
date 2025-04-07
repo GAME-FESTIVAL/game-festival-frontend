@@ -1,4 +1,5 @@
-export * from './block/Registering'
+export * from './block/AdminRegistering'
+export * from './block/AdminCommentArea'
 
 export * from './pages/AdminContainer'
 export * from './pages/AdminGameList'

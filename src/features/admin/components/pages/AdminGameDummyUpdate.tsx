@@ -10,7 +10,7 @@ import { useGetGames, usePostGame } from '@games/services'
 import { usePostFiles } from '@common/services'
 import { Link } from 'react-router-dom'
 import { format, subDays, subYears } from 'date-fns'
-import { Registering } from '@admin/components'
+import { AdminRegistering } from '@admin/components'
 
 const createReleaseAt = () => {
   const today = new Date()
@@ -130,7 +130,7 @@ export const AdminGameDummyUpdate = () => {
   if (gameList)
     return (
       <main className="admin_update">
-        {isSubmitting && <Registering />}
+        {isSubmitting && <AdminRegistering />}
         <aside>
           <fieldset>
             <legend>자동입력값</legend>

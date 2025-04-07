@@ -1,11 +1,20 @@
 import { requestAPI } from '@common/utils'
 
-export const adminApis = {
+export const gamesApis = {
   list: {
     getGames: (params: string) => {
       return requestAPI<GamesTypes.GetGames.Response>(`/games?${params}`, {
         method: 'GET',
       })
+    },
+
+    getComments: (params: string) => {
+      return requestAPI<GamesTypes.GetComments.Response>(
+        `/comments?${params}`,
+        {
+          method: 'GET',
+        }
+      )
     },
   },
 
@@ -31,11 +40,38 @@ export const adminApis = {
         data,
       })
     },
+
+    postComment: (data: GamesTypes.PostComment.Request) => {
+      return requestAPI(`/comments`, {
+        method: 'POST',
+        data,
+      })
+    },
+
+    postDummyComment: (data: GamesTypes.PostComment.Request) => {
+      return requestAPI(`/comments/dummy`, {
+        method: 'POST',
+        data,
+      })
+    },
+
+    patchComment: (data: GamesTypes.PatchComment.Request) => {
+      return requestAPI(`/comments`, {
+        method: 'PATCH',
+        data,
+      })
+    },
   },
 
   delete: {
     deleteGame: (id: string) => {
       return requestAPI(`/games/${id}`, {
+        method: 'DELETE',
+      })
+    },
+
+    deleteComment: (id: string) => {
+      return requestAPI(`/comments/${id}`, {
         method: 'DELETE',
       })
     },

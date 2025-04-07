@@ -96,4 +96,40 @@ namespace GamesTypes {
       minimumRequirements: Requirements
     }
   }
+
+  namespace GetComments {
+    type Response = {
+      comments: {
+        _id: string
+        content: string
+        createdAt: Date
+        gameId: string
+        helpful: number
+        isRecommended: boolean
+        likes: number
+        notHelpful: number
+        playTime: number
+        updatedAt: Date
+        writer: {
+          _id: string
+          nickname: string
+        }
+      }[]
+      totalCount: number
+    }
+  }
+
+  namespace PostComment {
+    type Request = {
+      writer: string
+      gameId: string
+      content: string
+      playTime: number
+      isRecommended: boolean
+    }
+  }
+
+  namespace PatchComment {
+    type Request = { id: string } & PostComment.Request
+  }
 }

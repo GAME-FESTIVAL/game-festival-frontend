@@ -1,6 +1,10 @@
 declare namespace GlobalTypes {
   type SetState<T> = React.Dispatch<React.SetStateAction<T>>
 
+  namespace GetUsers {
+    type Response = { _id: string; nickname: string }[]
+  }
+
   namespace File {
     type Options = {
       id?: string

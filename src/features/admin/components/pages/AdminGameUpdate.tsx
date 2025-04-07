@@ -1,12 +1,12 @@
 import { useFormx, useFile } from '@common/hooks'
 import type { FieldErrors } from 'react-hook-form'
 import { postGameDefaultValues, categories } from '@admin/constants'
-import { Registering } from '@admin/components'
+import { AdminRegistering, AdminCommentArea } from '@admin/components'
 import {
   usePostGame,
   usePatchGame,
   useGetGameDetail,
-  // useDeleteGame,
+  useDeleteGame,
 } from '@games/services'
 import { usePostFiles } from '@common/services'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -19,7 +19,7 @@ export const AdminGameUpdate = () => {
   const { data: gameDetail } = useGetGameDetail(id || '')
   const { mutateAsync: postGame } = usePostGame()
   const { mutateAsync: patchGame } = usePatchGame()
-  // const { mutateAsync: deleteGame } = useDeleteGame()
+  const { mutateAsync: deleteGame } = useDeleteGame()
   const { mutateAsync: postFiles } = usePostFiles()
   const {
     register,
@@ -91,17 +91,17 @@ export const AdminGameUpdate = () => {
     console.log(errors)
   }
 
-  // const onDelete = async (
-  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  // ) => {
-  //   e.preventDefault
-  //   if (!id) return
-  //   if (window.confirm('정말 삭제하시겠습니까?')) {
-  //     await deleteGame(id, {
-  //       onSuccess: () => alert('게임이 삭제되었습니다.'),
-  //     })
-  //   }
-  // }
+  const onDelete = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault
+    if (!id) return
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      await deleteGame(id, {
+        onSuccess: () => alert('게임이 삭제되었습니다.'),
+      })
+    }
+  }
 
   useEffect(() => {
     if (gameDetail) {
@@ -117,7 +117,7 @@ export const AdminGameUpdate = () => {
 
   return (
     <main className="admin_update">
-      {isSubmitting && <Registering />}
+      {isSubmitting && <AdminRegistering />}
       <div className="btn_wrap">
         {!id && <Link to="/admin/game/create/dummy">더미추가</Link>}
         <Link to="/admin/game">목록으로</Link>
@@ -483,7 +483,7 @@ export const AdminGameUpdate = () => {
         </dl>
         <section className="btn_wrap">
           <button type="submit">{actionType}</button>
-          {/* {id && <button onClick={onDelete}>삭제</button>} */}
+          {id && <button onClick={onDelete}>삭제</button>}
           <button
             onClick={(e) => {
               e.preventDefault()
@@ -494,6 +494,10 @@ export const AdminGameUpdate = () => {
           </button>
         </section>
       </form>
+
+      <hr style={{ margin: '60px 0' }} />
+
+      {id && <AdminCommentArea id={id} />}
     </main>
   )
 }
