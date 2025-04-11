@@ -2,7 +2,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import { createQueryKeyFactory } from '@common/utils'
 import { commnApis } from './apis'
 
-const COMMON_QUERY_KEYS = createQueryKeyFactory(commnApis, 'common')
+export const COMMON_QUERY_KEYS = createQueryKeyFactory(commnApis, 'common')
 
 export const useGetUsers = () => {
   return useQuery({

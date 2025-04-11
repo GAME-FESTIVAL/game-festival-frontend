@@ -15,7 +15,7 @@ namespace GamesTypes {
     price: number
     thumbnail: GlobalTypes.File.API.PostFiles.Response[]
     screenshots: GlobalTypes.File.API.PostFiles.Response[]
-    category: string[]
+    categories: string[]
     tags: string[]
     releaseAt: string
     wishlistCount: number
@@ -43,7 +43,7 @@ namespace GamesTypes {
       screenshots:
         | GlobalTypes.File.Item[]
         | GlobalTypes.File.API.PostFiles.Response[]
-      category: string[]
+      categories: string[]
       tags: string[]
       releaseAt: string
       representativeImage:
@@ -55,6 +55,7 @@ namespace GamesTypes {
       options: { name: string; price: number }[]
       discountPercentage: number
       discountPeriod: { start: string; end: string }
+      wishlistCount: number
       detailInfo: {
         title: string
         contentDescriptors: string
@@ -80,7 +81,8 @@ namespace GamesTypes {
     type Response = ListItem & {
       detailImages: GlobalTypes.File.Item[]
       options: { name: string; price: number }[]
-      recentRating: number
+      totalRating: number
+      totalRater: number
       detailInfo: {
         contentDescriptors: string
         ageRating: number
@@ -106,6 +108,7 @@ namespace GamesTypes {
         gameId: string
         helpful: number
         isRecommended: boolean
+        rating: number
         likes: number
         notHelpful: number
         playTime: number

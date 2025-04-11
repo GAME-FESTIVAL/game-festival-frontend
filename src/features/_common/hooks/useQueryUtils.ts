@@ -1,21 +1,19 @@
 import { useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
-import USER from '@main/services/queries'
+import { queryKeyFactory } from '@common/constants'
 
 export const useQueryUtils = () => {
   const queryClient = useQueryClient()
-  const [queryKeys] = useState({
-    USER,
-  })
+  const [queryKeys] = useState(queryKeyFactory)
 
   const getQueryData = (queryKey: string[]) => {
     return queryClient.getQueryData(queryKey)
   }
 
   const invalidateQueries = (...queryKeys: string[][]) => {
-    queryKeys.forEach((key) => {
+    queryKeys.forEach((queryKey) => {
       queryClient.invalidateQueries({
-        queryKey: [...key],
+        queryKey,
       })
     })
   }

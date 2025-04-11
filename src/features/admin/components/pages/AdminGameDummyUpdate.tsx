@@ -39,7 +39,7 @@ const createDummyGame = (number: number = 1) => {
     title: `테스트게임${number}`,
     description: `테스트게임${number} 설명`,
     releaseAt: createReleaseAt(),
-    category: randomCategories,
+    categories: randomCategories,
     price,
     tags,
     wishlistCount,
@@ -48,7 +48,11 @@ const createDummyGame = (number: number = 1) => {
 }
 
 export const AdminGameDummyUpdate = () => {
-  const { data: gameList, refetch: gameListRefetch } = useGetGames('?page=1')
+  const {
+    data: gameList,
+    refetch: gameListRefetch,
+    isFetching,
+  } = useGetGames('?page=1')
   const { mutateAsync: postGame } = usePostGame()
   const { mutateAsync: postFiles } = usePostFiles()
   const {
@@ -131,11 +135,12 @@ export const AdminGameDummyUpdate = () => {
     return (
       <main className="admin_update">
         {isSubmitting && <AdminRegistering />}
+        {isFetching && <AdminRegistering text="요청" />}
         <aside>
           <fieldset>
             <legend>자동입력값</legend>
             <ul>
-              <li>게임명 : 테스트게임{gameList.totalCount || 1}</li>
+              <li>게임명 : 테스트게임{gameList.totalCount + 1 || 1}</li>
               <li>가격 : 랜덤값</li>
               <li>카테고리 : 랜덤값</li>
               <li>출시일 : 랜덤값</li>
@@ -267,7 +272,7 @@ export const AdminGameDummyUpdate = () => {
                 <label key={idx}>
                   <input
                     type="checkbox"
-                    {...register('category', {
+                    {...register('categories', {
                       required: true,
                     })}
                     value={el}
@@ -393,6 +398,24 @@ export const AdminGameDummyUpdate = () => {
               />
             </dd>
           </dl>
+          <dl>
+            <dt>위시 카운트</dt>
+            <dd>
+              <input
+                {...register('wishlistCount', {
+                  valueAsNumber: true,
+                })}
+                type="number"
+                onInput={(e) => {
+                  e.currentTarget.value = e.currentTarget.value.replace(
+                    /[^0-9]/g,
+                    ''
+                  )
+                }}
+              />
+            </dd>
+          </dl>
+          <dl></dl>
           <dl>
             <dt>기본 정보</dt>
             <dd>

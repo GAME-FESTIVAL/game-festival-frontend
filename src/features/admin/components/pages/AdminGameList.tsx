@@ -44,7 +44,7 @@ export const AdminGameList = () => {
                   </div>
                 </td>
                 <td>{game.title}</td>
-                <td>{game.category.join()}</td>
+                <td>{game.categories?.join()}</td>
                 <td>{game.wishlistCount}</td>
                 <td>{format(game.createdAt, 'yyyy.MM.dd')}</td>
               </tr>

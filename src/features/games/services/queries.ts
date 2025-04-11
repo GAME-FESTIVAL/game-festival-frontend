@@ -1,21 +1,22 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQueryUtils } from '@common/hooks'
 import { createQueryKeyFactory } from '@common/utils'
 import { gamesApis } from './apis'
 
-export const GAME_QUERY_KEYS = createQueryKeyFactory(gamesApis, 'games')
+export const GAMES_QUERY_KEYS = createQueryKeyFactory(gamesApis, 'games')
 
 // 게임
 
 export const useGetGames = (params: string) => {
   return useQuery({
-    queryKey: [...GAME_QUERY_KEYS.getGames, params],
+    queryKey: [...GAMES_QUERY_KEYS.getGames, params],
     queryFn: () => gamesApis.list.getGames(params),
   })
 }
 
 export const useGetGameDetail = (id: string) => {
   return useQuery({
-    queryKey: [...GAME_QUERY_KEYS.getGameDetail, id],
+    queryKey: [...GAMES_QUERY_KEYS.getGameDetail, id],
     queryFn: () => gamesApis.detail.getGameDetail(id),
     enabled: !!id,
   })
@@ -28,15 +29,10 @@ export const usePostGame = () => {
   })
 }
 
-export const usePatchGame = () => {
+export const usePatchGame = (id: string) => {
   return useMutation({
-    mutationFn: ({
-      id,
-      body,
-    }: {
-      id: string
-      body: GamesTypes.PatchGame.Request
-    }) => gamesApis.update.patchGame(id, body),
+    mutationFn: (body: GamesTypes.PatchGame.Request) =>
+      gamesApis.update.patchGame(id, body),
   })
 }
 
@@ -50,42 +46,68 @@ export const useDeleteGame = () => {
 
 export const useGetComments = (params: string) => {
   return useQuery({
-    queryKey: [...GAME_QUERY_KEYS.getComments, params],
+    queryKey: [...GAMES_QUERY_KEYS.getComments, params],
     queryFn: () => gamesApis.list.getComments(params),
   })
 }
 
 export const usePostComment = () => {
+  const {
+    queryKeys: { games },
+    invalidateQueries,
+  } = useQueryUtils()
   return useMutation({
     mutationFn: (body: GamesTypes.PostComment.Request) =>
       gamesApis.update.postComment(body),
+    onSuccess: (_, { gameId }) => {
+      invalidateQueries(games.getComments, [...games.getGameDetail, gameId])
+    },
   })
 }
 
 export const usePostDummyComment = () => {
-  const queryClient = useQueryClient()
+  const {
+    queryKeys: { games, common },
+    invalidateQueries,
+  } = useQueryUtils()
   return useMutation({
     mutationFn: (body: GamesTypes.PostComment.Request) =>
       gamesApis.update.postDummyComment(body),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: GAME_QUERY_KEYS.getComments })
+    onSuccess: (_, { gameId }) => {
+      invalidateQueries(
+        games.getComments,
+        [...games.getGameDetail, gameId],
+        common.getUsers
+      )
     },
   })
 }
 
 export const usePatchComment = () => {
+  const {
+    queryKeys: { games },
+    invalidateQueries,
+  } = useQueryUtils()
   return useMutation({
     mutationFn: (body: GamesTypes.PatchComment.Request) =>
       gamesApis.update.patchComment(body),
+    onSuccess: (_, { gameId }) => {
+      invalidateQueries(games.getComments, [...games.getGameDetail, gameId])
+    },
   })
 }
 
 export const useDeleteComment = () => {
-  const queryClient = useQueryClient()
+  const {
+    queryKeys: { games },
+    invalidateQueries,
+  } = useQueryUtils()
   return useMutation({
     mutationFn: (id: string) => gamesApis.delete.deleteComment(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: GAME_QUERY_KEYS.getComments })
+    onSuccess: (_, id) => {
+      invalidateQueries(games.getComments, [...games.getGameDetail, id])
     },
   })
 }
+
+export default GAMES_QUERY_KEYS

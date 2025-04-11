@@ -1,5 +1,5 @@
 import type { FieldErrors } from 'react-hook-form'
-import { useFormx } from '@common/hooks'
+import { useFormx, useQueryUtils } from '@common/hooks'
 import { useGetUsers } from '@common/services'
 import {
   useGetComments,
@@ -14,6 +14,10 @@ export const AdminCommentArea = ({ id }: { id: string }) => {
   const { data } = useGetComments(`gameId=${id}&size=0`)
   const { mutateAsync } = useDeleteComment()
   const [isFetching, setIsFetching] = useState(false)
+  const {
+    queryKeys: { games },
+    invalidateQueries,
+  } = useQueryUtils()
 
   const deleteComment = async (commentId: string) => {
     if (!confirm('삭제하시겠습니까?')) return
@@ -21,6 +25,7 @@ export const AdminCommentArea = ({ id }: { id: string }) => {
     await mutateAsync(commentId)
     alert('삭제되었습니다.')
     setIsFetching(false)
+    invalidateQueries([...games.getGameDetail, id])
   }
 
   return (
@@ -35,7 +40,9 @@ export const AdminCommentArea = ({ id }: { id: string }) => {
           </dl>
           <dl>
             <dt>반응 :</dt>
-            <dd>{comment.isRecommended ? '긍정적' : '부정적'}</dd>
+            <dd>
+              {comment.isRecommended ? '긍정적' : '부정적'} ({comment.rating}점)
+            </dd>
           </dl>
           <dl>
             <dt>플레이타임 :</dt>
@@ -62,13 +69,15 @@ const CommentInput = ({ id }: { id: string }) => {
   const {
     register,
     handleSubmit,
-    getValues,
+    setValue,
+    watch,
     reset,
     formState: { isSubmitting },
   } = useFormx({
     writer: '',
     gameId: id,
     isRecommended: true,
+    rating: 5,
     content: '',
     playTime: 0,
   })
@@ -91,25 +100,22 @@ const CommentInput = ({ id }: { id: string }) => {
         <div className="etc_fields">
           <div>
             <label>
+              평점{' '}
               <input
-                type="radio"
-                value="true"
-                defaultChecked={getValues('isRecommended')}
-                {...register('isRecommended', {
-                  setValueAs: (v) => v === 'true',
+                type="range"
+                min="0"
+                max="5"
+                step="0.5"
+                {...register('rating', {
+                  valueAsNumber: true,
+                  onChange: (e) => {
+                    if (e.target.value > 2.5) setValue('isRecommended', true)
+                    else setValue('isRecommended', false)
+                  },
                 })}
-              />
-              긍정적
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="false"
-                {...register('isRecommended', {
-                  setValueAs: (v) => v === 'true',
-                })}
-              />
-              부정적
+              />{' '}
+              {watch('rating')}점 ({watch('rating') > 2.5 ? '긍정적' : '부정적'}
+              )
             </label>
             {' | '}
             <label htmlFor="">

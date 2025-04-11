@@ -10,7 +10,7 @@ import {
 } from '@games/services'
 import { usePostFiles } from '@common/services'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { format } from 'date-fns'
 
 export const AdminGameUpdate = () => {
@@ -18,7 +18,7 @@ export const AdminGameUpdate = () => {
   const { id } = useParams()
   const { data: gameDetail } = useGetGameDetail(id || '')
   const { mutateAsync: postGame } = usePostGame()
-  const { mutateAsync: patchGame } = usePatchGame()
+  const { mutateAsync: patchGame } = usePatchGame(id || '')
   const { mutateAsync: deleteGame } = useDeleteGame()
   const { mutateAsync: postFiles } = usePostFiles()
   const {
@@ -63,6 +63,11 @@ export const AdminGameUpdate = () => {
     removeFile: removeDetail,
   } = useFile({ length: Infinity })
 
+  const everageRating = useMemo(() => {
+    if (!gameDetail) return 0
+    return gameDetail.totalRating / gameDetail.totalRater
+  }, [gameDetail])
+
   const actionType = gameDetail ? '수정' : '등록'
 
   const onSubmit = async (body: GamesTypes.PatchGame.Request) => {
@@ -75,12 +80,13 @@ export const AdminGameUpdate = () => {
     } catch {
       return alert('파일 업로드에 실패했습니다.')
     }
-    const onSuccess = () => {
-      alert(`게임이 ${actionType}되었습니다.`)
-      navigate('/admin/game')
-    }
-    if (id) await patchGame({ id, body }, { onSuccess })
-    else await postGame(body, { onSuccess })
+    const mutete = id ? patchGame : postGame
+    await mutete(body, {
+      onSuccess: () => {
+        alert(`게임이 ${actionType}되었습니다.`)
+        if (!id) navigate('/admin/game')
+      },
+    })
   }
 
   const onInvalid = (errors: FieldErrors<GamesTypes.PatchGame.Request>) => {
@@ -98,7 +104,10 @@ export const AdminGameUpdate = () => {
     if (!id) return
     if (window.confirm('정말 삭제하시겠습니까?')) {
       await deleteGame(id, {
-        onSuccess: () => alert('게임이 삭제되었습니다.'),
+        onSuccess: () => {
+          alert('게임이 삭제되었습니다.')
+          navigate('/admin/game')
+        },
       })
     }
   }
@@ -242,7 +251,7 @@ export const AdminGameUpdate = () => {
               <label key={idx}>
                 <input
                   type="checkbox"
-                  {...register('category', {
+                  {...register('categories', {
                     required: true,
                   })}
                   value={el}
@@ -366,6 +375,33 @@ export const AdminGameUpdate = () => {
           </dd>
         </dl>
         <dl>
+          <dt>위시 카운트</dt>
+          <dd>
+            <input
+              {...register('wishlistCount', {
+                valueAsNumber: true,
+              })}
+              type="number"
+              onInput={(e) => {
+                e.currentTarget.value = e.currentTarget.value.replace(
+                  /[^0-9]/g,
+                  ''
+                )
+              }}
+            />
+          </dd>
+        </dl>
+        {gameDetail && gameDetail.totalRating > 0 && (
+          <dl>
+            <dt>평균 평점</dt>
+            <dd>
+              {everageRating.toFixed(2)} (
+              {everageRating >= 3 ? '대체로 긍정적' : '대체로 부정적'})
+            </dd>
+          </dl>
+        )}
+
+        <dl>
           <dt>기본 정보</dt>
           <dd>
             <details>
@@ -483,7 +519,11 @@ export const AdminGameUpdate = () => {
         </dl>
         <section className="btn_wrap">
           <button type="submit">{actionType}</button>
-          {id && <button onClick={onDelete}>삭제</button>}
+          {id && (
+            <button type="button" onClick={onDelete}>
+              삭제
+            </button>
+          )}
           <button
             onClick={(e) => {
               e.preventDefault()
