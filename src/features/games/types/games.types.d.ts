@@ -10,6 +10,7 @@ namespace GamesTypes {
 
   type ListItem = {
     _id: string
+    gameIndex: number
     title: string
     description: string
     price: number
