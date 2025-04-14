@@ -21,7 +21,7 @@
           @include font(
             $color: map-get(map-get($color_palette, blue), CadetBlue)
           );
-          padding: 0 15px;
+          padding: 0 46px 0 15px;
           border-radius: 10px;
           background: map-get(map-get($color_palette, neutral), EerieBlack);
         }

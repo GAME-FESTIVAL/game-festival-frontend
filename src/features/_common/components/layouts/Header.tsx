@@ -22,7 +22,10 @@ export const Header = () => {
       <div className="inner">
         <div className="left_column">
           <form action="">
-            <img src={logo} alt="logo" className="logo" />
+            <Link to="/">
+              <img src={logo} alt="logo" className="logo" />
+            </Link>
+
             <div className="search_box show-pc">
               <input type="text" name="" />
               <button className="search_btn" type="submit">

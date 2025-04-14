@@ -40,13 +40,20 @@
   .inner {
     flex-grow: 1;
     margin: 0 auto;
-    padding: 100px 40px 200px;
     width: 100%;
     min-width: 0;
 
     &.fill {
       padding: 0;
     }
+  }
+}
+
+/* 로그인, 회원가입 페이지 컨테이너 */
+.login_page,
+.join_page {
+  .inner {
+    padding: 163px 0;
   }
 }
 
@@ -57,64 +64,81 @@
 .asterisk {
   color: get-color(blue, CelticBlue);
 }
-/* ## 게임명 */
-.game_name {
-  @include font(20px, $color: get-color(neutral, White));
-}
-/* ## 게임 해시태그 */
-.game_tag {
-  @include flex();
+.game {
+  /* ## 게임명 */
+  &-name {
+    @include font(20px, $color: get-color(neutral, White));
+  }
+  /* ## 게임 해시태그 */
+  &-tag {
+    @include flex();
 
-  &.hashtag {
-    gap: 0 10px;
+    &.hashtag {
+      gap: 0 10px;
 
-    li {
-      @include font(14px, $color: get-color(neutral, SpanishGray));
+      li {
+        @include font(14px, $color: get-color(neutral, SpanishGray));
+      }
     }
   }
-}
-/* ## 게임 가격 */
-.game_price {
-  @include flex(flex, $ai: flex-end);
-  .left-column {
-    @include flex(flex, $ff: column);
-  }
-  .original {
-    @include font(20px, $color: get-color(blue, CadetBlue));
+  /* ## 게임 가격 */
+  &-price {
+    @include flex(flex, $ai: flex-end);
+    .left-column {
+      @include flex(flex, $ff: column);
+    }
+    .original {
+      @include font(20px, $color: get-color(blue, CadetBlue));
 
-    &.discounted {
-      font-size: 14px;
-      text-decoration: line-through;
+      &.discounted {
+        font-size: 14px;
+        text-decoration: line-through;
+      }
+    }
+    .sale {
+      @include font(20px, $color: get-color(point, Sandstorm));
+      padding-right: 4px;
     }
   }
-  .sale {
-    @include font(20px, $color: get-color(point, Sandstorm));
-    padding-right: 4px;
+  /* ## 게임 설명 */
+  &-description {
+    @include textOverflow(2);
+    @include font($color: get-color(neutral, SpanishGray), $lh: 1.5);
+    margin: 15px 0 20px;
   }
-}
-/* ## 게임 설명 */
-.game_description {
-  @include textOverflow(2);
-  @include font($color: get-color(neutral, SpanishGray), $lh: 1.5);
-  margin: 15px 0 20px;
-}
-/* ## 게임 할인 퍼센트 */
-.discountPercent {
-  @include size(62px, 36px);
-  @include font(20px, $color: get-color(neutral, Basic), $lh: 36px);
-  @include position(absolute, $right: 0, $bottom: 0);
-  background-color: get-color(blue, CelticBlue);
-  text-align: center;
-
-  &_red {
-    @include size(52px, 28px);
-    @include font(18px, $color: get-color(neutral, basic), $lh: 28px);
-    border-radius: 3px;
-    background: get-color(point, SunburntCyclops);
+  /* ## 게임 할인 퍼센트 */
+  &-discountPercent {
+    @include size(62px, 36px);
+    @include font(20px, $color: get-color(neutral, Basic), $lh: 36px);
+    background-color: get-color(blue, CelticBlue);
     text-align: center;
+
+    &.absolute {
+      @include position(absolute, $right: 0, $bottom: 0);
+    }
+    &.radius {
+      border-radius: 5px;
+    }
+    &_red {
+      @include size(52px, 28px);
+      @include font(18px, $color: get-color(neutral, basic), $lh: 28px);
+      border-radius: 3px;
+      background: get-color(point, SunburntCyclops);
+      text-align: center;
+    }
   }
 }
+
 /* ## 게임 2개 배너 영역 */
 .banner_area {
   @include flex(flex, $gap: 0 20px);
+}
+
+.banner_area {
+  img {
+    margin: 0;
+  }
+  .banner_item {
+    flex: 1;
+  }
 }

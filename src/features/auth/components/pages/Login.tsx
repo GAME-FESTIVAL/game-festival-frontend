@@ -13,7 +13,7 @@ export const Login = () => {
   const { isDesktop } = useDevice()
 
   return (
-    <main id="login" className="inner">
+    <main id="login">
       <div className="member">
         <div className="tit">
           <img

@@ -1,22 +1,22 @@
 //------------------------------------------//
 // 서브 페이지 좌측 스티키 메뉴 StickyMenu.tsx
 //------------------------------------------//
+
 .sticky {
-  @include size(100%, $maxWidth: 330px, $maxHeight: 806px);
-  @include position(sticky, 20px);
-  margin: 100px 0 200px 40px;
-  padding: 40px 20px;
+  @include size(100%, $maxWidth: 330px, $maxHeight: 755px);
+  @include position(sticky, 120px);
+  padding: 35px 20px;
   background: get-color(neutral, EerieBlack);
   border-radius: 10px;
 
   li {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     &:last-child {
       margin-bottom: 0;
     }
   }
   a {
-    @include font(18px, $color: get-color(blue, CadetBlue));
+    @include font(16px, $color: get-color(blue, CadetBlue));
     display: block;
     vertical-align: middle;
 
@@ -39,7 +39,7 @@
   }
 
   .top_gnb {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   .bott_subMenu {
     .myAccount {

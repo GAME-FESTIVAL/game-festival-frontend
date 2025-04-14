@@ -145,6 +145,10 @@
 
         &.email {
           @include flex($ai: center, $gap: 0 10px);
+
+          img {
+            margin: 0;
+          }
           a {
             color: get-color(neutral, White);
           }

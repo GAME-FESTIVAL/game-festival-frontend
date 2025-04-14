@@ -11,17 +11,17 @@ export const GameCard = ({
     <div className="game_img">
       <img src={img} alt={name} />
       {price.discount && (
-        <span className="discountPercent">{price.discount}</span>
+        <span className="game-discountPercent absolute">{price.discount}</span>
       )}
     </div>
     <div className="game_info">
-      <p className="game_name">{name}</p>
-      <ul className="game_tag hashtag">
+      <p className="game-name">{name}</p>
+      <ul className="game-tag hashtag">
         {tags.map((tag, index) => (
           <li key={index}>#{tag}</li>
         ))}
       </ul>
-      <div className="game_price">
+      <div className="game-price">
         {price.sale && <span className="sale">{price.sale}</span>}
         <span className={`original ${price.sale ? 'discounted' : ''}`}>
           {price.original}
