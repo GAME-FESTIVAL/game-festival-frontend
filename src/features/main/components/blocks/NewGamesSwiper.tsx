@@ -75,9 +75,9 @@ export const NewGamesSwiper = () => {
                     <img src={`assets/imgs/temp/${el.img_url}`} alt="" />
                   </div>
                   <div className="game_info">
-                    <p className="game_name">{el.title}</p>
-                    <div className="game_description">{el.desc}</div>
-                    <ul className="game_tags">
+                    <p className="game-name">{el.title}</p>
+                    <div className="game-description">{el.desc}</div>
+                    <ul className="game-tags">
                       {el.tags.map((tag, key) => (
                         <li key={key}>{tag}</li>
                       ))}

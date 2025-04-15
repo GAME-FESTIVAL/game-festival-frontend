@@ -14,7 +14,8 @@
   $ai: null,
   $ff: null,
   $gap: null,
-  $fd: null
+  $fd: null,
+  $ac: null
 ) {
   display: $display;
   @if $jc != null {
@@ -29,9 +30,11 @@
   @if $gap != null {
     gap: $gap;
   }
-
   @if $fd != null {
     flex-direction: $fd;
+  }
+  @if $ac != null {
+    align-content: $ac;
   }
 }
 

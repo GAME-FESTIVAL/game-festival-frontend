@@ -10,10 +10,10 @@ export const GameInfoTeb = ({
     <div className="HowNew_gameInfo active">
       <div className="game_info">
         <div className="game_txt">
-          <p className="game_name">{gameInfo?.title}</p>
-          <div className="game_price">
+          <p className="game-name">{gameInfo?.title}</p>
+          <div className="game-price">
             {!!gameInfo?.discount_rate && (
-              <div className="discountPercent_red">
+              <div className="game-discountPercent_red">
                 -{gameInfo?.discount_rate}%
               </div>
             )}

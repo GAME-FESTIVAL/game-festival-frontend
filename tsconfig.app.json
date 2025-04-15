@@ -32,7 +32,11 @@
       "@mypage/*": ["features/mypage/*"],
       "@news/*": ["features/news/*"],
       "@newSpecial/*": ["features/newSpecial/*"],
+<<<<<<< HEAD
       "@admin/*": ["features/admin/*"]
+=======
+      "@components/*": ["components/*"]
+>>>>>>> 867a4424b3ad6542186865ca42d0e3b018257dbb
     }
   },
   "include": ["src"]
