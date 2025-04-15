@@ -29,11 +29,13 @@ export const FreeBannerData = [
     name: 'eFootball™',
     description:
       '전 세계 누적 7.5억 다운로드를 돌파한 열광적인 축구 게임이 당신을 기다립니다! 전 세계의 사용자와 eFootball™을 즐기자!',
+    price: '₩21,500',
   },
   {
     img: populaFreeGamesImg2,
     name: 'Apex 레전드™',
     description:
       'Apex 레전드는 Respawn Entertainment에서 제작한 다양한 수상 경력을 자랑하는 무료 플레이 히어로 슈팅 게임입니다. 게임에 계속해서 추가되는 레전드 캐릭터들의 강력한 능력을 마스터하고 깊이 있는 전술적 분대 플레이, 새롭게 진화하는 게임플레이를 지닌 히어로 슈팅과 배틀 로얄의 혁신을 경험하세요.',
+    price: '₩21,500',
   },
 ]

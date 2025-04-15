@@ -6,7 +6,7 @@ export const BannerItem = ({
   name,
   description,
   price,
-}: NewSpecialTypes.NewBannerData) => (
+}: NewSpecialTypes.BannerData) => (
   <Link to="/" className="banner_item">
     <div className="banner_img">
       <img src={img} alt={name} />
