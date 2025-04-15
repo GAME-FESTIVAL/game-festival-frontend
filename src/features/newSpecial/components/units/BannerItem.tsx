@@ -12,9 +12,9 @@ export const BannerItem = ({
       <img src={img} alt={name} />
     </div>
     <div className="game_info">
-      <p className="game_name">{name}</p>
-      <div className="game_description">{description}</div>
-      <div className="game_price">
+      <p className="game-name">{name}</p>
+      <div className="game-description">{description}</div>
+      <div className="game-price">
         <span className="original">{price}</span>
       </div>
     </div>

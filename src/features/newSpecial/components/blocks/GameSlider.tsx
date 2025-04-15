@@ -24,8 +24,8 @@ export const GameSlider = () => {
               <img src={game.img} alt={game.name} />
             </div>
             <div className="game_info">
-              <p className="game_name">{game.name}</p>
-              <div className="game_description">{game.description}</div>
+              <p className="game-name">{game.name}</p>
+              <div className="game-description">{game.description}</div>
               <Link to="" className="game_detail">
                 자세히 보기 <span className="arrow"></span>
               </Link>
@@ -45,7 +45,7 @@ export const GameSlider = () => {
             <div className="game_img">
               <img src={game.thumb} alt={game.name} />
             </div>
-            <p className="game_name">{game.name}</p>
+            <p className="game-name">{game.name}</p>
           </SwiperSlide>
         ))}
       </Swiper>

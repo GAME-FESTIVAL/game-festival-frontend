@@ -32,16 +32,15 @@ export const SwiperReview = ({
       <Swiper
         slidesPerView={slidesPerView}
         slidesPerGroup={slidesPerGroup}
-        pagination={
-          pagination && {
-            clickable: true,
-          }
-        }
         spaceBetween={15}
         modules={[Pagination, Navigation]}
         navigation={{
           nextEl: `#${id}next`,
           prevEl: `#${id}prev`,
+        }}
+        pagination={{
+          el: '.content-dot',
+          clickable: true,
         }}
         className="swiper_container"
         {...props}
@@ -71,6 +70,7 @@ export const SwiperReview = ({
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="content-dot"></div>
     </figure>
   )
 }

@@ -21,6 +21,14 @@ export const UpcomingGames = () => {
               className="full cover"
             />
           </div>
+          <div className="game_hover_info">
+            <div className="wrap">
+              <p>인기 위시 리스트 게임</p>
+              <div className="game-price">
+                <span className="original">₩80,000</span>
+              </div>
+            </div>
+          </div>
         </Link>
       ))}
     </Swiper>

@@ -794,10 +794,10 @@ $star-sizes: (
                   opacity 1.5s;
                 .game_info {
                   padding-top: 20px;
-                  .game_description {
+                  .game-description {
                     color: get-color(blue, CadetBlue);
                   }
-                  .game_tags {
+                  .game-tags {
                     @include flex($gap: 10px);
                     @include font(
                       $fs: 14px,
@@ -825,7 +825,7 @@ $star-sizes: (
           visibility: hidden;
           background: get-color(blue, MaastrichtBlue);
 
-          .game_price {
+          .game-price {
             @include flex($ai: center, $gap: 0 15px);
             padding-top: 12px;
           }

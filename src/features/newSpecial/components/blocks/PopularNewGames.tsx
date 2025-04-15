@@ -1,13 +1,22 @@
 import { useCallback, useMemo, useState } from 'react'
-import {
-  popularNewGamesData,
-  bannerData,
-  gameCategories,
-} from '@newSpecial/constants'
-import { GameCard, BannerItem } from '@newSpecial/components'
+import { popularNewGamesData, gameCategories } from '@newSpecial/constants'
+import { BannerItem } from '@common/components'
+import { GameCard } from '@newSpecial/components'
+import { NewBannerData, FreeBannerData } from '@common/constants'
 
 // 메인 컴포넌트
-export const PopularNewGames = () => {
+export const PopularNewGames = ({
+  variant = 'main',
+}: {
+  variant?: 'main' | 'free'
+}) => {
+  const getBannerByVariant = (variant: 'main' | 'free') => {
+    if (variant === 'main') return NewBannerData
+    return FreeBannerData
+  }
+
+  const banners = getBannerByVariant(variant)
+
   const [activeTab, setActiveTab] =
     useState<(typeof gameCategories)[number]>('특집')
 
@@ -55,7 +64,7 @@ export const PopularNewGames = () => {
         </div>
       </div>
       <div className="banner_area">
-        {bannerData.map((banner, index) => (
+        {banners.map((banner, index) => (
           <BannerItem key={index} {...banner} />
         ))}
       </div>

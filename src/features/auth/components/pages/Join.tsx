@@ -25,7 +25,7 @@ export const Join = () => {
   } = useJoinForm()
 
   return (
-    <main id="join" className="inner">
+    <main id="join">
       <div className="member">
         <div className="tit">
           <img
