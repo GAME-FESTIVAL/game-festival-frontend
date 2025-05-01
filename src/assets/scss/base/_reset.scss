@@ -54,10 +54,10 @@ dd,
 ol,
 ul,
 li,
-fieldset,
+// fieldset,
 form,
 label,
-legend,
+// legend,
 table,
 caption,
 tbody,
@@ -148,6 +148,7 @@ button {
   box-shadow: none;
   border: none;
   padding: 0;
+  cursor: pointer;
 }
 * {
   box-sizing: border-box;

@@ -32,7 +32,7 @@
       "@mypage/*": ["features/mypage/*"],
       "@news/*": ["features/news/*"],
       "@newSpecial/*": ["features/newSpecial/*"],
-      "@components/*": ["components/*"]
+      "@admin/*": ["features/admin/*"]
     }
   },
   "include": ["src"]

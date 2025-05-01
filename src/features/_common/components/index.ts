@@ -11,5 +11,9 @@ export * from './layouts/StickyMenu'
 export * from './blocks/swipers'
 export * from './blocks/LineDeco'
 export * from './blocks/ReviewItem'
+export * from './blocks/Pagination'
+
+// units
+export * from './units/FileInput'
 export * from './blocks/BannerItem'
 export * from './blocks/RecommendedGamesItem'

@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react'
 
 export const UpcomingList = () => {
   const [activeTab, setActiveTab] = useState(0)
-  const tabRefs = useRef<(HTMLLIElement | null)[]>([])
+  const tabRefs = useRef<(HTMLDivElement | null)[]>([])
   const activeBarRef = useRef<HTMLDivElement | null>(null)
 
   const tabLabels = ['인기 출시 예정 게임', '모든 출시 예정 게임']

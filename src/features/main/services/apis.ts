@@ -6,6 +6,7 @@ export const mainApis = {
       return requestAPI<MainTypes.GetPopularGameList.Response>(
         'assets/data/games/list/popular-games.json',
         {
+          baseURL: '/',
           method: 'GET',
         }
       )
@@ -15,6 +16,7 @@ export const mainApis = {
       return requestAPI<MainTypes.GetPopularGameList.Response>(
         'assets/data/games/list/hotdeal-games.json',
         {
+          baseURL: '/',
           method: 'GET',
         }
       )
@@ -24,6 +26,7 @@ export const mainApis = {
       return requestAPI<MainTypes.GetNewGameList.Response>(
         'assets/data/games/list/new-games.json',
         {
+          baseURL: '/',
           method: 'GET',
         }
       )
@@ -33,6 +36,7 @@ export const mainApis = {
       return requestAPI<MainTypes.GetBestGameList.Response>(
         'assets/data/games/list/new-games.json',
         {
+          baseURL: '/',
           method: 'GET',
         }
       )
@@ -42,6 +46,7 @@ export const mainApis = {
       return requestAPI<MainTypes.GetUpcomingGameList.Response>(
         'assets/data/games/list/new-games.json',
         {
+          baseURL: '/',
           method: 'GET',
         }
       )
@@ -51,6 +56,7 @@ export const mainApis = {
       return requestAPI<MainTypes.GetSpecialDiscountGameList.Response>(
         'assets/data/games/list/new-games.json',
         {
+          baseURL: '/',
           method: 'GET',
         }
       )
@@ -60,6 +66,7 @@ export const mainApis = {
       return requestAPI<MainTypes.GetPopularFreeGameList.Response>(
         'assets/data/games/list/new-games.json',
         {
+          baseURL: '/',
           method: 'GET',
         }
       )
@@ -71,6 +78,7 @@ export const mainApis = {
       return requestAPI<MainTypes.GetGameDetail.Response>(
         `assets/data/games/detail/${id}.json`,
         {
+          baseURL: '/',
           method: 'GET',
         }
       )
