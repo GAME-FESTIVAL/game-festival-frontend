@@ -124,7 +124,7 @@ export const AdminGameDummyUpdate = () => {
 
   useEffect(() => {
     if (gameList) {
-      reset(createDummyGame(gameList.games[0].gameIndex))
+      reset(createDummyGame(gameList?.games[0]?.gameIndex || 1))
       setThumbnailFiles(dummyGameImagesData.thumbnail)
       setScreenshotFiles(dummyGameImagesData.screenshots)
       setDetailFiles(dummyGameImagesData.detailImages)
