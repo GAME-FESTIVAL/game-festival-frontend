@@ -1,6 +1,6 @@
 .swiper_basic {
   .swiper_header {
-    @include flex($ai: center);
+    @include display($ai: center);
     margin-bottom: 30px;
 
     @include mobile {
@@ -21,14 +21,14 @@
       }
     }
     .swiper_button_group {
-      @include flex($gap: 10px);
+      @include display($gap: 10px);
 
       @include mobile {
         gap: 8px;
       }
 
       .swiper_custom_button {
-        @include flex($jc: center, $ai: center);
+        @include display($jc: center, $ai: center);
         @include size($width: 40px, $height: 40px);
         background-color: get-color(blue, CelticBlue);
         border-radius: 20px;
@@ -64,7 +64,7 @@
   }
 
   .swiper {
-    @include flex($gap: 20px);
+    @include display($gap: 20px);
     @include size($width: 100%, $height: 100%);
 
     @include mobile {
@@ -73,7 +73,7 @@
   }
 
   .swiper-slide {
-    @include flex($jc: center, $ai: center);
+    @include display($jc: center, $ai: center);
     text-align: center;
     // padding: 12px;
     font-size: 18px;
@@ -112,23 +112,12 @@
   }
 
   .swiper_custom_button {
-    @include flex($ai: center, $jc: center);
+    @include display($ai: center, $jc: center);
     @include position($position: absolute, $bottom: 0);
     @include size($width: 50px, $height: 50px);
     border-radius: 0;
     border: 1px solid #246dc2;
     cursor: pointer;
-
-    &.prev {
-      //   left: calc(50% - 200px - 50px - 45px);
-      img {
-        transform: rotate(180deg);
-      }
-    }
-
-    &.next {
-      //   right: calc(50% - 200px - 50px - 45px);
-    }
   }
 }
 
@@ -137,11 +126,11 @@
   //   width: 410px;
   overflow: hidden;
 
-  .swiper {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-  }
+  //   .swiper {
+  //     width: 100%;
+  //     height: 100%;
+  //     cursor: pointer;
+  //   }
 
   .swiper-slide {
     display: flex;
@@ -150,10 +139,10 @@
     text-align: center;
     font-size: 18px;
 
-    .content {
-      width: 100%;
-      height: 100%;
-    }
+    // .content {
+    //   width: 100%;
+    //   height: 100%;
+    // }
   }
 }
 
@@ -175,7 +164,7 @@
       }
     }
     .swiper_button_group {
-      @include flex($gap: 16px);
+      @include display($gap: 16px);
       .swiper_custom_button {
         @include size($width: 52px, $height: 52px);
         background-color: get-color(blue, CelticBlue);
@@ -189,13 +178,13 @@
     row-gap: 48px;
 
     @include mobile {
-      @include flex($fd: column);
+      @include display($ff: column);
       row-gap: 16px;
     }
 
     .grid_item {
       @include mobile {
-        @include flex($gap: 10px);
+        @include display($gap: 10px);
       }
 
       .img_wrap {
@@ -214,7 +203,7 @@
 }
 
 .favorit_game_wrap {
-  @include flex($fd: column, $gap: 30px);
+  @include display($ff: column, $gap: 30px);
   @include mobile {
     gap: 20px;
   }
@@ -225,28 +214,6 @@
       img {
         width: 100%;
         height: 100%;
-      }
-    }
-  }
-}
-
-.rolling_banner_wrap {
-  .swiper-slide {
-    background-color: get-color(blue, CelticBlue);
-    @include font($fs: 30px, $color: get-color(neutral, EerieBlack));
-    .even-slide {
-      color: get-color(point, BitterLemon);
-    }
-  }
-  .content {
-    .banner_item {
-      @include flex($ai: center, $gap: 65px);
-      margin-bottom: -3px;
-      padding: 12px 0;
-      background-color: get-color(blue, CelticBlue);
-
-      img {
-        margin: 0;
       }
     }
   }

@@ -7,48 +7,54 @@ export const GameInfoTeb = ({
   gameInfo?: MainTypes.GetGameDetail.Response
 }) => {
   return (
-    <div className="HowNew_gameInfo active">
-      <div className="game_info">
-        <div className="game_txt">
-          <p className="game-name">{gameInfo?.title}</p>
-          <div className="game-price">
+    <aside className="active game-detail-panel">
+      <div className="game_info game-detail-content">
+        <h3
+          className="game-name game-detail-title"
+          aria-labelledby="game-detail-title"
+        >
+          {gameInfo?.title}
+        </h3>
+        <div className="game-price game-price-wrap">
+          {!!gameInfo?.discount_rate && (
+            <p className="game-discountPercent_red">
+              -{gameInfo?.discount_rate}%
+            </p>
+          )}
+          <div className="game-current-price">
             {!!gameInfo?.discount_rate && (
-              <div className="game-discountPercent_red">
-                -{gameInfo?.discount_rate}%
-              </div>
-            )}
-            <div className="left-column">
-              <span className="original discounted">
-                ₩{gameInfo?.price.toLocaleString('ko-KR')}
+              <span className="sale">
+                ₩{getDiscountedPrice(gameInfo?.price, gameInfo?.discount_rate)}
               </span>
-              {!!gameInfo?.discount_rate && (
-                <span className="sale">
-                  ₩
-                  {getDiscountedPrice(gameInfo?.price, gameInfo?.discount_rate)}
-                </span>
-              )}
-            </div>
+            )}
+            <span className="original discounted">
+              ₩{gameInfo?.price.toLocaleString('ko-KR')}
+            </span>
           </div>
-          <div className="total_score">
-            <img src={star} alt="" />
-            <div>
-              <span>종합 평가:</span>
-              <p>
-                {gameInfo?.rating_summary}
-                <span>
-                  (총 평가수: {gameInfo?.review_count.toLocaleString('ko-KR')})
-                </span>
-              </p>
-            </div>
+        </div>
+        <div className="game-total-score">
+          <img src={star} alt="별 아이콘" />
+          <div>
+            <strong>종합 평가:</strong>
+            <p>
+              {gameInfo?.rating_summary}
+              <span>
+                (총 평가수: {gameInfo?.review_count.toLocaleString('ko-KR')})
+              </span>
+            </p>
           </div>
         </div>
       </div>
-      <div className="game_img">
+      <div className="game-thumbnail-list">
         {/* 여러 개의 이미지를 표시 */}
         {gameInfo?.thumbnail_urls?.slice(0, 4).map((url, index) => (
-          <img key={index} src={`assets/imgs/thumbnails/${url}`} alt={url} />
+          <img
+            key={index}
+            src={`assets/imgs/thumbnails/${url}`}
+            alt={gameInfo?.title + `게임 썸네일 ${index + 1}`}
+          />
         ))}
       </div>
-    </div>
+    </aside>
   )
 }

@@ -20,7 +20,7 @@
 .member {
   // padding: 165px 0;
   background: get-color(neutral, Basic);
-  @include flex($fd: column, $ai: center);
+  @include display($ff: column, $ai: center);
   .tit {
     margin-bottom: 55px;
     text-align: center;
@@ -84,7 +84,7 @@
       @include font(18px, $color: get-color(neutral, White));
     }
     ul {
-      @include flex(flex, center, center);
+      @include display(flex, center, center);
       li:first-child {
         margin-right: 23px;
         padding-right: 23px;
@@ -190,7 +190,7 @@
       margin-bottom: 40px;
     }
     .input_tit {
-      @include flex(flex, $ai: center, $gap: 0 10px);
+      @include display(flex, $ai: center, $gap: 0 10px);
       margin-bottom: 20px;
       img {
         margin: 0;
@@ -198,7 +198,7 @@
     }
 
     .chk_box {
-      @include flex(flex, $ff: wrap, $gap: 0 50px);
+      @include display(flex, $ff: wrap, $gap: 0 50px);
       margin-bottom: 40px;
 
       .input_tit {

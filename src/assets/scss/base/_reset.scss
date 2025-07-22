@@ -2,9 +2,8 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-* {
-  font-family: $font-primary;
-}
+
+*,
 html,
 body,
 div,
@@ -94,6 +93,7 @@ video {
   vertical-align: baseline;
   position: relative;
   box-sizing: border-box;
+  //   font-family: $font-primary;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -134,6 +134,7 @@ table {
 a {
   color: map-get(map-get($color_palette, neutral), Basic);
   text-decoration: none;
+  box-sizing: border-box;
 }
 input {
   box-shadow: none;
@@ -152,6 +153,7 @@ button {
 }
 * {
   box-sizing: border-box;
+  font-family: $font-primary;
 }
 img {
   display: block;

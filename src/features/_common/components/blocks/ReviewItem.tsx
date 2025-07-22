@@ -44,21 +44,27 @@ export const ReviewItem = ({
   }
   return (
     <>
-      <div className="review_text">{reviewData.content}</div>
-      <div className="reviewer_info">
-        <div className="left_column">
-          <div className="profile_image">
-            <img src={profileBasicImage} alt="프로필 이미지" />
-          </div>
-          <div className="reviewer">
-            <div className="name">{reviewData.name}</div>
-            <div className="reviewCount">
+      <p className="review-content">{reviewData.content}</p>
+      <div className="review-wrap">
+        <div className="review-author-info">
+          <img
+            src={profileBasicImage}
+            alt={`${reviewData.name}의 프로필 사진`}
+            className="author-avatar"
+          />
+          <div>
+            <h3 className="author-name">{reviewData.name}</h3>
+            <span className="author-review-count">
               평가 작성 수 {reviewData.total_reviews}
-            </div>
+            </span>
           </div>
         </div>
-        <div className="right-column">
-          <img src={star} alt="평점" /> {reviewData.rating}
+        <div
+          className="review-rating"
+          aria-label={`평점: ${reviewData.rating}점`}
+        >
+          <img src={star} alt="" aria-hidden="true" className="rating-stars" />
+          <span className="rating-score">{reviewData.rating}</span>
         </div>
       </div>
     </>

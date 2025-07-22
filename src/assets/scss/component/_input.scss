@@ -97,7 +97,7 @@
     visibility: hidden;
 
     & + label {
-      @include flex($ai: center, $gap: 0 9px);
+      @include display($ai: center, $gap: 0 9px);
       @include font(18px, $color: get-color(neutral, White));
       cursor: pointer;
 

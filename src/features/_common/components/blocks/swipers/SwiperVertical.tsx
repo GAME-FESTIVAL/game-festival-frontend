@@ -7,30 +7,31 @@ type SwiperVerticalProps = {
   children?: React.ReactNode[]
   slidesPerView?: number
   spaceBetween?: number
-  height: number
+  height?: number
   className?: string
+  autoHeight?: boolean
 }
 
 export const SwiperVertical = ({
   id,
   children,
-  slidesPerView = 5,
+  slidesPerView = 1,
   spaceBetween = 10,
-  height,
   className,
+  autoHeight = false,
   ...props
 }: SwiperVerticalProps) => {
-  const slideHeight = height
-  const totalHeight = `${
-    slideHeight * slidesPerView + (slidesPerView - 1) * spaceBetween
-  }px`
+  //   const slideHeight = height
+  //   const totalHeight = `${
+  //     slideHeight * slidesPerView + (slidesPerView - 1) * spaceBetween
+  //   }px`
 
   return (
     <figure
       className={`swiper_vertical ${className}`}
-      style={{
-        height: totalHeight,
-      }}
+      //   style={{
+      //     height: totalHeight,
+      //   }}
     >
       <Swiper
         direction={'vertical'}
@@ -42,12 +43,11 @@ export const SwiperVertical = ({
         }}
         modules={[Mousewheel, Pagination]}
         className="mySwiper"
+        autoHeight={autoHeight as any}
         {...props}
       >
         {children?.map((el, idx) => (
-          <SwiperSlide key={`${id}${idx}`}>
-            <div className="content">{el}</div>
-          </SwiperSlide>
+          <SwiperSlide key={`${id}${idx}`}>{el}</SwiperSlide>
         ))}
       </Swiper>
     </figure>
