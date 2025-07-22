@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
 import { Pagination, Navigation } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 
-import swiperButton from '@/assets/imgs/icons/img_popularGame_button.png'
+import swiperButton from '@/assets/imgs/main/popularGame-slideBtn.png'
 
 type SwiperProgressProps = SwiperProps & {
   id: string
@@ -36,6 +36,7 @@ export const SwiperProgress = ({
       <Swiper
         pagination={{
           type: 'progressbar',
+          el: `#${id}-progressbar`,
           clickable: true,
         }}
         modules={[Pagination, Navigation]}
@@ -53,13 +54,15 @@ export const SwiperProgress = ({
             <div className="content">{el}</div>
           </SwiperSlide>
         ))}
-        <div className="swiper-pagination"></div>
       </Swiper>
       <div className="swiper-arrows swiper-etc-box">
         <div className="swiper-button-prev arrow">
           <SwiperButton id={id} direction="prev" />
         </div>
-
+        <div
+          id={`${id}-progressbar`}
+          className="swiper-pagination-progressbar"
+        />
         <div className="swiper-button-next arrow">
           <SwiperButton id={id} direction="next" />
         </div>

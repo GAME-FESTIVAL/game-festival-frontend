@@ -22,7 +22,8 @@
 
   @include tablet {
     .inner {
-      max-width: 800px;
+      max-width: 720px;
+      padding: 0 40px;
     }
   }
   @include mobile {
@@ -34,7 +35,7 @@
 
 /* 페이지 컨테이너 */
 .page_container {
-  @include flex;
+  @include display;
   background: get-color(neutral, Basic);
 
   .inner {
@@ -58,34 +59,90 @@
 }
 
 //------------------------------------------//
+// 반짝이
+//------------------------------------------//
+$star-sizes: (
+  'large': (
+    'hero-starLarge',
+    76px,
+    76px,
+  ),
+  'medium': (
+    'hero-starMedium',
+    52px,
+    52px,
+  ),
+  'small': (
+    'hero-starSmall',
+    28px,
+    28px,
+  ),
+);
+.star-container {
+  @include size(100%, 100%);
+  @include position(absolute, $top: 0, $left: 0);
+  z-index: 5;
+  pointer-events: none;
+
+  @each $size, $values in $star-sizes {
+    $image: nth($values, 1);
+    $width: nth($values, 2);
+    $height: nth($values, 3);
+
+    .star-#{$size} {
+      @include size($width, $height);
+      position: absolute;
+      background-image: url(#{$main_src}/#{$image}.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+  }
+}
+
+//------------------------------------------//
 // 자주 사용되는 클래스
 //------------------------------------------//
 /* ## 별표 */
 .asterisk {
   color: get-color(blue, CelticBlue);
 }
+/* ## 게임 정보 */
 .game {
   /* ## 게임명 */
   &-name {
-    @include font(20px, $color: get-color(neutral, White));
+    @include font(20px, 400, $color: get-color(neutral, White));
+  }
+  /* ## 게임 이미지 */
+  &-img {
+    border-radius: 20px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
   }
   /* ## 게임 해시태그 */
-  &-tag {
-    @include flex();
+  &-tags {
+    @include display(flex, $ai: center);
 
     &.hashtag {
       gap: 0 10px;
 
       li {
-        @include font(14px, $color: get-color(neutral, SpanishGray));
+        @include font(14px, $color: get-color(blue, CadetBlue), $lh: 38px);
+        @include textOverflow(1);
+        @include size($minWidth: 58px, $maxWidth: 142px);
+        background: get-color(blue, MaastrichtBlue);
+        border-radius: 19px;
+        padding: 0 15px;
       }
     }
   }
   /* ## 게임 가격 */
   &-price {
-    @include flex(flex, $ai: flex-end);
+    @include display(flex, $ai: flex-end);
     .left-column {
-      @include flex(flex, $ff: column);
+      @include display(flex, $ff: column);
     }
     .original {
       @include font(20px, $color: get-color(blue, CadetBlue));
@@ -97,13 +154,13 @@
     }
     .sale {
       @include font(20px, $color: get-color(point, Sandstorm));
-      padding-right: 4px;
+      margin-right: 4px;
     }
   }
   /* ## 게임 설명 */
   &-description {
     @include textOverflow(2);
-    @include font($color: get-color(neutral, SpanishGray), $lh: 1.5);
+    @include font(16px, $color: get-color(neutral, SpanishGray), $lh: 1.5);
     margin: 15px 0 20px;
   }
   /* ## 게임 할인 퍼센트 */
@@ -128,12 +185,21 @@
     }
   }
 }
-
 /* ## 게임 2개 배너 영역 */
 .banner_area {
-  @include flex(flex, $gap: 0 20px);
+  @include display(flex, $gap: 0 20px);
+
+  img {
+    margin: 0;
+  }
+  .banner_item {
+    flex: 1;
+  }
 }
 
+//------------------------------------------//
+// 기타
+//------------------------------------------//
 img {
   &.cover {
     object-fit: cover;
@@ -144,14 +210,5 @@ img {
   &.full {
     width: 100%;
     height: 100%;
-  }
-}
-
-.banner_area {
-  img {
-    margin: 0;
-  }
-  .banner_item {
-    flex: 1;
   }
 }

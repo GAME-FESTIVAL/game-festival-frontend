@@ -22,39 +22,51 @@ export const Footer = () => {
   return (
     <footer className="footer comm_container">
       <div className="inner">
-        <div className="top_column">
-          <p>GAME</p>
+        <div className="footer-top">
+          <h2>GAME</h2>
           <img
             src={isDesktop ? logoPC : logoMO}
             alt="아이콘"
             key={isDesktop ? 'desktop' : 'mobile'}
           />
         </div>
-        <div className="bott_column">
+        <div className="footer-bottom bott_column">
           {/* 좌측 꾸밈 컨텐츠 */}
-          <div className="etc">
+          <div
+            className="footer-decoration etc"
+            role="presentation"
+            aria-hidden="true"
+          >
             <LineDeco lineType="first" items={lineItemsList.first} />
             <LineDeco lineType="second" items={lineItemsList.second} />
             <LineDeco lineType="third" items={lineItemsList.third} />
           </div>
           {/* 우측 링크, 이메일 컨텐츠 */}
-          <ul className="main_section_link">
-            <li className="link">
-              {footerLinkMove.map((el, index) => (
-                <Link key={`${el.path}-${index}`} to={el.path}>
-                  {el.title}
+          <nav aria-label="푸터 링크" className="footer-nav">
+            <ul className="footer-links">
+              <li className=" footer-links__contact link">
+                {footerLinkMove.map((el, index) => (
+                  <Link
+                    key={`${el.path}-${index}`}
+                    to={el.path}
+                    className="footer-links__item "
+                  >
+                    {el.title}
+                  </Link>
+                ))}
+              </li>
+              <li className="footer-links__contact email">
+                <img
+                  src={isDesktop ? iconPC : iconMO}
+                  alt="아이콘"
+                  key={isDesktop ? 'desktop' : 'mobile'}
+                />
+                <Link to="/" className="footer-links__item ">
+                  test@test.com
                 </Link>
-              ))}
-            </li>
-            <li className="email">
-              <img
-                src={isDesktop ? iconPC : iconMO}
-                alt="아이콘"
-                key={isDesktop ? 'desktop' : 'mobile'}
-              />
-              <Link to="/">test@test.com</Link>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>

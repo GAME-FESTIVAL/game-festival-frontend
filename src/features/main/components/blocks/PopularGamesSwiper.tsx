@@ -17,12 +17,12 @@ export const PopularGamesSwiper = () => {
     <Swiper.Progress {...swiperProps}>
       {data?.map((el, idx) => (
         <div key={idx}>
-          <div className="game_img">
-            <img src={main_slide_img_1} alt="" />
+          <div className="game-img">
+            <img src={main_slide_img_1} alt={el.title} />
           </div>
-          <div className="game_txt">
-            <p>{el.title}</p>
-            <span>{el.desc}</span>
+          <div className="game-info">
+            <h2 className="game-name">{el.title}</h2>
+            <p className="game-description">{el.desc}</p>
           </div>
         </div>
       ))}

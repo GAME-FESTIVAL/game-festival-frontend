@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
 import { Pagination, Navigation, Grid } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 
-import swiperButton from '@/assets/imgs/icons/swiper_button.svg'
+import swiperButton from '@/assets/imgs/icons/swiper_basic_button.svg'
 
 type SwiperProgressProps = SwiperProps & {
   id: string
@@ -39,15 +39,15 @@ export const SwiperBasic = ({
 }: SwiperProgressProps) => {
   return (
     <figure className={`swiper_basic ${className}`}>
-      <div className="swiper_header">
-        {title && <h1 className="swiper_title">{title}</h1>}
+      <header className="swiper-header tab-game-header">
+        {title && <h2 className="swiper_title">{title}</h2>}
         {navigation && (
-          <div className="swiper_button_group">
+          <div className="swiper-nav-group tab-game-nav">
             <SwiperButton id={id} direction="prev" />
             <SwiperButton id={id} direction="next" />
           </div>
         )}
-      </div>
+      </header>
 
       <Swiper
         slidesPerView={slidesPerView}
@@ -63,12 +63,12 @@ export const SwiperBasic = ({
           nextEl: `#${id}next`,
           prevEl: `#${id}prev`,
         }}
-        className="swiper_container"
+        className="swiper_container tab-game-container"
         {...props}
       >
         {children?.map((el, idx) => (
-          <SwiperSlide key={`${id}${idx}`}>
-            <div className="content">{el}</div>
+          <SwiperSlide key={`${id}${idx}`} className="game-slide">
+            <section className="game-item-wrap">{el}</section>
           </SwiperSlide>
         ))}
       </Swiper>

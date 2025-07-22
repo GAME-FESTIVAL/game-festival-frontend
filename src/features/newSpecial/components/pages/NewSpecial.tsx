@@ -9,6 +9,8 @@ import {
 } from '@newSpecial/components'
 import { GameSlider } from '@newSpecial/components'
 
+import banner from '@/assets/imgs/temp/sub_newSpecial_Banner.png'
+
 export const NewSpecial = () => {
   return (
     <main id="newSpecial">
@@ -53,6 +55,8 @@ export const NewSpecial = () => {
       <section className="sc_recommendedGames">
         <RecommendedGames />
       </section>
+
+      <img src={banner} alt="" />
     </main>
   )
 }

@@ -20,39 +20,43 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="inner">
-        <div className="left_column">
+        <div className="header-util left_column">
+          <Link to="/">
+            <img src={logo} alt="logo" className="logo" />
+          </Link>
           <form action="">
-            <Link to="/">
-              <img src={logo} alt="logo" className="logo" />
-            </Link>
-
-            <div className="search_box show-pc">
+            <div className="header-util-search search_box show-pc">
               <input type="text" name="" />
-              <button className="search_btn" type="submit">
+              <button
+                className="header-util-search-btn search_btn"
+                type="submit"
+              >
                 <img src={search} alt="검색" />
               </button>
             </div>
           </form>
         </div>
-        <div className="right_column show-pc">
-          <ul className="menu">
-            <li>
+        <div className="header-nav-wrap right_column show-pc">
+          <nav className="header-gnb">
+            <ul className="header-gnb-list menu">
               {headerMainMenus.map((el) => (
-                <Link key={el.path} to={el.path}>
-                  {el.title}
-                </Link>
+                <li>
+                  <Link key={el.path} to={el.path}>
+                    {el.title}
+                  </Link>
+                </li>
               ))}
-            </li>
-          </ul>
-          <ul className="signIn">
-            <li>
+            </ul>
+            <ul className="header-auth signIn">
               {headerAuthMenus.map((el) => (
-                <Link key={el.path} to={el.path}>
-                  {el.title}
-                </Link>
+                <li>
+                  <Link key={el.path} to={el.path}>
+                    {el.title}
+                  </Link>
+                </li>
               ))}
-            </li>
-          </ul>
+            </ul>
+          </nav>
         </div>
         <div className="right_column show-mo show-ta">
           <img src={menuBtn} alt="" />

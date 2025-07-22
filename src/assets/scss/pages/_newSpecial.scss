@@ -3,13 +3,13 @@
 //------------------------------------------//
 .new-special_page {
   .inner {
-    @include flex($gap: 80px 40px);
+    @include display($gap: 80px 40px);
     padding: 100px 100px 200px;
     max-width: 1920px;
   }
 }
 #newSpecial {
-  @include flex($ff: column, $gap: 80px 0);
+  @include display($ff: column, $gap: 80px 0);
   max-width: calc(100% - 370px);
   margin: 0;
 
@@ -26,7 +26,7 @@
   .sc {
     //---------------- 메인 게임 슬라이드 영역 ----------------//
     &_gameSlider {
-      @include flex(flex, $gap: 0 20px);
+      @include display(flex, $gap: 0 20px);
 
       /* 좌측 */
       .basic {
@@ -40,7 +40,7 @@
         /* 게임 정보 */
         .game_info {
           @include size(100%, 100%);
-          @include flex($ff: column, $jc: flex-end);
+          @include display($ff: column, $jc: flex-end);
           @include position(absolute, $bottom: 0, $left: 0);
           padding: 40px;
 
@@ -122,11 +122,11 @@
         }
 
         .swiper-wrapper {
-          @include flex($ff: column, $gap: 10px 0);
+          @include display($ff: column, $gap: 10px 0);
 
           .swiper-slide {
             @include size(100%, 123px);
-            @include flex(flex, $ai: center, $gap: 0 15px);
+            @include display(flex, $ai: center, $gap: 0 15px);
             padding: 0 10px;
             background-color: get-color(neutral, EerieBlack);
             border-radius: 10px;
@@ -171,7 +171,7 @@
       .tab_area {
         margin-bottom: 40px;
         .tab_list {
-          @include flex(flex, $gap: 0 10px);
+          @include display(flex, $gap: 0 10px);
           margin-bottom: 30px;
           li {
             @include font($color: get-color(neutral, White), $lh: 46px);
@@ -195,7 +195,7 @@
           border-radius: 15px;
 
           &_element {
-            @include flex(flex, $gap: 0 20px);
+            @include display(flex, $gap: 0 20px);
             opacity: 0;
             visibility: hidden;
             display: none;
@@ -205,7 +205,7 @@
               visibility: visible;
               display: flex;
               &.notFound {
-                @include flex($ai: center, $jc: center);
+                @include display($ai: center, $jc: center);
                 height: 100%;
 
                 p {
@@ -245,7 +245,7 @@
       .upcomingGames_element {
         .game_hover_info {
           @include size(100%, 100%);
-          @include flex(flex, $ai: flex-end);
+          @include display(flex, $ai: flex-end);
           @include position(absolute, 0, $left: 0);
           background: rgba(0, 0, 0, 0.5);
           opacity: 0;
@@ -271,7 +271,7 @@
         margin: 0;
       }
       .tab_list {
-        @include flex(flex, $gap: 0 40px);
+        @include display(flex, $gap: 0 40px);
         margin-bottom: 40px;
         border-bottom: 2px solid get-color(neutral, CharlestonGreen);
 
@@ -294,7 +294,7 @@
       }
       .tab_game {
         &_element {
-          @include flex(grid, $ac: start, $gap: 20px);
+          @include display(grid, $ac: start, $gap: 20px);
           grid-template-columns: repeat(4, 1fr);
           min-height: 660px;
         }
@@ -314,7 +314,7 @@
             padding: 20px;
           }
           &-header {
-            @include flex(flex, $ai: center, $gap: 0 15px);
+            @include display(flex, $ai: center, $gap: 0 15px);
             margin-bottom: 20px;
 
             .profile {
@@ -349,7 +349,7 @@
         }
       }
       .swiper-pagination {
-        @include flex(flex, center, center, $gap: 0 5px);
+        @include display(flex, center, center, $gap: 0 5px);
         position: static;
         margin-top: 30px;
 
@@ -398,7 +398,7 @@
         }
         .swiper {
           .content {
-            @include flex(flex, $ai: center, $gap: 0 10px);
+            @include display(flex, $ai: center, $gap: 0 10px);
           }
           &-slide {
             @include size($width: 296px, $height: 170px);

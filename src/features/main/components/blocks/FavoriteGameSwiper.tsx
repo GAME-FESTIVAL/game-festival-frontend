@@ -5,14 +5,14 @@ import { checkDevice } from '@common/utils/checkDevice'
 export const FavoriteGameSwiper = () => {
   const swiperProps = {
     id: 'mainRollingSwiper',
-    className: 'main_swiper_favorite_game',
+    className: 'favoriteGame-slide-container',
     slidesPerView: checkDevice.isMobile() ? 3.5 : 6.5,
     spaceBetween: checkDevice.isMobile() ? 10 : 20, // 임시값
     speed: 2000,
   }
 
   return (
-    <section className="favorit_game_wrap">
+    <section className="favoriteGame-slide-wrap">
       <Swiper.Rolling {...swiperProps}>
         {Array.from({ length: 20 }).map((_, idx) => (
           <img

@@ -42,48 +42,58 @@ export const NewGamesSwiper = () => {
   }, [newGameList])
 
   return (
-    <section className="new_games_wrap">
-      <div className="tab_area">
-        <ul className="tab_list">
+    <section className="new_games_wrap game-wrap">
+      <div className="tab_area tab-area">
+        <nav
+          className="tab_list tab-list"
+          role="tablist"
+          aria-label="게임 탭 목록"
+        >
           {TABS.map((tab, index) => (
-            <li
+            <button
               key={index}
+              role="tab"
+              aria-selected={index === activeTab}
+              aria-controls={`tabpanel-${index}`}
+              id={`tab-${index}`}
               className={index === activeTab ? 'active' : ''}
               onClick={() => setActiveTab(index)}
             >
               {tab}
-            </li>
+            </button>
           ))}
-        </ul>
+        </nav>
 
-        <div className="tab_game">
+        <div className="tab_game tab-game" role="tabpanel">
           <Swiper
             id="mainBasicSwiper"
-            className="main_swiper_new_games main_swiper_hotNew"
+            className="main_swiper_hotNew game-container"
             slidesPerView={1}
             spaceBetween={24}
             title={TABS[activeTab]}
           >
             {chunkArray(currentGameList, 6).map((sliceData) =>
               sliceData.map((el, idx) => (
-                <div
-                  key={`grid_item-${idx}`}
-                  className="grid_item"
+                <article
+                  key={`game-item-${idx}`}
+                  className="game-item-list"
                   onMouseEnter={() => setHoverGameId(el.id)}
                 >
-                  <div className="img_wrap">
-                    <img src={`assets/imgs/temp/${el.img_url}`} alt="" />
-                  </div>
-                  <div className="game_info">
-                    <p className="game-name">{el.title}</p>
-                    <div className="game-description">{el.desc}</div>
-                    <ul className="game-tags">
+                  <img
+                    src={`assets/imgs/temp/${el.img_url}`}
+                    alt={`${el.title} 이미지`}
+                    className="game-img"
+                  />
+                  <div className="game-info">
+                    <h3 className="game-name">{el.title}</h3>
+                    <p className="game-description">{el.desc}</p>
+                    <ul className="game-tags hashtag">
                       {el.tags.map((tag, key) => (
                         <li key={key}>{tag}</li>
                       ))}
                     </ul>
                   </div>
-                </div>
+                </article>
               ))
             )}
           </Swiper>

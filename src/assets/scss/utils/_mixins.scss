@@ -1,67 +1,29 @@
-//-----------------------------------------//
-//-------------- css display --------------//
-//-----------------------------------------//
-/* 
-    #FlexBox 속성 mixin
-    #사용법 예시
-        .my-container {
-            @include flex($jc: center, $ai: center, $gap: 10px);
-        }
-*/
-@mixin flex(
-  $display: flex,
-  $jc: null,
-  $ai: null,
-  $ff: null,
-  $gap: null,
-  $fd: null,
-  $ac: null
-) {
-  display: $display;
-  @if $jc != null {
-    justify-content: $jc;
-  }
-  @if $ai != null {
-    align-items: $ai;
-  }
-  @if $ff != null {
-    flex-flow: $ff;
-  }
-  @if $gap != null {
-    gap: $gap;
-  }
-  @if $fd != null {
-    flex-direction: $fd;
-  }
-  @if $ac != null {
-    align-content: $ac;
+/* =============================================== ==========================
+   ## 공통 믹스인 모음
+   ================================================= ======================== */
+@use 'sass:math';
+
+$primary: 'Pretendard';
+
+//-------------- 반응형 --------------//
+// ## 사용법 예시 :  @include respond('mobile') {font-size: 14px;}
+@mixin respond($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $breakpoint == 'tablet' {
+    @media (max-width: 1023px) {
+      @content;
+    }
+  } @else if $breakpoint == 'desktop' {
+    @media (min-width: 1024px) {
+      @content;
+    }
   }
 }
-
-@mixin flexCenter($ai: center, $jc: center) {
-  display: flex;
-  align-items: $ai;
-  justify-content: $jc;
-}
-
-@mixin grid($cols: 2, $gap: 5px) {
-  display: grid;
-  grid-template-columns: repeat($cols, 1fr);
-  grid-gap: $gap;
-
-  @include mobile {
-    gap: 0.69vw;
-  }
-}
-
-//--------------------------------------//
-//-------------- css 폰트 --------------//
-//--------------------------------------//
-/* 
-    #폰트 설정 mixin
-    #사용법 위와 같음
-*/
-@mixin font($fs: 16px, $fw: 400, $ff: 'NeoDunggeunmo', $color: null, $lh: 1.3) {
+//-------------- 폰트 --------------//
+@mixin font($fs: null, $fw: null, $ff: null, $color: null, $lh: null) {
   @if $fs != null {
     font-size: $fs;
   }
@@ -79,12 +41,37 @@
   }
 }
 
-//----------------------------------------//
-//-------------- css 포지션 --------------//
-//---------------------------------------//
-/* #포지셔닝 mixin */
+//-------------- 컨텐츠 사이즈 --------------//
+@mixin size(
+  $width: null,
+  $height: null,
+  $maxWidth: null,
+  $maxHeight: null,
+  $minWidth: null,
+  $minHeight: null
+) {
+  @if $width != null {
+    width: $width;
+  }
+  @if $height != null {
+    height: $height;
+  }
+  @if $maxWidth != null {
+    max-width: $maxWidth;
+  }
+  @if $maxHeight != null {
+    max-height: $maxHeight;
+  }
+  @if $minWidth != null {
+    min-width: $minWidth;
+  }
+  @if $minHeight != null {
+    min-height: $minHeight;
+  }
+}
+//-------------- 포지셔닝 --------------//
 @mixin position(
-  $position: absolute,
+  $position: null,
   $top: null,
   $right: null,
   $bottom: null,
@@ -92,7 +79,9 @@
   $x: null,
   $y: null
 ) {
-  position: $position;
+  @if $position != null {
+    position: $position;
+  }
   @if $x != null or $y != null {
     transform: translate(#{if($x != null, $x, 0)}, #{if($y != null, $y, 0)});
   }
@@ -109,36 +98,78 @@
     left: $left;
   }
 }
-
-//----------------------------------------------//
-//-------------- css 컨텐츠 사이즈 --------------//
-//----------------------------------------------//
-/* #컨텐츠 사이즈 mixin */
-@mixin size(
-  $width: null,
-  $height: null,
-  $minWidth: null,
-  $maxWidth: null,
-  $minHeight: null,
-  $maxHeight: null
+//-------------- 플렉스 박스 --------------//
+@mixin display(
+  $display: null,
+  $jc: null,
+  $ai: null,
+  $ac: null,
+  $ff: null,
+  $gap: null
 ) {
-  @if $width != null {
-    width: $width;
+  @if $display != null {
+    display: $display;
   }
-  @if $height != null {
-    height: $height;
+  @if $jc != null {
+    justify-content: $jc;
   }
-  @if $minWidth != null {
-    min-width: $minWidth;
+  @if $ai != null {
+    align-items: $ai;
   }
-  @if $maxWidth != null {
-    max-width: $maxWidth;
+  @if $ac != null {
+    align-content: $ac;
   }
-  @if $minHeight != null {
-    min-height: $minHeight;
+  @if $ff != null {
+    flex-flow: $ff;
   }
-  @if $maxHeight != null {
-    max-height: $maxHeight;
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+@mixin grid($cols: 2, $gap: 5px) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  grid-gap: $gap;
+
+  @include mobile {
+    gap: 0.69vw;
+  }
+}
+@mixin flexCenter($ai: center, $jc: center) {
+  display: flex;
+  align-items: $ai;
+  justify-content: $jc;
+}
+//-------------- 텍스트 그라디언트 --------------//
+// ## 사용법 예시 : @include textBackground(to right, #f224ff, #ff2b00);
+@mixin textBackground($direction: to right, $colors...) {
+  background: linear-gradient($direction, $colors...);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+//-------------- 배경 --------------//
+// ex 0 > jpg, 0 > png
+@mixin bg($src, $imgs, $ex, $position, $bg: null) {
+  @if $ex == 0 {
+    @if $bg !=null {
+      background: url('#{$src}/#{$imgs}.jpg') no-repeat $position, $bg;
+    } @else {
+      background: url('#{$src}/#{$imgs}.jpg') no-repeat $position;
+    }
+  } @else if $ex == 1 {
+    @if $bg !=null {
+      background: url('#{$src}/#{$imgs}.png') no-repeat $position, $bg;
+    } @else {
+      background: url('#{$src}/#{$imgs}.png') no-repeat $position;
+    }
+  } @else {
+    @if $bg !=null {
+      background: url('#{$src}/#{$imgs}.svg') no-repeat $position, $bg;
+    } @else {
+      background: url('#{$src}/#{$imgs}.svg') no-repeat $position;
+    }
   }
 }
 
@@ -168,4 +199,11 @@
 @mixin textShadowBorder($color, $size: 3px) {
   text-shadow: -#{$size} 0px $color, 0px #{$size} $color, #{$size} 0px $color,
     0px -#{$size} $color;
+}
+@mixin page-specific-media($page-class, $breakpoint) {
+  .#{$page-class} {
+    @media (min-width: 1024px) and (max-width: $breakpoint) {
+      @content;
+    }
+  }
 }

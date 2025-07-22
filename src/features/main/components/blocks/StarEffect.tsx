@@ -8,13 +8,17 @@ export const StarEffect = ({ count = 10, containerClass = '' }) => {
       sizeClasses[Math.floor(Math.random() * sizeClasses.length)]
 
     return (
-      <div
+      <span
         key={index}
         className={`star ${sizeClass}`}
         style={{ top: `${top}%`, left: `${left}%` }}
-      ></div>
+      ></span>
     )
   })
 
-  return <div className={`star-container ${containerClass}`}>{stars}</div>
+  return (
+    <div className={`star-container ${containerClass}`} aria-hidden="true">
+      {stars}
+    </div>
+  )
 }

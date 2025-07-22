@@ -8,7 +8,7 @@ export const RollingBannerSwiper = ({
 }: RollingBannerSwiperProps) => {
   const calculateSlidesPerView = () => {
     const viewportWidth = window.innerWidth
-    const itemWidth = 330 + 32 + 65
+    const itemWidth = 305
     return Math.min(3, Math.max(1, Math.floor(viewportWidth / itemWidth)))
   }
 
@@ -31,21 +31,24 @@ export const RollingBannerSwiper = ({
   }
 
   return (
-    <section className="rolling_banner_wrap">
+    <section
+      className="hero-rolling-wrap rolling_banner_wrap"
+      aria-label={direction === 'left' ? '상단 롤링 배너' : '하단 롤링 배너'}
+    >
       <Swiper.Rolling
         {...swiperProps}
         reverseDirection={direction === 'right' ? true : false}
       >
         {generateInfiniteSlides().map((el, idx) => (
-          <div
+          <figure
             key={idx}
-            className={`banner_item ${
+            className={`hero-rolling-item banner_item ${
               idx % 2 === 0 ? 'even-slide' : 'odd-slide'
             }`}
           >
-            <p>{el.text}</p>
-            <img src={el.icon} alt={`icon${idx}`} />
-          </div>
+            <figcaption>{el.text}</figcaption>
+            <img src={el.icon} alt={el.text} />
+          </figure>
         ))}
       </Swiper.Rolling>
     </section>

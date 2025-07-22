@@ -16,10 +16,10 @@
   }
 
   .btn_wrap {
-    @include flex($jc: flex-end, $gap: 8px);
+    @include display($jc: flex-end, $gap: 8px);
     margin-bottom: 12px;
     a {
-      @include flex($ai: center, $jc: center);
+      @include display($ai: center, $jc: center);
       width: 100px;
       height: 40px;
       background-color: #000;
@@ -28,15 +28,15 @@
   }
 
   form {
-    @include flex($fd: column, $gap: 12px);
+    @include display($ff: column, $gap: 12px);
     dl {
-      @include flex($gap: 8px);
+      @include display($gap: 8px);
       flex-wrap: wrap;
       padding-bottom: 12px;
       border-bottom: 1px solid #ccc;
 
       dt {
-        @include flex($ai: center);
+        @include display($ai: center);
         width: 120px;
         // background-color: yellow;
         font-weight: 1000;
@@ -110,7 +110,7 @@
     }
 
     .btn_wrap {
-      @include flex($jc: flex-start, $gap: 8px);
+      @include display($jc: flex-start, $gap: 8px);
       button {
         width: 100px;
         height: 40px;
@@ -123,10 +123,10 @@
 
 .admin_list {
   .btn_wrap {
-    @include flex($jc: flex-end, $gap: 8px);
+    @include display($jc: flex-end, $gap: 8px);
     margin-bottom: 12px;
     a {
-      @include flex($ai: center, $jc: center);
+      @include display($ai: center, $jc: center);
       width: 100px;
       height: 40px;
       background-color: #000;

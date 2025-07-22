@@ -1,4 +1,7 @@
 @use 'sass:math';
+@function calculate($a, $b) {
+  @return math.div($a, $b);
+}
 
 //-----------------------------------------------//
 //-------------- 자주 사용되는 컬러 --------------//
@@ -19,6 +22,8 @@
         padding: vw(172px) 0 vw(180px); // 720px 기준 vw 계산
         padding: vw(172px, 1380) 0 vw(180px, 1380); // 1380px 기준 vw 계산
 */
+//-------------- vw 계산 로직 --------------//
+// ## 단위 검사 함수 - 단위가 있는 값에서 단위 제거 후 숫자 반환
 @function strip-unit($value) {
   @if unitless($value) {
     @return $value;
@@ -26,9 +31,74 @@
     @return math.div($value, ($value * 0 + 1));
   }
 }
-@function vw($value, $base: 720) {
-  $value-num: strip-unit($value);
-  @return calc(#{$value-num} / #{$base} * 100vw);
+//-------------- vw 계산 로직 --------------//
+// 소숫점 자르기
+@function decimal-round($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $mode == round {
+    @return math.div(round($number * $n), $n);
+  } @else if $mode == ceil {
+    @return math.div(ceil($number * $n), $n);
+  } @else if $mode == floor {
+    @return math.div(floor($number * $n), $n);
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+@function vw($px, $base: 720px) {
+  $viewportWidth: decimal-round(math.div(1px, $base) * 100);
+  $pxs: null;
+  $vws: null;
+
+  @each $value in $px {
+    @if type-of($value) == 'number' {
+      @if $value == 0 {
+        $pxs: append($pxs, 0);
+        $vws: append($vws, 0);
+      } @else {
+        $px: math.div($value, 1px);
+        $pxs: append($pxs, $px + px);
+        $vw: $px * $viewportWidth;
+        $vws: append($vws, $vw + vw);
+      }
+    } @else {
+      $pxs: append($pxs, $value);
+      $vws: append($vws, $value);
+    }
+  }
+  @return $vws;
+}
+
+@function vw-multi($px-list, $base: 720px) {
+  $result: ();
+
+  @each $px in $px-list {
+    @if type-of($px) == 'number' and unit($px) == 'px' {
+      $vw-value: (strip-unit($px) / strip-unit($base)) * 100 * 1vw;
+      $result: append($result, $vw-value);
+    } @else {
+      $result: append($result, $px); // px가 아니면 그냥 그대로 넣음
+    }
+  }
+
+  @return $result;
 }
 
 //---------------------------------------//

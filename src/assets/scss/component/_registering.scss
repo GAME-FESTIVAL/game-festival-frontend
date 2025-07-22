@@ -4,11 +4,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  @include flex($jc: center, $ai: center);
+  @include display($jc: center, $ai: center);
   background-color: rgba(0, 0, 0, 0.1);
 
   .registering_message {
-    @include flex($jc: center, $ai: center);
+    @include display($jc: center, $ai: center);
     padding: 24px;
     background-color: #fff;
   }
